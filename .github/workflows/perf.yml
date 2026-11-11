@@ -1,0 +1,17 @@
+name: perf
+# Medição manual da landing de exemplo em máquina limpa (Actions → perf → Run workflow).
+on: workflow_dispatch
+jobs:
+  landing:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - name: Instalação
+        run: bash install.sh --agent codex
+      - name: Lighthouse da landing de exemplo (5 rodadas, celular e desktop)
+        run: |
+          P="$HOME/.pycode-skills/bin/pycode"
+          "$P" page new "$RUNNER_TEMP/pagina" --title "Oficina de APIs" --style orbital
+          "$P" page build "$RUNNER_TEMP/pagina"
+          "$P" page perf "$RUNNER_TEMP/pagina" --runs 5 --baseline --min-score 0
