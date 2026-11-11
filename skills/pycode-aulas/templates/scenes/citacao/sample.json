@@ -1,0 +1,45 @@
+{
+  "id": "robustez",
+  "archetype": "citacao",
+  "title": "Princípio da robustez",
+  "chapter": "boas práticas",
+  "thread": "pedido 42 · com cuidado",
+  "transition": "iris",
+  "bg": "nenhum",
+  "apoio": "Jon Postel escreveu esse princípio na especificação do TCP, em 1980. Ele continua sendo um bom guia para quem desenha APIs, com a ressalva de que aceitar tudo também esconde erros.",
+  "hook": "Na prática da API, isso vira validação e documentação.",
+  "notes": "Tradução livre do trecho da RFC 761, seção 2.10.",
+  "reading": [
+    {
+      "label": "Origem",
+      "title": "RFC 761 (1980), seção 2.10",
+      "text": "Be conservative in what you do, be liberal in what you accept from others."
+    },
+    {
+      "label": "Ao enviar",
+      "title": "Seja conservador",
+      "text": "Responda sempre no formato documentado, sem campos inesperados."
+    },
+    {
+      "label": "Ao receber",
+      "title": "Seja tolerante",
+      "text": "Aceite pequenas variações no pedido quando isso não puser os dados em risco."
+    }
+  ],
+  "data": {
+    "quote": "Seja conservador no que você faz e liberal no que aceita dos outros.",
+    "marks": [
+      {
+        "phrase": "conservador no que você faz",
+        "tip": "Responda sempre no formato documentado."
+      },
+      {
+        "phrase": "liberal no que aceita",
+        "tip": "Tolere pequenas variações no pedido."
+      }
+    ],
+    "author": "Jon Postel",
+    "source": "RFC 761, 1980 · tradução livre"
+  },
+  "budget": 40
+}

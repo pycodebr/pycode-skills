@@ -1,0 +1,24 @@
+[
+  {
+    "group": "styles",
+    "help": "Biblioteca de estilos de design (tokens, DESIGN.md e prévias)",
+    "commands": {
+      "list": {"script": "styles_list.py", "help": "lista os estilos disponíveis (--json para máquina)"},
+      "show": {"script": "styles_show.py", "help": "mostra o DESIGN.md e os caminhos de um estilo"},
+      "preview": {"script": "styles_preview.py", "help": "monta a galeria navegável com fontes locais e capturas"},
+      "new": {"script": "styles_new.py", "help": "cria um estilo seu a partir de outro (--from)"},
+      "check": {"script": "styles_check.py", "help": "valida contrato, contraste, fontes, texto e prévia (fail-closed)"},
+      "tokens": {"script": "styles_tokens.py", "help": "exporta os tokens em css, json ou tailwind"}
+    }
+  },
+  {
+    "group": "refs",
+    "help": "Acervos externos de referência de design, baixados só na sua máquina",
+    "commands": {
+      "list": {"script": "refs_list.py", "help": "catálogo de acervos com licença e status local"},
+      "fetch": {"script": "refs_fetch.py", "help": "baixa um acervo (ou all) para ~/.pycode-skills/references"},
+      "search": {"script": "refs_search.py", "help": "busca estudos por nome e prompt nos acervos baixados"},
+      "open": {"script": "refs_open.py", "help": "mostra o caminho do HTML e do prompt de um estudo"}
+    }
+  }
+]

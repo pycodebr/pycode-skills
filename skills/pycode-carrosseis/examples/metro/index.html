@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=1080">
+  <title>Mapa do metrô</title>
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/scene.css">
+</head>
+<body>
+  <!-- Exemplo "mapa do metrô": parede de estação, faixa do mapa no topo e a linha (svg.rail) cruzando os slides. -->
+  <main class="carousel"></main>
+
+  <template id="slide-common">
+    <div class="wall" aria-hidden="true"></div>
+    <div class="track" aria-hidden="true"><div class="bed"></div><div class="edge"></div><div class="floor"></div></div>
+    <div class="grain" aria-hidden="true"></div>
+    <div class="anchors"><span class="brand" data-anchor="brand"></span><span class="counter" data-anchor="counter"></span></div>
+  </template>
+
+  <template data-layout="cover">
+    <section class="slide layout-cover">
+      <h1 class="display cover-title" data-field="title"></h1>
+      <svg class="strip" viewBox="0 0 1080 150" aria-label="Mapa da linha com cinco estações"></svg>
+      <div class="tunnel" aria-hidden="true"></div>
+      <div class="train" aria-hidden="true"></div>
+    </section>
+  </template>
+
+  <template data-layout="map">
+    <section class="slide layout-map">
+      <p class="lead" data-field="body"></p>
+      <svg class="bigmap" viewBox="0 0 1080 640" aria-label="Diagrama da linha"></svg>
+    </section>
+  </template>
+
+  <template data-layout="station">
+    <section class="slide layout-station">
+      <svg class="strip" viewBox="0 0 1080 150" aria-label="Mapa da linha"></svg>
+      <div class="sign"><span class="badge"></span><span class="sign-text"><span class="sign-kicker"></span><span class="sign-name"></span></span></div>
+      <p class="lead" data-field="body"></p>
+      <div class="hero"></div>
+    </section>
+  </template>
+
+  <template data-layout="cta">
+    <section class="slide layout-cta">
+      <svg class="strip" viewBox="0 0 1080 150" aria-label="Mapa da linha"></svg>
+      <h2 class="display cta-title" data-field="title"></h2>
+      <div class="train stopped" aria-hidden="true"></div>
+      <div class="buffer" aria-hidden="true"></div>
+      <p class="cta" data-field="cta"></p>
+    </section>
+  </template>
+
+  <script src="js/slides-data.js"></script>
+  <script src="js/carousel.js"></script>
+  <script src="js/scene.js"></script>
+</body>
+</html>

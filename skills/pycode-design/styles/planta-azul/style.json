@@ -1,0 +1,23 @@
+{
+  "slug": "planta-azul",
+  "name": "Planta técnica",
+  "summary": "Folha de arquiteto em papel azul com grade milimetrada, traço branco desenhado ao vivo, linhas de cota, carimbos e selo técnico. Para arquitetura de sistemas, permissões, fluxos e qualquer explicação de estrutura.",
+  "mode": "dark",
+  "fonts": [
+    "space-grotesk",
+    "geist",
+    "jetbrains-mono"
+  ],
+  "best_for": [
+    "deck",
+    "page",
+    "carousel"
+  ],
+  "mood": [
+    "técnico",
+    "preciso",
+    "didático",
+    "construção"
+  ],
+  "version": "1.0.0"
+}

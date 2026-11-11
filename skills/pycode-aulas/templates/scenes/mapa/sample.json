@@ -1,0 +1,87 @@
+{
+  "id": "ecossistema",
+  "archetype": "mapa",
+  "title": "APIs por toda parte",
+  "chapter": "o contexto",
+  "thread": "pedido 42 · e outros",
+  "transition": "cortina",
+  "bg": "rede",
+  "apoio": "Um aplicativo comum conversa com várias APIs: a sua, para os dados do negócio, e as de outras empresas, para pagamento, mapa, mensagens e login.",
+  "hook": "Volta o pedido 42: hora de fechar o caminho.",
+  "notes": "Cada linha do mapa é uma API diferente. Clique nas estações.",
+  "reading": [
+    {
+      "label": "Linha 1",
+      "title": "Sua API",
+      "text": "Pedidos, clientes e produtos do seu negócio."
+    },
+    {
+      "label": "Linha 2",
+      "title": "Pagamento",
+      "text": "Cobra o cartão sem que o app guarde os números."
+    },
+    {
+      "label": "Linha 3",
+      "title": "Mapa",
+      "text": "Mostra o endereço de entrega e calcula a rota."
+    },
+    {
+      "label": "Linha 4",
+      "title": "Mensagens",
+      "text": "Envia o e-mail de confirmação do pedido."
+    },
+    {
+      "label": "Linha 5",
+      "title": "Login",
+      "text": "Permite entrar com uma conta que a pessoa já tem."
+    }
+  ],
+  "data": {
+    "center": {
+      "label": "Seu app",
+      "icon": "app"
+    },
+    "stations": [
+      {
+        "label": "Sua API",
+        "icon": "server",
+        "tone": "accent",
+        "x": 300,
+        "y": 150,
+        "tip": "Pedidos, clientes e produtos."
+      },
+      {
+        "label": "Pagamento",
+        "icon": "card",
+        "tone": "accent-2",
+        "x": 1400,
+        "y": 130,
+        "tip": "Cobra o cartão sem guardar os números."
+      },
+      {
+        "label": "Mapa",
+        "icon": "pin",
+        "tone": "ok",
+        "x": 1500,
+        "y": 470,
+        "tip": "Mostra o endereço de entrega."
+      },
+      {
+        "label": "Mensagens",
+        "icon": "mail",
+        "tone": "warn",
+        "x": 980,
+        "y": 640,
+        "tip": "Envia o e-mail de confirmação."
+      },
+      {
+        "label": "Login",
+        "icon": "key",
+        "tone": "danger",
+        "x": 260,
+        "y": 560,
+        "tip": "Entra com uma conta que já existe."
+      }
+    ]
+  }
+}

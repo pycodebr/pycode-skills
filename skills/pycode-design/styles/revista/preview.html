@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Revista · prévia do estilo</title>
+<meta name="description" content="Editorial impresso em papel creme, serifas de revista com itálico expressivo, colunas com fios, capitular, citação em destaque e índice numerado. Para ensaios, newsletters, estudos de caso e aulas de leitura longa.">
+<!-- Abra pela galeria (pycode styles preview): ela copia as fontes para fonts/ ao lado deste arquivo. -->
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="tokens.css">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+/* ---------- chassi comum da prévia: só variáveis do contrato ---------- */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:17px;line-height:1.6;overflow-x:hidden}
+img,svg{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.pv-wrap{width:min(1240px,calc(100% - 40px));margin-inline:auto}
+.pv-section{padding-block:clamp(56px,8vw,112px);position:relative}
+.pv-section + .pv-section{border-top:1px solid var(--line)}
+h1,h2,h3{font-family:var(--font-display);font-weight:var(--weight-display);letter-spacing:var(--tracking-display);line-height:1.05;margin:0;text-wrap:balance}
+p{margin:0;text-wrap:pretty}
+.pv-h2{font-size:clamp(30px,4.2vw,54px);max-width:18ch}
+.pv-intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px 48px;align-items:end;margin-bottom:clamp(32px,5vw,56px)}
+.pv-intro p{color:var(--muted);max-width:56ch}
+.pv-top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 0;font-family:var(--font-mono);font-size:14px;color:var(--muted)}
+.pv-top b{color:var(--text);font-weight:600}
+.pv-top nav{display:flex;gap:18px;flex-wrap:wrap}
+.pv-top nav a{text-decoration:none;color:var(--muted)}
+.pv-top nav a:hover{color:var(--text)}
+/* paleta */
+.pv-palette{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,190px),1fr));gap:14px}
+@media (max-width:600px){.pv-palette{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.pv-chip{grid-template-rows:56px auto}.pv-chip div{padding:10px}.pv-chip code{font-size:12px;word-break:break-all}.pv-chip span{font-size:13px}}
+.pv-chip{display:grid;grid-template-rows:84px auto;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--surface)}
+.pv-chip i{display:block;border-bottom:1px solid var(--line)}
+.pv-chip div{padding:12px 14px 14px;display:grid;gap:2px}
+.pv-chip code{font-family:var(--font-mono);font-size:13px;color:var(--text)}
+.pv-chip span{font-size:14px;line-height:1.45;color:var(--muted)}
+/* tipografia */
+.pv-type{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:clamp(24px,4vw,56px)}
+.pv-type-display{font-family:var(--font-display);font-weight:var(--weight-display);letter-spacing:var(--tracking-display);font-size:clamp(46px,7.4vw,112px);line-height:.98}
+.pv-type-scale{display:grid;gap:14px;align-content:start}
+.pv-type-scale div{display:grid;grid-template-columns:120px minmax(0,1fr);gap:12px;align-items:baseline;border-top:1px solid var(--line);padding-top:10px}
+.pv-type-scale code{font-family:var(--font-mono);font-size:13px;color:var(--muted)}
+.pv-type-body{margin-top:26px;max-width:58ch;color:var(--muted)}
+.pv-type-mono{margin-top:18px;font-family:var(--font-mono);font-size:15px;color:var(--text)}
+/* objetos */
+.pv-objects{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:clamp(16px,2vw,28px)}
+.pv-objects > figure{margin:0;grid-column:span 2;display:grid;grid-template-rows:auto 1fr;gap:14px;min-width:0}
+.pv-objects > figure.wide{grid-column:span 3}
+.pv-objects > figure.full{grid-column:1 / -1}
+.pv-stage{position:relative;min-height:340px;padding:28px;border-radius:var(--radius-lg);overflow:hidden;display:grid;place-items:center;isolation:isolate}
+.pv-objects figcaption{font-size:15px;line-height:1.5;color:var(--muted)}
+.pv-objects figcaption b{display:block;color:var(--text);font-family:var(--font-display);font-weight:var(--weight-display);letter-spacing:var(--tracking-display);font-size:19px;margin-bottom:2px}
+/* formatos */
+.pv-formats{display:grid;grid-template-columns:minmax(0,1.85fr) minmax(0,1fr);gap:clamp(20px,3vw,36px);align-items:start}
+.pv-formats > [data-format="page"]{grid-column:1 / -1}
+.pv-format-label{font-family:var(--font-mono);font-size:13px;color:var(--muted);margin:0 0 10px}
+[data-format="deck"]{aspect-ratio:16/9;container-type:inline-size;position:relative;overflow:hidden;border-radius:var(--radius)}
+[data-format="carousel"]{aspect-ratio:4/5;container-type:inline-size;position:relative;overflow:hidden;border-radius:var(--radius)}
+.pv-foot{padding:40px 0 56px;color:var(--muted);font-size:14px;font-family:var(--font-mono)}
+/* movimento: entradas só quando há JS; loops só rodam com a cena visível */
+html.js [data-scene]:not([data-entered]) .rise{opacity:0;transform:translateY(18px)}
+.rise{transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1);transition-delay:calc(var(--i,0) * 70ms)}
+html.js .loop,html.js .loop::before,html.js .loop::after{animation-play-state:paused !important}
+html.js [data-scene][data-motion="on"] .loop,html.js [data-scene][data-motion="on"] .loop::before,html.js [data-scene][data-motion="on"] .loop::after{animation-play-state:running !important}
+html.js body[data-background="true"] .loop,html.js body[data-background="true"] .loop::before,html.js body[data-background="true"] .loop::after{animation-play-state:paused !important}
+@media (max-width:900px){
+  .pv-intro,.pv-type,.pv-formats{grid-template-columns:minmax(0,1fr)}
+  .pv-objects{grid-template-columns:minmax(0,1fr)}
+  .pv-objects > figure,.pv-objects > figure.wide{grid-column:1 / -1}
+}
+@media (max-width:600px){.pv-top nav{display:none}body{font-size:16px}}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none !important;transition:none !important;scroll-behavior:auto !important}
+  html.js [data-scene]:not([data-entered]) .rise{opacity:1;transform:none}
+}
+
+/* ---------- Revista: superfícies, objetos e movimento do estilo ---------- */
+.pv-revista{background:var(--bg);color:var(--text)}
+.pv-revista .pv-section + .pv-section{border-top:3px double var(--revista-rule)}
+.pv-revista .pv-h2{font-size:clamp(36px,4.6vw,64px);line-height:1}
+.pv-revista .pv-h2 em,.rv-hero h1 em{font-style:italic;color:var(--accent)}
+.pv-revista .pv-objects figcaption b{font-size:24px}
+.pv-revista .pv-chip{border-radius:0}
+.rv-hero{padding-top:clamp(20px,3vw,40px)}
+.rv-mast{display:grid;grid-template-columns:auto 1fr auto;gap:12px 24px;align-items:end;border-bottom:3px solid var(--revista-rule);padding-bottom:10px}
+.rv-mast .name{font:400 clamp(64px,11vw,168px)/.8 var(--font-display);letter-spacing:-.04em}
+.rv-mast .issue{font:400 13px var(--font-mono);color:var(--muted);line-height:1.6;text-align:right}
+.rv-sub{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;border-bottom:1px solid var(--revista-rule);padding:8px 0;font:400 13px var(--font-mono);color:var(--muted)}
+.rv-spread{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(24px,4vw,64px);margin-top:clamp(24px,4vw,48px)}
+.rv-hero h1{font-size:clamp(42px,5.6vw,86px);line-height:.98;letter-spacing:-.025em}
+.rv-dek{font:italic 400 clamp(19px,1.7vw,24px)/1.45 var(--font-body);margin-top:22px;max-width:38ch;color:var(--text)}
+.rv-by{margin-top:18px;font:400 13px var(--font-mono);color:var(--muted)}
+.rv-cols{columns:2 16ch;column-gap:32px;column-rule:1px solid var(--line);margin-top:28px;font-size:16.5px;line-height:1.62}
+.rv-cols p + p{text-indent:1.4em}
+.rv-drop::first-letter{float:left;font:400 5.4em/.8 var(--font-display);color:var(--accent);padding:.06em .08em 0 0}
+.rv-fig{margin:0;display:grid;gap:10px;align-content:start}
+.rv-fig .art{background:var(--surface);border:1px solid var(--line);aspect-ratio:4/5;display:grid;place-items:center;overflow:hidden}
+.rv-fig figcaption{font:400 13px/1.5 var(--font-mono);color:var(--muted)}
+.rv-fig figcaption b{color:var(--text);font-weight:600}
+.rv-spin{transform-box:view-box;transform-origin:50% 50%;animation:rv-spin 60s linear infinite}
+@keyframes rv-spin{to{transform:rotate(360deg)}}
+.rv-rule{display:block;height:1px;background:var(--revista-rule);transform-origin:0 50%;transition:transform 1.2s cubic-bezier(.6,0,.2,1)}
+html.js [data-scene]:not([data-entered]) .rv-rule{transform:scaleX(0)}
+.rv-btn{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 20px;margin-top:24px;background:var(--accent);color:var(--accent-ink);font:500 15px var(--font-body);text-decoration:none}
+.rv-btn.line{background:none;color:var(--text);border-bottom:1px solid var(--text);padding:0;min-height:40px;margin-left:20px}
+/* objetos */
+.rv-stage{background:var(--surface);border:1px solid var(--line);border-radius:0;place-items:center stretch}
+.rv-quote{position:relative;padding:22px 6px;border-block:1px solid var(--revista-rule);margin:0 8px}
+.rv-quote::before{content:"“";position:absolute;left:-6px;top:-40px;font:400 140px/1 var(--font-display);color:var(--accent);opacity:.9;transition:transform .9s cubic-bezier(.2,.7,.2,1),opacity .9s ease}
+html.js [data-scene]:not([data-entered]) .rv-quote::before{transform:translateY(20px);opacity:0}
+.rv-quote p{font:italic 400 clamp(24px,2.4vw,32px)/1.18 var(--font-display);padding-left:34px}
+.rv-quote cite{display:block;font:normal 400 12px var(--font-mono);color:var(--muted);margin-top:12px;padding-left:34px}
+.rv-toc{list-style:none;margin:0 8px;padding:0;display:grid;gap:12px}
+.rv-toc li{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:baseline}
+.rv-toc b{font:400 28px/1 var(--font-display);color:var(--accent)}
+.rv-toc span{display:flex;gap:8px;align-items:baseline;min-width:0}
+.rv-toc span::after{content:"";flex:1;border-bottom:1.5px dotted var(--muted);transform:translateY(-4px)}
+.rv-toc em{font:400 13px var(--font-mono);font-style:normal}
+.rv-margin{display:grid;grid-template-columns:minmax(0,1fr) 120px;gap:18px;padding:0 8px;font-size:15.5px;line-height:1.6}
+.rv-margin sup{color:var(--accent);font:600 11px var(--font-mono)}
+.rv-margin aside{font:italic 400 13.5px/1.45 var(--font-body);color:var(--muted);border-top:1px solid var(--accent);padding-top:6px}
+.rv-orn{display:grid;grid-template-columns:1fr auto 1fr;gap:18px;align-items:center;width:100%;padding:0 10px}
+.rv-orn i{height:4px;border-block:1px solid var(--revista-rule)}
+.rv-orn span{font:italic 400 36px/1 var(--font-display);color:var(--accent)}
+/* página */
+.rv-page{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:clamp(20px,4vw,56px);border-top:3px solid var(--revista-rule);padding-top:22px}
+.rv-page h3{font-size:clamp(32px,3.6vw,52px);line-height:1}
+.rv-page .lede{font:italic 400 18px/1.5 var(--font-body);margin-top:14px;color:var(--muted)}
+/* deck */
+.rv-deck{position:absolute;inset:0;background:var(--bg);padding:4cqw 5cqw 3cqw;display:grid;grid-template-rows:auto 1fr auto;border:1px solid var(--line)}
+.rv-deck .run{display:flex;justify-content:space-between;font:400 1.1cqw var(--font-mono);color:var(--muted);border-bottom:1px solid var(--revista-rule);padding-bottom:.8cqw}
+.rv-deck .body{display:grid;grid-template-columns:1fr 1fr;gap:4cqw;align-items:center}
+.rv-deck h3{font-size:5.6cqw;line-height:.98}
+.rv-deck p{font-size:1.6cqw;line-height:1.55}
+.rv-deck .rv-drop::first-letter{font-size:4.6em}
+.rv-deck .foot{display:flex;justify-content:space-between;font:400 1.3cqw var(--font-display);border-top:1px solid var(--revista-rule);padding-top:.8cqw}
+/* carrossel: capa */
+.rv-car{position:absolute;inset:0;background:var(--bg);padding:5cqw;display:grid;grid-template-rows:auto auto 1fr auto;border:1px solid var(--line)}
+.rv-car .name{font:400 26cqw/.8 var(--font-display);letter-spacing:-.04em;border-bottom:.8cqw solid var(--revista-rule);padding-bottom:1.6cqw}
+.rv-car .meta{display:flex;justify-content:space-between;font:400 2.6cqw var(--font-mono);color:var(--muted);padding:1.4cqw 0;border-bottom:1px solid var(--revista-rule)}
+.rv-car .line1{align-self:center;font:italic 400 11cqw/.95 var(--font-display)}
+.rv-car .line1 em{color:var(--accent)}
+.rv-car .bottom{display:grid;grid-template-columns:1fr auto;gap:4cqw;align-items:end;font:400 3.4cqw/1.35 var(--font-body)}
+.rv-car .barcode{width:18cqw;height:10cqw;background:repeating-linear-gradient(90deg,var(--text) 0 .5cqw,transparent .5cqw .9cqw,var(--text) .9cqw 1.1cqw,transparent 1.1cqw 1.8cqw)}
+@media (max-width:900px){
+  .rv-spread,.rv-page{grid-template-columns:minmax(0,1fr)}
+  .rv-mast{grid-template-columns:1fr}
+  .rv-mast .issue{text-align:left}
+  .rv-fig .art{aspect-ratio:4/3}
+}
+@media (max-width:600px){.rv-margin{grid-template-columns:minmax(0,1fr)}.rv-btn.line{margin-left:0;display:flex;width:max-content}}
+</style>
+</head>
+<body class="pv pv-revista">
+<div class="pv-wrap pv-top"><span><b>Revista</b> · revista · light</span>
+<nav aria-label="Seções da prévia"><a href="#paleta">Paleta</a><a href="#tipografia">Tipografia</a><a href="#objetos">Objetos</a><a href="#formatos">Formatos</a></nav></div>
+<main>
+<section class="pv-section rv-hero" data-scene>
+  <div class="pv-wrap">
+    <header class="rv-mast"><p class="name">Ofício</p><span></span><p class="issue">nº 07 · outono<br>ensaios sobre software</p></header>
+    <div class="rv-sub"><span>edição sobre interfaces entre programas</span><span>pág. 14</span></div>
+    <div class="rv-spread">
+      <div>
+        <h1 class="rise">O que uma <em>API</em> bem desenhada diz sobre quem a escreveu</h1>
+        <p class="rv-dek rise" style="--i:1">Nomes de rotas, mensagens de erro e códigos de resposta contam uma história sobre o cuidado de quem programa. Lemos três exemplos com atenção de revisor.</p>
+        <p class="rv-by rise" style="--i:2">texto de Sua Marca · 9 min de leitura</p>
+        <span class="rv-rule" style="margin-top:22px" aria-hidden="true"></span>
+        <div class="rv-cols rise" style="--i:3" data-object="capitular e colunas">
+          <p class="rv-drop">Toda interface pública é uma carta para alguém que você não conhece. Quem vai ler pode estar cansado, com pressa ou no meio de um problema, e a única ajuda disponível é o texto que você deixou nas respostas.</p>
+          <p>Uma mensagem como “campo obrigatório: email” resolve em segundos o que um erro genérico transformaria numa tarde de tentativa e erro.</p>
+        </div>
+        <a class="rv-btn rise" style="--i:4" href="#objetos">Ler o ensaio</a><a class="rv-btn line rise" style="--i:4" href="#formatos">Ver o índice</a>
+      </div>
+      <figure class="rv-fig rise" style="--i:2" data-object="figura com legenda">
+        <div class="art">
+          <svg viewBox="0 0 400 500" width="100%" role="img" aria-label="Ilustração abstrata: um círculo vermelho e um verde ligados por linhas finas">
+            <g class="rv-spin loop"><circle cx="200" cy="240" r="150" fill="none" stroke="#1a1714" stroke-width="1"/><circle cx="350" cy="240" r="7" fill="#1a1714"/></g>
+            <circle cx="160" cy="210" r="86" fill="#b23a1c"/>
+            <circle cx="250" cy="300" r="64" fill="#1f4d45" style="mix-blend-mode:multiply"/>
+            <path d="M40 420 H360 M40 432 H260" stroke="#1a1714" stroke-width="1.2"/>
+            <text x="40" y="470" style="font:italic 400 28px var(--font-display);fill:#1a1714">pedido, resposta</text>
+          </svg>
+        </div>
+        <figcaption><b>Fig. 1</b> Um pedido e sua resposta desenhados como dois corpos que se cruzam. Ilustração da redação.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="pv-section" id="paleta" data-scene>
+  <div class="pv-wrap">
+    <div class="pv-intro"><h2 class="pv-h2 rise">Papel creme, tinta quente e um vermelho</h2><p class="rise" style="--i:1">A página é tinta sobre papel. O vermelho tijolo aparece em poucos pontos por página: a capitular, o número da seção e a ação. O verde-garrafa entra nas figuras para dar uma segunda voz sem virar arco-íris.</p></div>
+    <div class="pv-palette rise" style="--i:2">
+<div class="pv-chip"><i style="background:var(--bg)"></i><div><code>--bg · #f4efe6</code><span>papel creme da página</span></div></div>
+<div class="pv-chip"><i style="background:var(--bg-2)"></i><div><code>--bg-2 · #ece5d8</code><span>papel um tom abaixo para boxes e encartes</span></div></div>
+<div class="pv-chip"><i style="background:var(--surface)"></i><div><code>--surface · #fbf8f2</code><span>papel claro de figuras e quadros</span></div></div>
+<div class="pv-chip"><i style="background:var(--surface-2)"></i><div><code>--surface-2 · #efe8dc</code><span>fundo de citação e de nota</span></div></div>
+<div class="pv-chip"><i style="background:var(--text)"></i><div><code>--text · #1a1714</code><span>tinta quase preta, quente</span></div></div>
+<div class="pv-chip"><i style="background:var(--muted)"></i><div><code>--muted · #5c544a</code><span>legendas, créditos e linha fina</span></div></div>
+<div class="pv-chip"><i style="background:var(--line)"></i><div><code>--line · #cfc4b2</code><span>fios finos entre colunas e seções</span></div></div>
+<div class="pv-chip"><i style="background:var(--accent)"></i><div><code>--accent · #b23a1c</code><span>vermelho tijolo da capitular, do número e da ação</span></div></div>
+<div class="pv-chip"><i style="background:var(--accent-2)"></i><div><code>--accent-2 · #1f4d45</code><span>verde-garrafa de figuras e segunda voz</span></div></div>
+<div class="pv-chip"><i style="background:var(--accent-ink)"></i><div><code>--accent-ink · #ffffff</code><span>branco sobre o vermelho</span></div></div>
+<div class="pv-chip"><i style="background:var(--paper)"></i><div><code>--paper · #fffdf8</code><span>papel claro de encarte</span></div></div>
+<div class="pv-chip"><i style="background:var(--paper-ink)"></i><div><code>--paper-ink · #1a1714</code><span>tinta sobre o encarte</span></div></div>
+<div class="pv-chip"><i style="background:var(--danger)"></i><div><code>--danger · #a3271a</code><span>erro</span></div></div>
+<div class="pv-chip"><i style="background:var(--ok)"></i><div><code>--ok · #2f6b3b</code><span>confirmação</span></div></div>
+<div class="pv-chip"><i style="background:var(--warn)"></i><div><code>--warn · #8a5a00</code><span>aviso</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="pv-section" id="tipografia" data-scene>
+  <div class="pv-wrap pv-type">
+<div>
+      <p class="pv-type-display rise">Serifa de <em style="color:var(--accent)">revista</em></p>
+      <p class="pv-type-body rise" style="--i:1;font-size:18px">Instrument Serif em títulos grandes, com o itálico como segunda voz. Fraunces no texto corrido, com entrelinha de 1,6 e colunas de até 34 caracteres por linha em duas colunas. Geist Mono, pequena e cinza, para créditos, páginas e legendas.</p>
+      <p class="pv-type-mono rise" style="--i:2;color:var(--muted)">texto de Sua Marca · pág. 14 · fig. 1</p>
+    </div>
+    <div class="pv-type-scale rise" style="--i:2">
+      <div><code>título · 86 / 400</code><span style="font:400 clamp(34px,4vw,54px)/1 var(--font-display)">Ensaio</span></div>
+      <div><code>itálico · 32</code><span style="font:italic 400 32px/1.1 var(--font-display)">segunda voz</span></div>
+      <div><code>linha fina · 22</code><span style="font:italic 400 20px/1.3 var(--font-body)">Fraunces itálico</span></div>
+      <div><code>corpo · 16,5 / 1,62</code><span>Texto corrido em Fraunces.</span></div>
+      <div><code>crédito · mono 13</code><span style="font:400 13px var(--font-mono);color:var(--muted)">pág. 14</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="pv-section" id="objetos" data-scene>
+  <div class="pv-wrap">
+    <div class="pv-intro"><h2 class="pv-h2 rise">Recursos de uma página impressa</h2><p class="rise" style="--i:1">A hierarquia vem da tipografia e dos fios, não de caixas. Capitular, citação em destaque, índice com pontilhado e legenda numerada fazem o trabalho que cartões fariam numa página comum.</p></div>
+    <div class="pv-objects">
+<figure class="wide">
+        <div class="pv-stage rv-stage" data-object="citação em destaque">
+          <blockquote class="rv-quote"><p>Uma boa mensagem de erro é a documentação que a pessoa lê sem saber que está lendo.</p><cite>do ensaio da pág. 14</cite></blockquote>
+        </div>
+        <figcaption><b>Citação em destaque</b>Itálico grande entre dois fios, com aspas de abertura em vermelho que sobem ao entrar na tela.</figcaption>
+      </figure>
+      <figure class="wide">
+        <div class="pv-stage rv-stage" data-object="índice numerado">
+          <ol class="rv-toc"><li><b>01</b><span>Nomes que se explicam</span><em>14</em></li><li><b>02</b><span>Erros que ensinam</span><em>22</em></li><li><b>03</b><span>Versões sem susto</span><em>31</em></li><li><b>04</b><span>Documentação viva</span><em>40</em></li></ol>
+        </div>
+        <figcaption><b>Índice numerado</b>Número em serifa vermelha, título, pontilhado e página. Serve para sumário de curso e de aula.</figcaption>
+      </figure>
+      <figure>
+        <div class="pv-stage rv-stage" data-object="nota na margem">
+          <div class="rv-margin"><p>O código 422 indica que o pedido chegou certo, mas os dados não passaram na validação.<sup>1</sup></p><aside><sup>1</sup> Use 400 quando o próprio formato do pedido estiver quebrado.</aside></div>
+        </div>
+        <figcaption><b>Nota na margem</b>A explicação lateral fica ao lado do texto, não no rodapé da página.</figcaption>
+      </figure>
+      <figure>
+        <div class="pv-stage rv-stage" data-object="ornamento separador">
+          <div class="rv-orn" aria-hidden="true"><i></i><span>§</span><i></i></div>
+        </div>
+        <figcaption><b>Ornamento</b>Fio duplo com o sinal de seção. Separa partes de um texto longo sem criar outro título.</figcaption>
+      </figure>
+      <figure>
+        <div class="pv-stage rv-stage" data-object="capitular">
+          <p class="rv-drop" style="padding:0 10px;font-size:16px;line-height:1.6">Versionar uma API é prometer a quem depende dela que nada vai quebrar sem aviso. A versão no endereço deixa essa promessa à vista de todos.</p>
+        </div>
+        <figcaption><b>Capitular</b>Quatro linhas de altura, em Instrument Serif vermelha, só no primeiro parágrafo do texto.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="pv-section" id="formatos" data-scene>
+  <div class="pv-wrap">
+    <div class="pv-intro"><h2 class="pv-h2 rise">O mesmo estilo em página, deck e carrossel</h2><p class="rise" style="--i:1">Um trecho de página, um slide 16:9 e um slide de carrossel 4:5, todos com as mesmas variáveis do contrato.</p></div>
+    <div class="pv-formats">
+      <div data-format="page">
+<p class="pv-format-label">Trecho de página</p>
+        <div class="rv-page">
+          <div><h3>Erros que <em style="color:var(--accent)">ensinam</em></h3><p class="lede">Como escrever respostas de erro que resolvem o problema de quem chamou a sua API.</p><a class="rv-btn" href="#paleta">Continuar a leitura</a></div>
+          <div class="rv-cols" style="margin-top:0"><p class="rv-drop">Uma mensagem de erro tem três tarefas: dizer o que aconteceu, apontar onde e sugerir o próximo passo. Quando falta uma delas, quem chamou a API precisa adivinhar.</p><p>Os melhores exemplos que encontramos repetem o nome do campo exatamente como ele aparece no pedido e trazem um link para a documentação daquele caso.</p></div>
+        </div>
+      </div>
+      <div><p class="pv-format-label">Slide de aula · 16:9</p><div data-format="deck">
+<div class="rv-deck">
+          <div class="run"><span>Ofício · nº 07</span><span>Erros que ensinam</span></div>
+          <div class="body"><h3>O erro é a <em style="color:var(--accent)">primeira</em> documentação</h3><p class="rv-drop">Quem chama a sua API lê a resposta de erro antes de qualquer manual. Escreva essa resposta como um parágrafo de ajuda.</p></div>
+          <div class="foot"><span>Sua Marca</span><span>7</span></div>
+        </div>
+      </div></div>
+      <div><p class="pv-format-label">Slide de carrossel · 4:5</p><div data-format="carousel">
+<div class="rv-car">
+          <p class="name">Ofício</p>
+          <div class="meta"><span>nº 07</span><span>ensaios sobre software</span></div>
+          <p class="line1">O que a sua <em>API</em> diz sobre você</p>
+          <div class="bottom"><span>Erros que ensinam · nomes que se explicam · versões sem susto</span><i class="barcode" aria-hidden="true"></i></div>
+        </div>
+      </div></div>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="pv-wrap pv-foot">Prévia do estilo revista · pycode-design · tokens em tokens.css, regras em DESIGN.md. Conteúdo fictício de exemplo.</footer>
+<script>
+/* Movimento: liga cada cena só quando visível, pausa com a aba oculta e respeita movimento reduzido. */
+(() => {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const scenes = document.querySelectorAll('[data-scene]');
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      e.target.dataset.motion = e.isIntersecting && !reduce.matches ? 'on' : 'off';
+      if (e.isIntersecting) e.target.dataset.entered = 'true';
+    }
+  }, { threshold: 0.12 });
+  scenes.forEach((s) => io.observe(s));
+  document.addEventListener('visibilitychange', () => {
+    document.body.dataset.background = document.hidden ? 'true' : 'false';
+  });
+})();
+
+
+</script>
+</body>
+</html>

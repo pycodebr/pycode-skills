@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Noir champanhe · prévia do estilo</title>
+<meta name="description" content="Preto de sala de cinema, grafite e champanhe, com letreiro largo de trailer, faixas de tela panorâmica, feixe de projetor e créditos. Para aberturas, lançamentos de aula e anúncios com pausa dramática.">
+<!-- Abra pela galeria (pycode styles preview): ela copia as fontes para fonts/ ao lado deste arquivo. -->
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="tokens.css">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+/* ---------- chassi comum da prévia: só variáveis do contrato ---------- */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:17px;line-height:1.6;overflow-x:hidden}
+img,svg{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.pv-wrap{width:min(1240px,calc(100% - 40px));margin-inline:auto}
+.pv-section{padding-block:clamp(56px,8vw,112px);position:relative}
+.pv-section + .pv-section{border-top:1px solid var(--line)}
+h1,h2,h3{font-family:var(--font-display);font-weight:var(--weight-display);letter-spacing:var(--tracking-display);line-height:1.05;margin:0;text-wrap:balance}
+p{margin:0;text-wrap:pretty}
+.pv-h2{font-size:clamp(30px,4.2vw,54px);max-width:18ch}
+.pv-intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px 48px;align-items:end;margin-bottom:clamp(32px,5vw,56px)}
+.pv-intro p{color:var(--muted);max-width:56ch}
+.pv-top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 0;font-family:var(--font-mono);font-size:14px;color:var(--muted)}
+.pv-top b{color:var(--text);font-weight:600}
+.pv-top nav{display:flex;gap:18px;flex-wrap:wrap}
+.pv-top nav a{text-decoration:none;color:var(--muted)}
+.pv-top nav a:hover{color:var(--text)}
+/* paleta */
+.pv-palette{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,190px),1fr));gap:14px}
+@media (max-width:600px){.pv-palette{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.pv-chip{grid-template-rows:56px auto}.pv-chip div{padding:10px}.pv-chip code{font-size:12px;word-break:break-all}.pv-chip span{font-size:13px}}
+.pv-chip{display:grid;grid-template-rows:84px auto;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--surface)}
+.pv-chip i{display:block;border-bottom:1px solid var(--line)}
+.pv-chip div{padding:12px 14px 14px;display:grid;gap:2px}
+.pv-chip code{font-family:var(--font-mono);font-size:13px;color:var(--text)}
+.pv-chip span{font-size:14px;line-height:1.45;color:var(--muted)}
+/* tipografia */
+.pv-type{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:clamp(24px,4vw,56px)}
+.pv-type-display{font-family:var(--font-display);font-weight:var(--weight-display);letter-spacing:var(--tracking-display);font-size:clamp(46px,7.4vw,112px);line-height:.98}
+.pv-type-scale{display:grid;gap:14px;align-content:start}
+.pv-type-scale div{display:grid;grid-template-columns:120px minmax(0,1fr);gap:12px;align-items:baseline;border-top:1px solid var(--line);padding-top:10px}
+.pv-type-scale code{font-family:var(--font-mono);font-size:13px;color:var(--muted)}
+.pv-type-body{margin-top:26px;max-width:58ch;color:var(--muted)}
+.pv-type-mono{margin-top:18px;font-family:var(--font-mono);font-size:15px;color:var(--text)}
+/* objetos */
+.pv-objects{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:clamp(16px,2vw,28px)}
+.pv-objects > figure{margin:0;grid-column:span 2;display:grid;grid-template-rows:auto 1fr;gap:14px;min-width:0}
+.pv-objects > figure.wide{grid-column:span 3}
+.pv-objects > figure.full{grid-column:1 / -1}
+.pv-stage{position:relative;min-height:340px;padding:28px;border-radius:var(--radius-lg);overflow:hidden;display:grid;place-items:center;isolation:isolate}
+.pv-objects figcaption{font-size:15px;line-height:1.5;color:var(--muted)}
+.pv-objects figcaption b{display:block;color:var(--text);font-family:var(--font-display);font-weight:var(--weight-display);letter-spacing:var(--tracking-display);font-size:19px;margin-bottom:2px}
+/* formatos */
+.pv-formats{display:grid;grid-template-columns:minmax(0,1.85fr) minmax(0,1fr);gap:clamp(20px,3vw,36px);align-items:start}
+.pv-formats > [data-format="page"]{grid-column:1 / -1}
+.pv-format-label{font-family:var(--font-mono);font-size:13px;color:var(--muted);margin:0 0 10px}
+[data-format="deck"]{aspect-ratio:16/9;container-type:inline-size;position:relative;overflow:hidden;border-radius:var(--radius)}
+[data-format="carousel"]{aspect-ratio:4/5;container-type:inline-size;position:relative;overflow:hidden;border-radius:var(--radius)}
+.pv-foot{padding:40px 0 56px;color:var(--muted);font-size:14px;font-family:var(--font-mono)}
+/* movimento: entradas só quando há JS; loops só rodam com a cena visível */
+html.js [data-scene]:not([data-entered]) .rise{opacity:0;transform:translateY(18px)}
+.rise{transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1);transition-delay:calc(var(--i,0) * 70ms)}
+html.js .loop,html.js .loop::before,html.js .loop::after{animation-play-state:paused !important}
+html.js [data-scene][data-motion="on"] .loop,html.js [data-scene][data-motion="on"] .loop::before,html.js [data-scene][data-motion="on"] .loop::after{animation-play-state:running !important}
+html.js body[data-background="true"] .loop,html.js body[data-background="true"] .loop::before,html.js body[data-background="true"] .loop::after{animation-play-state:paused !important}
+@media (max-width:900px){
+  .pv-intro,.pv-type,.pv-formats{grid-template-columns:minmax(0,1fr)}
+  .pv-objects{grid-template-columns:minmax(0,1fr)}
+  .pv-objects > figure,.pv-objects > figure.wide{grid-column:1 / -1}
+}
+@media (max-width:600px){.pv-top nav{display:none}body{font-size:16px}}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none !important;transition:none !important;scroll-behavior:auto !important}
+  html.js [data-scene]:not([data-entered]) .rise{opacity:1;transform:none}
+}
+
+/* ---------- Noir champanhe: superfícies, objetos e movimento do estilo ---------- */
+.pv-noir-champanhe{background:var(--bg)}
+.nc-hero{padding:0;overflow:hidden;min-height:min(92vh,860px);display:grid;grid-template-rows:var(--noir-champanhe-letterbox) 1fr var(--noir-champanhe-letterbox);background:#000}
+.nc-bar{background:#000;position:relative;z-index:3;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(16px,4vw,48px);font:400 12px var(--font-mono);color:var(--muted);letter-spacing:.2em;text-transform:uppercase}
+.nc-screen{position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% 55%,#1e1c17 0%,#0d0c0a 55%,#050505 100%);display:grid;place-items:center;text-align:center;padding:24px 20px}
+.nc-beam{position:absolute;left:50%;top:-30%;width:140%;height:160%;transform:translateX(-50%);background:conic-gradient(from 168deg at 50% 0%,transparent 0deg,rgba(143,209,242,.07) 5deg,rgba(248,244,234,.11) 12deg,rgba(143,209,242,.06) 19deg,transparent 24deg);pointer-events:none;animation:nc-flicker 3.2s steps(2) infinite}
+@keyframes nc-flicker{0%,100%{opacity:.85}50%{opacity:1}}
+.nc-dust{position:absolute;inset:0;pointer-events:none}
+.nc-dust i{position:absolute;width:3px;height:3px;border-radius:50%;background:var(--text);opacity:.35;animation:nc-dust 14s linear infinite}
+@keyframes nc-dust{from{transform:translate(0,0)}to{transform:translate(40px,-160px)}}
+.nc-grain{position:absolute;inset:-40px;pointer-events:none;opacity:var(--noir-champanhe-grain-opacity);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");animation:nc-grain .9s steps(3) infinite}
+@keyframes nc-grain{0%{transform:translate(0,0)}33%{transform:translate(-14px,9px)}66%{transform:translate(11px,-12px)}100%{transform:translate(0,0)}}
+.nc-title{position:relative;z-index:2;display:grid;gap:22px;justify-items:center}
+.nc-pre{font:400 clamp(13px,1.3vw,16px) var(--font-body);color:var(--muted);letter-spacing:.32em;text-transform:uppercase}
+.nc-hero h1{font-size:clamp(26px,5vw,74px);line-height:1.08;text-transform:uppercase;max-width:14ch;color:var(--text)}
+.nc-hero h1 span{display:inline-block}
+html.js .nc-hero[data-scene]:not([data-entered]) h1 span{opacity:0;transform:translateY(14px)}
+.nc-hero h1 span{transition:opacity 1.4s ease,transform 1.4s cubic-bezier(.2,.7,.2,1);transition-delay:calc(var(--w) * .35s + .3s)}
+.nc-rule{width:min(380px,60vw);height:1px;background:var(--accent);transform-origin:50% 50%;transition:transform 1.6s cubic-bezier(.7,0,.2,1) 1.4s}
+html.js .nc-hero[data-scene]:not([data-entered]) .nc-rule{transform:scaleX(0)}
+.nc-date{font:400 13px var(--font-mono);letter-spacing:.3em;color:var(--accent);text-transform:uppercase}
+.nc-btn{display:inline-flex;align-items:center;gap:12px;min-height:52px;padding:0 28px;border:1px solid var(--accent);color:var(--accent);text-decoration:none;font:700 12px var(--font-display);letter-spacing:.24em;text-transform:uppercase;border-radius:var(--radius);transition:background .3s ease,color .3s ease}
+.nc-btn:hover,.nc-btn:focus-visible{background:var(--accent);color:var(--accent-ink)}
+.nc-btn.solid{background:var(--noir-champanhe-champagne-gradient);color:var(--accent-ink);border-color:transparent}
+.pv-noir-champanhe .pv-h2{text-transform:uppercase;font-size:clamp(24px,3.2vw,44px);line-height:1.15;max-width:20ch}
+.pv-noir-champanhe .pv-objects figcaption b{text-transform:uppercase;font-size:14px;letter-spacing:.18em}
+.pv-noir-champanhe .pv-chip{border-radius:0}
+/* estágio */
+.nc-stage{background:radial-gradient(ellipse at 50% 30%,#1e1c17,#050505 75%);border:1px solid var(--line)}
+/* contagem de filme */
+.nc-leader{position:relative;width:min(230px,70%);aspect-ratio:1;border-radius:50%;border:2px solid var(--muted);display:grid;place-items:center;overflow:hidden}
+.nc-leader::before,.nc-leader::after{content:"";position:absolute;background:var(--muted);opacity:.6}
+.nc-leader::before{left:50%;top:0;bottom:0;width:1px}
+.nc-leader::after{top:50%;left:0;right:0;height:1px}
+.nc-sweep{position:absolute;inset:0;background:conic-gradient(rgba(232,194,126,.32) 0deg 90deg,transparent 90deg);animation:nc-sweep 1s linear infinite}
+@keyframes nc-sweep{to{transform:rotate(360deg)}}
+.nc-ring{position:absolute;inset:14%;border-radius:50%;border:1px solid var(--muted);opacity:.6}
+.nc-nums{position:relative;font:700 86px/1 var(--font-display);color:var(--text)}
+.nc-nums b{position:absolute;inset:0;display:grid;place-items:center;opacity:0;animation:nc-count 3s steps(1) infinite;font-weight:700}
+.nc-nums b:nth-child(1){position:relative;animation-delay:0s;opacity:1}
+.nc-nums b:nth-child(2){animation-delay:1s}
+.nc-nums b:nth-child(3){animation-delay:2s}
+@keyframes nc-count{0%{opacity:1}33.3%,100%{opacity:0}}
+/* cartela */
+.nc-card{width:min(92%,420px);aspect-ratio:2.39/1;background:#000;border:1px solid var(--line);display:grid;place-items:center;text-align:center;padding:16px;position:relative}
+.nc-card::before{content:"";position:absolute;inset:8px;border:1px solid rgba(232,194,126,.35)}
+.nc-card p{font:700 clamp(14px,1.6vw,20px)/1.4 var(--font-display);letter-spacing:.2em;text-transform:uppercase}
+.nc-card small{display:block;font:400 11px var(--font-mono);letter-spacing:.3em;color:var(--accent);margin-top:8px}
+/* créditos */
+.nc-credits{position:relative;width:min(90%,340px);height:230px;overflow:hidden;-webkit-mask-image:linear-gradient(transparent,#000 22%,#000 78%,transparent);mask-image:linear-gradient(transparent,#000 22%,#000 78%,transparent)}
+.nc-credits div{display:grid;gap:14px;text-align:center;animation:nc-roll 16s linear infinite}
+@keyframes nc-roll{from{transform:translateY(40%)}to{transform:translateY(-100%)}}
+.nc-credits dt{font:400 11px var(--font-mono);letter-spacing:.3em;color:var(--muted);text-transform:uppercase}
+.nc-credits dd{margin:2px 0 0;font:700 13px var(--font-display);letter-spacing:.16em;text-transform:uppercase}
+/* claquete */
+.nc-clap{width:min(86%,300px)}
+.nc-arm{transform-box:fill-box;transform-origin:0% 100%;animation:nc-clap 4s cubic-bezier(.7,0,.3,1) infinite}
+@keyframes nc-clap{0%,60%{transform:rotate(-18deg)}70%,100%{transform:rotate(0)}}
+/* fita */
+.nc-strip{width:100%;overflow:hidden;position:relative}
+.nc-strip-in{display:flex;gap:0;width:max-content;animation:nc-strip 12s linear infinite}
+@keyframes nc-strip{to{transform:translateX(-50%)}}
+.nc-frame{width:150px;height:150px;flex:none;background:#0d0c0a;border-block:18px solid #000;position:relative;display:grid;place-items:center;border-inline:6px solid #000}
+.nc-frame::before,.nc-frame::after{content:"";position:absolute;left:8px;right:8px;height:8px;background:repeating-linear-gradient(90deg,#3b3426 0 10px,transparent 10px 20px)}
+.nc-frame::before{top:-13px}.nc-frame::after{bottom:-13px}
+.nc-frame span{font:700 12px var(--font-display);letter-spacing:.16em;color:var(--text);text-transform:uppercase;text-align:center;padding:8px}
+.nc-frame em{display:block;font:400 10.5px var(--font-mono);color:var(--accent);font-style:normal;margin-top:6px}
+/* página */
+.nc-page{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);background:#000;border:1px solid var(--line);position:relative;overflow:hidden}
+.nc-page .poster{position:relative;min-height:320px;display:grid;place-items:center;background:radial-gradient(ellipse at 50% 0,#2a2620,#000 70%);overflow:hidden}
+.nc-page .poster .nc-beam{width:200%}
+.nc-page .poster p{position:relative;font:700 clamp(20px,2.6vw,34px)/1.2 var(--font-display);letter-spacing:.16em;text-transform:uppercase;text-align:center}
+.nc-page .copy{padding:clamp(24px,4vw,48px);display:grid;gap:16px;align-content:center}
+.nc-page h3{font-size:clamp(20px,2.2vw,28px);text-transform:uppercase;line-height:1.3}
+.nc-page p{color:var(--muted)}
+.nc-acts{display:grid;gap:10px;margin:4px 0 8px;padding:0;list-style:none}
+.nc-acts li{display:grid;grid-template-columns:70px 1fr;gap:12px;border-top:1px solid var(--line);padding-top:10px}
+.nc-acts b{font:400 12px var(--font-mono);letter-spacing:.2em;color:var(--accent)}
+/* deck */
+.nc-deck{position:absolute;inset:0;background:#000;display:grid;grid-template-rows:12% 1fr 12%}
+.nc-deck .mid{background:radial-gradient(ellipse at 50% 60%,#1e1c17,#050505 70%);display:grid;place-items:center;text-align:center;gap:1.6cqw;padding:2cqw;position:relative;overflow:hidden}
+.nc-deck .nc-beam{animation:none}
+.nc-deck h3{position:relative;font-size:4.4cqw;line-height:1.15;text-transform:uppercase}
+.nc-deck p{position:relative;font:400 1.4cqw var(--font-mono);letter-spacing:.3em;color:var(--accent);text-transform:uppercase}
+.nc-deck .bar{display:flex;justify-content:space-between;align-items:center;padding:0 3cqw;font:400 1.1cqw var(--font-mono);letter-spacing:.24em;color:var(--muted)}
+/* carrossel */
+.nc-car{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0,#2a2620,#000 62%);display:grid;grid-template-rows:auto 1fr auto auto;padding:7cqw;text-align:center;overflow:hidden}
+.nc-car .nc-beam{animation:none;width:220%}
+.nc-car .top{position:relative;font:400 3cqw var(--font-mono);letter-spacing:.3em;color:var(--muted)}
+.nc-car h3{position:relative;align-self:center;font-size:8.4cqw;line-height:1.2;text-transform:uppercase}
+.nc-car .date{position:relative;font:400 3.2cqw var(--font-mono);letter-spacing:.3em;color:var(--accent);border-block:1px solid var(--line);padding:2.4cqw 0}
+.nc-car .billing{position:relative;margin-top:4cqw;font:400 2.6cqw/1.5 var(--font-body);letter-spacing:.14em;color:var(--muted);text-transform:uppercase}
+@media (max-width:900px){.nc-page{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:600px){.nc-bar span:last-child{display:none}.nc-hero{min-height:620px}}
+</style>
+</head>
+<body class="pv pv-noir-champanhe">
+<div class="pv-wrap pv-top"><span><b>Noir champanhe</b> · noir-champanhe · dark</span>
+<nav aria-label="Seções da prévia"><a href="#paleta">Paleta</a><a href="#tipografia">Tipografia</a><a href="#objetos">Objetos</a><a href="#formatos">Formatos</a></nav></div>
+<main>
+<section class="nc-hero" data-scene data-clip>
+  <div class="nc-bar"><span>sessão das 20h</span><span>uma aula em três atos</span></div>
+  <div class="nc-screen">
+    <div class="nc-beam loop" aria-hidden="true"></div>
+    <div class="nc-dust" aria-hidden="true"><i class="loop" style="left:46%;top:58%"></i><i class="loop" style="left:52%;top:70%;animation-delay:-4s"></i><i class="loop" style="left:44%;top:80%;animation-delay:-8s"></i><i class="loop" style="left:56%;top:50%;animation-delay:-11s"></i><i class="loop" style="left:49%;top:88%;animation-delay:-2s"></i></div>
+    <div class="nc-grain loop" aria-hidden="true"></div>
+    <div class="nc-title">
+      <p class="nc-pre rise">Estúdio Maré apresenta</p>
+      <h1><span style="--w:0">O pedido</span> <span style="--w:1">que atravessa</span> <span style="--w:2">a internet</span></h1>
+      <div class="nc-rule" aria-hidden="true"></div>
+      <p class="nc-date rise" style="--i:8">estreia · quinta · 20h</p>
+      <a class="nc-btn rise" style="--i:9" href="#formatos">Assistir ao primeiro ato</a>
+    </div>
+  </div>
+  <div class="nc-bar"><span>ato i · a requisição</span><span>duração 48 min</span></div>
+</section>
+
+<section class="pv-section" id="paleta" data-scene>
+  <div class="pv-wrap">
+    <div class="pv-intro"><h2 class="pv-h2 rise">Preto, grafite e champanhe</h2><p class="rise" style="--i:1">Quase tudo é preto e marfim. O champanhe aparece em fios, no letreiro e no botão, como luz refletida em metal. O azul frio só existe no feixe do projetor.</p></div>
+    <div class="pv-palette rise" style="--i:2">
+<div class="pv-chip"><i style="background:var(--bg)"></i><div><code>--bg · #050505</code><span>preto de sala escura, sem azul</span></div></div>
+<div class="pv-chip"><i style="background:var(--bg-2)"></i><div><code>--bg-2 · #0d0c0a</code><span>faixas de tela panorâmica e créditos</span></div></div>
+<div class="pv-chip"><i style="background:var(--surface)"></i><div><code>--surface · #151410</code><span>grafite de cartelas e painéis</span></div></div>
+<div class="pv-chip"><i style="background:var(--surface-2)"></i><div><code>--surface-2 · #1e1c17</code><span>grafite claro de estados e bordas internas</span></div></div>
+<div class="pv-chip"><i style="background:var(--text)"></i><div><code>--text · #f8f4ea</code><span>marfim do letreiro e do texto</span></div></div>
+<div class="pv-chip"><i style="background:var(--muted)"></i><div><code>--muted · #bdb5a3</code><span>créditos, legendas e datas</span></div></div>
+<div class="pv-chip"><i style="background:var(--line)"></i><div><code>--line · #3b3426</code><span>fios finos de moldura em bronze escuro</span></div></div>
+<div class="pv-chip"><i style="background:var(--accent)"></i><div><code>--accent · #e8c27e</code><span>champanhe do letreiro, dos fios e da ação</span></div></div>
+<div class="pv-chip"><i style="background:var(--accent-2)"></i><div><code>--accent-2 · #8fd1f2</code><span>azul frio de projetor, usado com parcimônia</span></div></div>
+<div class="pv-chip"><i style="background:var(--accent-ink)"></i><div><code>--accent-ink · #1b160e</code><span>tinta escura sobre a placa champanhe</span></div></div>
+<div class="pv-chip"><i style="background:var(--paper)"></i><div><code>--paper · #f5ecd7</code><span>marfim de ingresso e de ficha técnica</span></div></div>
+<div class="pv-chip"><i style="background:var(--paper-ink)"></i><div><code>--paper-ink · #1b160e</code><span>tinta sobre o marfim</span></div></div>
+<div class="pv-chip"><i style="background:var(--danger)"></i><div><code>--danger · #f59a7a</code><span>alerta em coral queimado</span></div></div>
+<div class="pv-chip"><i style="background:var(--ok)"></i><div><code>--ok · #9ad9b0</code><span>confirmação discreta</span></div></div>
+<div class="pv-chip"><i style="background:var(--warn)"></i><div><code>--warn · #ffad5c</code><span>âmbar de lâmpada</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="pv-section" id="tipografia" data-scene>
+  <div class="pv-wrap pv-type">
+<div>
+      <p class="pv-type-display rise" style="text-transform:uppercase;font-size:clamp(30px,5.4vw,78px);line-height:1.1">Letreiro largo</p>
+      <p class="pv-type-body rise" style="--i:1">Syncopate em caixa alta com tracking largo (0,18em) para títulos e cartelas, nunca para parágrafos. Geist no corpo, Geist Mono com espaçamento de 0,3em para datas, atos e créditos. O letreiro pede frases curtas e pausa: uma cartela por ideia.</p>
+      <p class="pv-type-mono rise" style="--i:2;letter-spacing:.3em;text-transform:uppercase;color:var(--accent)">ato ii · a resposta</p>
+    </div>
+    <div class="pv-type-scale rise" style="--i:2">
+      <div><code>cartela · 700</code><span style="font:700 clamp(18px,2.2vw,30px)/1.2 var(--font-display);letter-spacing:.18em;text-transform:uppercase">Título</span></div>
+      <div><code>h2 · 400</code><span style="font:400 22px/1.2 var(--font-display);letter-spacing:.16em;text-transform:uppercase">Ato dois</span></div>
+      <div><code>corpo · 17</code><span>Texto de apoio em Geist, frase completa.</span></div>
+      <div><code>crédito · mono</code><span style="font:400 13px var(--font-mono);letter-spacing:.3em;color:var(--muted)">DIREÇÃO · SUA MARCA</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="pv-section" id="objetos" data-scene>
+  <div class="pv-wrap">
+    <div class="pv-intro"><h2 class="pv-h2 rise">Peças de uma sala de cinema</h2><p class="rise" style="--i:1">O estilo conta a aula como um trailer: cartelas com pausa, uma contagem antes do primeiro ato, um feixe de luz que revela o título e os créditos no fim.</p></div>
+    <div class="pv-objects">
+<figure>
+        <div class="pv-stage nc-stage" data-object="contagem de filme">
+          <div class="nc-leader" aria-hidden="true"><div class="nc-sweep loop"></div><div class="nc-ring"></div><div class="nc-nums"><b class="loop">3</b><b class="loop">2</b><b class="loop">1</b></div></div>
+        </div>
+        <figcaption><b>Contagem de filme</b>Cruz, anel e um ponteiro que varre o quadro a cada segundo. Abre o primeiro ato de uma aula ou de um vídeo.</figcaption>
+      </figure>
+      <figure>
+        <div class="pv-stage nc-stage" data-object="cartela de título">
+          <div class="nc-card"><p>Toda resposta tem um código<small>ato ii</small></p></div>
+        </div>
+        <figcaption><b>Cartela</b>Tela panorâmica 2,39:1, moldura dupla e uma frase. Fica parada pelo menos 2,5 s antes da próxima.</figcaption>
+      </figure>
+      <figure>
+        <div class="pv-stage nc-stage" data-object="claquete">
+          <svg class="nc-clap" viewBox="0 0 300 220" role="img" aria-label="Claquete marcando cena 04, tomada 2">
+            <g class="nc-arm loop"><rect x="20" y="40" width="260" height="34" fill="#151410" stroke="#e8c27e"/><path d="M40 40l24 34M90 40l24 34M140 40l24 34M190 40l24 34M240 40l24 34" stroke="#e8c27e" stroke-width="12"/></g>
+            <rect x="20" y="78" width="260" height="34" fill="#151410" stroke="#e8c27e"/><path d="M40 78l24 34M90 78l24 34M140 78l24 34M190 78l24 34M240 78l24 34" stroke="#e8c27e" stroke-width="12"/>
+            <rect x="20" y="112" width="260" height="96" fill="#0d0c0a" stroke="#3b3426"/>
+            <path d="M20 146h260M150 146v62" stroke="#3b3426"/>
+            <text x="34" y="136" style="font:700 13px var(--font-display);letter-spacing:.16em;fill:#f8f4ea">AULA 04</text>
+            <text x="34" y="176" style="font:400 11px var(--font-mono);letter-spacing:.2em;fill:#bdb5a3">CENA</text><text x="34" y="198" style="font:700 16px var(--font-display);fill:#e8c27e">04</text>
+            <text x="164" y="176" style="font:400 11px var(--font-mono);letter-spacing:.2em;fill:#bdb5a3">TOMADA</text><text x="164" y="198" style="font:700 16px var(--font-display);fill:#e8c27e">2</text>
+          </svg>
+        </div>
+        <figcaption><b>Claquete</b>Marca o começo de um bloco prático. O braço fecha com rotação a cada 4 s.</figcaption>
+      </figure>
+      <figure class="wide">
+        <div class="pv-stage nc-stage" data-object="fita de filme" data-clip>
+          <div class="nc-strip" aria-label="Sequência de quadros: pedido, rota, banco, resposta"><div class="nc-strip-in loop">
+            <div class="nc-frame"><span>pedido<em>00:12</em></span></div><div class="nc-frame"><span>rota<em>00:31</em></span></div><div class="nc-frame"><span>banco<em>00:47</em></span></div><div class="nc-frame"><span>resposta<em>01:05</em></span></div><div class="nc-frame"><span>cache<em>01:22</em></span></div>
+            <div class="nc-frame" aria-hidden="true"><span>pedido<em>00:12</em></span></div><div class="nc-frame" aria-hidden="true"><span>rota<em>00:31</em></span></div><div class="nc-frame" aria-hidden="true"><span>banco<em>00:47</em></span></div><div class="nc-frame" aria-hidden="true"><span>resposta<em>01:05</em></span></div><div class="nc-frame" aria-hidden="true"><span>cache<em>01:22</em></span></div>
+          </div></div>
+        </div>
+        <figcaption><b>Fita de filme</b>Quadros com perfuração para sequências e linhas do tempo. Desliza em loop contínuo com translateX.</figcaption>
+      </figure>
+      <figure class="wide">
+        <div class="pv-stage nc-stage" data-object="créditos">
+          <dl class="nc-credits"><div class="loop">
+            <div><dt>roteiro</dt><dd>Sua Marca</dd></div><div><dt>exemplos</dt><dd>API de livros</dd></div><div><dt>ferramentas</dt><dd>Python e HTTP</dd></div><div><dt>trilha</dt><dd>Silêncio de 0,8 s</dd></div><div><dt>agradecimentos</dt><dd>A quem assistiu até aqui</dd></div><div><dt>próxima sessão</dt><dd>Ato iii · o cache</dd></div>
+          </div></dl>
+        </div>
+        <figcaption><b>Créditos</b>Fecham a aula com o que foi usado e o próximo encontro. Sobem devagar numa janela com máscara.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="pv-section" id="formatos" data-scene>
+  <div class="pv-wrap">
+    <div class="pv-intro"><h2 class="pv-h2 rise">O mesmo estilo em página, deck e carrossel</h2><p class="rise" style="--i:1">Um trecho de página, um slide 16:9 e um slide de carrossel 4:5, todos com as mesmas variáveis do contrato.</p></div>
+    <div class="pv-formats">
+      <div data-format="page">
+<p class="pv-format-label">Trecho de página</p>
+        <div class="nc-page">
+          <div class="poster" data-clip><div class="nc-beam loop" aria-hidden="true"></div><p>Três atos<br>quarenta e oito<br>minutos</p></div>
+          <div class="copy">
+            <h3>A aula é contada como um filme curto</h3>
+            <p>Cada ato resolve uma parte do caminho que um pedido faz, do navegador até o banco de dados e de volta.</p>
+            <ul class="nc-acts"><li><b>ato i</b><span>A requisição sai do navegador</span></li><li><b>ato ii</b><span>O servidor decide o que responder</span></li><li><b>ato iii</b><span>O cache economiza a próxima viagem</span></li></ul>
+            <div><a class="nc-btn solid" href="#paleta">Reservar a sessão</a></div>
+          </div>
+        </div>
+      </div>
+      <div><p class="pv-format-label">Slide de aula · 16:9</p><div data-format="deck">
+<div class="nc-deck">
+          <div class="bar"><span>ATO II</span><span>A RESPOSTA</span></div>
+          <div class="mid" data-clip><div class="nc-beam" aria-hidden="true"></div><h3>Toda resposta<br>tem um código</h3><p>200 · 404 · 500</p></div>
+          <div class="bar"><span>SUA MARCA</span><span>14 / 32</span></div>
+        </div>
+      </div></div>
+      <div><p class="pv-format-label">Slide de carrossel · 4:5</p><div data-format="carousel">
+<div class="nc-car" data-clip>
+          <div class="nc-beam" aria-hidden="true"></div>
+          <p class="top">ESTÚDIO MARÉ APRESENTA</p>
+          <h3>O pedido que atravessa a internet</h3>
+          <p class="date">QUINTA · 20H · AO VIVO</p>
+          <p class="billing">roteiro sua marca · exemplos api de livros · três atos · quarenta e oito minutos</p>
+        </div>
+      </div></div>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="pv-wrap pv-foot">Prévia do estilo noir-champanhe · pycode-design · tokens em tokens.css, regras em DESIGN.md. Conteúdo fictício de exemplo.</footer>
+<script>
+/* Movimento: liga cada cena só quando visível, pausa com a aba oculta e respeita movimento reduzido. */
+(() => {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const scenes = document.querySelectorAll('[data-scene]');
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      e.target.dataset.motion = e.isIntersecting && !reduce.matches ? 'on' : 'off';
+      if (e.isIntersecting) e.target.dataset.entered = 'true';
+    }
+  }, { threshold: 0.12 });
+  scenes.forEach((s) => io.observe(s));
+  document.addEventListener('visibilitychange', () => {
+    document.body.dataset.background = document.hidden ? 'true' : 'false';
+  });
+})();
+
+
+</script>
+</body>
+</html>

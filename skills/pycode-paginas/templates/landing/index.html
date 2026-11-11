@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="{{LANG}}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{TITLE}} · {{BRAND}}</title>
+  <meta name="description" content="{{DESCRIPTION}}">
+  <meta name="theme-color" content="{{THEME_COLOR}}">
+  <meta name="color-scheme" content="{{COLOR_SCHEME}}">
+  <link rel="canonical" href="{{CANONICAL}}">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="{{OG_LOCALE}}">
+  <meta property="og:site_name" content="{{BRAND}}">
+  <meta property="og:title" content="{{TITLE}}">
+  <meta property="og:description" content="{{DESCRIPTION}}">
+  <meta property="og:url" content="{{CANONICAL}}">
+  <meta property="og:image" content="{{OG_IMAGE}}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="{{TITLE}}">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+{{PRELOAD}}
+  <script>document.documentElement.classList.add('js')</script>
+  <!-- pycode:critical (o build troca estes três links por um <style id="critical-css"> incorporado) -->
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/critical.css">
+  <!-- /pycode:critical -->
+  <link rel="stylesheet" href="css/styles.css" data-defer>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="site-header" id="topo">
+    <div class="wrap header-row">
+      <a class="brand" href="#conteudo" aria-label="{{BRAND}}, início da página">{{BRAND_MARK}}<span>{{BRAND}}</span></a>
+      <nav class="site-nav" aria-label="Seções da página">
+        <ul class="nav-links">
+          <li><a href="#caminho">O caminho</a></li>
+          <li><a href="#programa">Programa</a></li>
+          <li><a href="#formatos">Formatos</a></li>
+          <li><a href="#materiais">Materiais</a></li>
+          <li><a href="#perguntas">Perguntas</a></li>
+        </ul>
+        <details class="menu">
+          <summary><span>Menu</span><i aria-hidden="true"></i></summary>
+          <ul>
+            <li><a href="#caminho">O caminho</a></li>
+            <li><a href="#programa">Programa</a></li>
+            <li><a href="#formatos">Formatos</a></li>
+            <li><a href="#materiais">Materiais</a></li>
+            <li><a href="#perguntas">Perguntas</a></li>
+          </ul>
+        </details>
+      </nav>
+      <a class="button button-small" href="#inscricao">Guardar um lugar</a>
+    </div>
+  </header>
+
+  <main id="conteudo" tabindex="-1">
+    <!-- Hero: o objeto próprio é a viagem de uma requisição entre o navegador e o servidor. -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <h1 id="hero-title">{{TITLE}}</h1>
+          <p class="lead">Uma oficina prática em quatro encontros ao vivo. Você acompanha uma requisição saindo do navegador, passando pelo servidor e voltando como dados, e escreve uma API pequena que responde do jeito que você planejou.</p>
+          <div class="actions">
+            <a class="button" href="#programa">Ver o programa <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+            <a class="button button-ghost" href="#inscricao">Guardar um lugar</a>
+          </div>
+          <dl class="facts">
+            <div><dt>Encontros</dt><dd>4 ao vivo, à noite</dd></div>
+            <div><dt>Duração</dt><dd>2 horas cada</dd></div>
+            <div><dt>Turma</dt><dd>até 24 pessoas</dd></div>
+          </dl>
+        </div>
+
+        <figure class="trip motion-scene" aria-labelledby="trip-caption">
+          <div class="trip-object" aria-hidden="true">
+            <svg class="trip-ring loop" viewBox="0 0 200 200"><circle cx="100" cy="100" r="96"/><circle class="ticks" cx="100" cy="100" r="88"/></svg>
+            <div class="trip-client">
+              <div class="client-bar"><i></i><i></i><i></i><span>exemplo.com/livros?autor=machado</span></div>
+              <ul class="client-rows">
+                <li><b></b><span>Dom Casmurro</span><em>1899</em></li>
+                <li><b></b><span>Quincas Borba</span><em>1891</em></li>
+                <li><b></b><span>Memórias Póstumas</span><em>1881</em></li>
+              </ul>
+              <span class="client-glow loop"></span>
+            </div>
+            <div class="trip-lanes">
+              <div class="lane lane-out"><span class="lane-label">pedido</span><div class="runner loop"><span class="packet">GET /livros</span></div></div>
+              <div class="lane lane-back"><span class="lane-label">resposta</span><div class="runner loop"><span class="packet">200 OK · JSON</span></div></div>
+            </div>
+            <div class="trip-server">
+              <svg class="server-disks" viewBox="0 0 120 96"><ellipse class="disk-glow loop" cx="60" cy="18" rx="50" ry="12"/><path d="M10 18v24c0 7 22 12 50 12s50-5 50-12V18"/><path d="M10 42v24c0 7 22 12 50 12s50-5 50-12V42"/><ellipse cx="60" cy="18" rx="50" ry="12"/></svg>
+              <div class="server-text">
+                <strong>api.exemplo/v1</strong>
+                <ol class="server-log">
+                  <li><span>→</span> GET /livros?autor=machado</li>
+                  <li><span>←</span> 200 OK · 3 itens · 38 ms</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+          <figcaption id="trip-caption">Uma requisição sai do navegador como pedido, o servidor consulta os livros e devolve a resposta em JSON.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- Linha do tempo em escala: cada fase ocupa a largura proporcional ao tempo que leva. -->
+    <section class="section section-alt motion-scene" id="caminho" aria-labelledby="caminho-title">
+      <div class="wrap">
+        <h2 id="caminho-title">O que acontece nos 38 milissegundos entre o clique e a lista na tela</h2>
+        <p class="section-lead">No primeiro encontro, você abre as ferramentas do navegador e mede cada fase de uma requisição. Esta é uma medição de exemplo em uma rede doméstica; cada conexão terá números próprios.</p>
+        <div class="timeline">
+                    <div class="timeline-bar" aria-hidden="true">
+            <span style="--ms: 3"></span><span style="--ms: 6"></span><span style="--ms: 8"></span><span style="--ms: 15"></span><span style="--ms: 6"></span>
+            <i class="timeline-cursor loop"></i>
+          </div>
+          <div class="timeline-ruler" aria-hidden="true"><span>0 ms</span><span>38 ms</span></div>
+          <ol class="timeline-steps">
+            <li style="--start: 0; --ms: 3"><b>3 ms</b><strong>Endereço</strong><span>O navegador descobre o IP do servidor.</span></li>
+            <li style="--start: 3; --ms: 6"><b>6 ms</b><strong>Conexão</strong><span>Os dois lados combinam por onde conversar.</span></li>
+            <li style="--start: 9; --ms: 8"><b>8 ms</b><strong>Segurança</strong><span>A conversa passa a ser criptografada.</span></li>
+            <li style="--start: 17; --ms: 15"><b>15 ms</b><strong>Servidor</strong><span>O código busca os livros e monta a resposta.</span></li>
+            <li style="--start: 32; --ms: 6"><b>6 ms</b><strong>Download</strong><span>Os bytes chegam e viram lista.</span></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- Programa em um objeto de papel: folha pautada com furos e um lembrete colado. -->
+    <section class="section motion-scene" id="programa" aria-labelledby="programa-title">
+      <div class="wrap program-grid">
+        <div class="program-intro">
+          <h2 id="programa-title">Quatro encontros, e cada um acrescenta uma peça ao mesmo projeto</h2>
+          <p class="section-lead">O projeto começa no primeiro dia e cresce até virar uma API documentada e testada. Nada fica solto para depois.</p>
+        </div>
+        <div class="sheet-wrap">
+          <article class="sheet" aria-label="Programa dos encontros">
+            <header class="sheet-head">Programa · 4 encontros · 8 horas</header>
+            <ol class="sheet-list">
+              <li><span class="sheet-num">01</span><div><h3>O pedido</h3><p>Você lê uma requisição linha por linha e entende método, caminho, cabeçalhos e corpo.</p><small>Tarefa: capturar três requisições de sites que você usa.</small></div></li>
+              <li><span class="sheet-num">02</span><div><h3>O servidor</h3><p>Escrevemos juntos um servidor pequeno em Python que recebe o pedido e decide o que responder.</p><small>Tarefa: acrescentar uma rota nova ao servidor.</small></div></li>
+              <li><span class="sheet-num">03</span><div><h3>Os dados</h3><p>O servidor passa a consultar uma lista de livros, devolve JSON e trata erros com os códigos certos.</p><small>Tarefa: responder 404 quando o livro não existir.</small></div></li>
+              <li><span class="sheet-num">04</span><div><h3>O contrato</h3><p>Documentamos a API, escrevemos testes automáticos e publicamos o projeto no seu GitHub.</p><small>Tarefa: pedir a uma pessoa da turma que use a sua API.</small></div></li>
+            </ol>
+          </article>
+          <p class="sticky-note">Cada encontro termina com uma tarefa de vinte minutos, revisada no começo do encontro seguinte.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Comparação em escala: as barras são proporcionais aos bytes reais de cada trecho. -->
+    <section class="section section-alt motion-scene" id="formatos" aria-labelledby="formatos-title">
+      <div class="wrap">
+        <h2 id="formatos-title">O mesmo livro em três formatos, medido em bytes</h2>
+        <p class="section-lead">No terceiro encontro, a API aprende a responder em JSON. Comparar com XML e HTML ajuda a entender por que esse formato virou o padrão das APIs: carrega os mesmos dados com menos texto ao redor.</p>
+        <div class="scale">
+          <div class="scale-ruler" aria-hidden="true"><div class="ruler-marks"><span>0</span><span>50</span><span>100</span><span>150</span><span>200</span><span>250</span></div></div>
+          <div class="scale-row scale-row-best" style="--bytes: 110">
+            <div class="scale-label"><strong>JSON</strong><span>110 bytes</span></div>
+            <div class="scale-track" aria-hidden="true"><span class="scale-bar"></span></div>
+            <pre class="scale-code"><code>{
+  "id": 42,
+  "titulo": "Dom Casmurro",
+  "autor": "Machado de Assis",
+  "ano": 1899,
+  "disponivel": true
+}</code></pre>
+          </div>
+          <div class="scale-row" style="--bytes: 185">
+            <div class="scale-label"><strong>XML</strong><span>185 bytes</span></div>
+            <div class="scale-track" aria-hidden="true"><span class="scale-bar"></span></div>
+            <pre class="scale-code"><code>&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+&lt;livro&gt;
+  &lt;id&gt;42&lt;/id&gt;
+  &lt;titulo&gt;Dom Casmurro&lt;/titulo&gt;
+  &lt;autor&gt;Machado de Assis&lt;/autor&gt;
+  &lt;ano&gt;1899&lt;/ano&gt;
+  &lt;disponivel&gt;true&lt;/disponivel&gt;
+&lt;/livro&gt;</code></pre>
+          </div>
+          <div class="scale-row" style="--bytes: 225">
+            <div class="scale-label"><strong>HTML</strong><span>225 bytes</span></div>
+            <div class="scale-track" aria-hidden="true"><span class="scale-bar"></span></div>
+            <pre class="scale-code"><code>&lt;article class="livro" data-id="42"&gt;
+  &lt;h2 class="livro-titulo"&gt;Dom Casmurro&lt;/h2&gt;
+  &lt;p class="livro-autor"&gt;Machado de Assis&lt;/p&gt;
+  &lt;p class="livro-ano"&gt;Publicado em 1899&lt;/p&gt;
+  &lt;p class="livro-status"&gt;Disponível&lt;/p&gt;
+&lt;/article&gt;</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Acervo em camadas: pasta com folhas em leque, cada uma com a sua aba. -->
+    <section class="section motion-scene" id="materiais" aria-labelledby="materiais-title">
+      <div class="wrap archive-grid">
+        <div class="archive" aria-hidden="true">
+          <div class="archive-sheet archive-back"><span class="archive-tab">projeto</span></div>
+          <div class="archive-sheet archive-mid"><span class="archive-tab">requisições</span></div>
+          <div class="archive-sheet archive-front">
+            <span class="archive-tab">roteiros</span>
+            <pre>oficina-api/
+├── roteiros/
+│   ├── 01-o-pedido.md
+│   ├── 02-o-servidor.md
+│   ├── 03-os-dados.md
+│   └── 04-o-contrato.md
+├── requisicoes.json
+└── projeto/
+    ├── app.py
+    ├── tests/
+    └── README.md</pre>
+          </div>
+        </div>
+        <div class="archive-copy">
+          <h2 id="materiais-title">O que fica com você depois do último encontro</h2>
+          <dl class="archive-list">
+            <div><dt>Um roteiro escrito para cada encontro</dt><dd>Com os comandos, os trechos de código e as explicações na ordem em que aparecem na aula, para consultar sem rever a gravação inteira.</dd></div>
+            <div><dt>A coleção de requisições da oficina</dt><dd>Um arquivo para importar no seu cliente HTTP, com os pedidos usados nos exemplos e nas tarefas.</dd></div>
+            <div><dt>O repositório do projeto final</dt><dd>A API que você construiu, com testes, documentação e um histórico de commits que mostra cada etapa.</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <!-- Perguntas com details nativo: funciona sem JavaScript e com teclado. -->
+    <section class="section section-alt" id="perguntas" aria-labelledby="perguntas-title">
+      <div class="wrap faq-grid">
+        <div class="faq-head">
+          <h2 id="perguntas-title">Perguntas antes de começar</h2>
+          <p class="section-lead">Se a sua dúvida não estiver aqui, escreva pelo site do estúdio e respondemos antes da próxima turma.</p>
+        </div>
+        <div class="faq">
+          <details>
+            <summary>Preciso saber programar?<i class="faq-icon" aria-hidden="true"></i></summary>
+            <p>Ajuda conhecer o básico de Python, como variáveis, funções e listas. Os trechos novos são escritos em conjunto, com a explicação de cada linha.</p>
+          </details>
+          <details>
+            <summary>Os encontros ficam gravados?<i class="faq-icon" aria-hidden="true"></i></summary>
+            <p>Sim. A gravação de cada encontro fica disponível no dia seguinte, junto com o roteiro escrito.</p>
+          </details>
+          <details>
+            <summary>Que programas vou usar?<i class="faq-icon" aria-hidden="true"></i></summary>
+            <p>Um navegador atualizado, o Python 3.10 ou mais recente e o editor de código que você preferir. Todos são gratuitos.</p>
+          </details>
+          <details>
+            <summary>Quanto tempo preciso reservar por semana?<i class="faq-icon" aria-hidden="true"></i></summary>
+            <p>As duas horas do encontro e cerca de vinte minutos para a tarefa, que é curta para caber na semana.</p>
+          </details>
+          <details>
+            <summary>Dá para acompanhar pelo celular?<i class="faq-icon" aria-hidden="true"></i></summary>
+            <p>Dá para assistir, mas a parte prática pede um computador, porque você vai escrever e rodar código durante o encontro.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Chamada final: ingresso com canhoto destacável e o formulário de aviso. -->
+    <section class="section final motion-scene" id="inscricao" aria-labelledby="inscricao-title">
+      <div class="wrap final-grid">
+        <div class="final-copy">
+          <h2 id="inscricao-title">Guarde um lugar na próxima turma</h2>
+          <p class="section-lead">Deixe o seu e-mail e você recebe um único aviso quando as inscrições abrirem, com as datas dos quatro encontros.</p>
+          <form class="signup" action="{{FORM_ACTION}}" method="post" data-keep-params>
+            <label for="email">Seu e-mail</label>
+            <div class="signup-row">
+              <input id="email" name="email" type="email" autocomplete="email" required placeholder="voce@exemplo.com">
+              <button class="button button-cta" type="submit">Avisar quando abrir <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+            </div>
+            <small>Sem lista de novidades: é só este aviso.</small>
+          </form>
+        </div>
+        <div class="ticket-stage">
+          <div class="ticket">
+            <div class="ticket-main">
+              <p class="ticket-label"><span>Ingresso</span><span>Turma de exemplo</span></p>
+              <p class="ticket-title">Como funciona uma API</p>
+              <dl class="ticket-info">
+                <div><dt>Formato</dt><dd>4 encontros ao vivo</dd></div>
+                <div><dt>Horário</dt><dd>terças, às 19h30</dd></div>
+                <div><dt>Lugar</dt><dd>online, no navegador</dd></div>
+              </dl>
+            </div>
+            <button class="ticket-stub" type="button" aria-pressed="false" disabled data-label="Destacar o canhoto" data-reset="Juntar de novo">
+              <b>nº 024</b><span>Destacar o canhoto</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-row">
+      <p><strong>{{BRAND}}</strong> · <a href="{{SITE}}">{{SITE_LABEL}}</a></p>
+      <p>© {{YEAR}} {{BRAND}}. Página estática, sem framework, com fontes servidas pelo próprio site.</p>
+      <a class="to-top" href="#topo">Voltar ao topo</a>
+    </div>
+  </footer>
+</body>
+</html>

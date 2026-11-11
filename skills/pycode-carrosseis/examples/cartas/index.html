@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=1080">
+  <title>Cartas colecionáveis</title>
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/scene.css">
+</head>
+<body>
+  <!-- Exemplo "cartas colecionáveis": uma carta por item, arte desenhada em código (js/scene.js). -->
+  <main class="carousel"></main>
+
+  <!-- Mesa comum a todos os slides: feltro com luz, grão e textura de código bem fraca. -->
+  <template id="slide-common">
+    <div class="table" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
+    <pre class="texture" aria-hidden="true" data-decor></pre>
+    <div class="anchors"><span class="brand" data-anchor="brand"></span><span class="counter" data-anchor="counter"></span></div>
+  </template>
+
+  <template data-layout="cover">
+    <section class="slide layout-cover">
+      <h1 class="display cover-title" data-field="title"></h1>
+      <div class="fan" aria-hidden="true"></div>
+    </section>
+  </template>
+
+  <template data-layout="card">
+    <section class="slide layout-card">
+      <article class="card">
+        <div class="inner">
+          <header class="card-head">
+            <h2 class="card-name" data-field="card.name"></h2>
+            <span class="card-type" data-field="card.type"></span>
+            <svg class="gem" viewBox="0 0 24 24" aria-hidden="true"></svg>
+          </header>
+          <div class="art" aria-hidden="true"><svg class="art-svg" viewBox="0 0 800 330"></svg><div class="foil"></div><div class="glare"></div></div>
+          <p class="card-text" data-field="body"></p>
+          <pre class="code repl" data-code="code"></pre>
+          <footer class="card-foot"><span class="mark" aria-hidden="true" data-decor></span><span class="card-no" data-field="card.no"></span></footer>
+        </div>
+      </article>
+    </section>
+  </template>
+
+  <template data-layout="combo">
+    <section class="slide layout-combo">
+      <p class="combo-text" data-field="body"></p>
+      <svg class="links" viewBox="0 0 1080 1350" aria-hidden="true"></svg>
+      <div class="paper">
+        <div class="paper-tab" data-field="labels.file"></div>
+        <pre class="code paper-code" data-code="code"></pre>
+      </div>
+      <div class="row" aria-hidden="true"></div>
+    </section>
+  </template>
+
+  <template data-layout="cta">
+    <section class="slide layout-cta">
+      <div class="fan fan-cta" aria-hidden="true"></div>
+      <h2 class="display cta-title" data-field="title"></h2>
+      <p class="cta" data-field="cta"></p>
+    </section>
+  </template>
+
+  <script src="js/slides-data.js"></script>
+  <script src="js/carousel.js"></script>
+  <script src="js/scene.js"></script>
+</body>
+</html>

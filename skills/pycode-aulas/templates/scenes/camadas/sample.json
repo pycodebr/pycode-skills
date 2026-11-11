@@ -1,0 +1,67 @@
+{
+  "id": "camadas",
+  "archetype": "camadas",
+  "title": "Dentro do servidor",
+  "chapter": "o mecanismo",
+  "thread": "pedido 42 · no servidor",
+  "transition": "sobe",
+  "bg": "nenhum",
+  "accent": "2",
+  "apoio": "O servidor organiza o trabalho em camadas. Cada camada resolve uma parte do pedido e não precisa saber como as outras funcionam por dentro.",
+  "hook": "Quando a resposta sai, ela leva um número na frente.",
+  "notes": "O pedido desce pelas camadas e a resposta sobe. Clique numa camada para destacá-la.",
+  "reading": [
+    {
+      "label": "Camada 1",
+      "title": "Rota",
+      "text": "Lê o endereço e escolhe a função que vai cuidar do pedido."
+    },
+    {
+      "label": "Camada 2",
+      "title": "Autenticação",
+      "text": "Confere a chave antes de qualquer trabalho."
+    },
+    {
+      "label": "Camada 3",
+      "title": "Regras do negócio",
+      "text": "Decide o que pode ser mostrado e em que ordem."
+    },
+    {
+      "label": "Camada 4",
+      "title": "Dados",
+      "text": "Conversa com o banco e devolve os registros."
+    },
+    {
+      "label": "Volta",
+      "title": "Resposta em JSON",
+      "text": "Cada camada devolve o resultado para a de cima até sair pela rota."
+    }
+  ],
+  "data": {
+    "drop": "42",
+    "response": "a resposta sobe em JSON",
+    "responseTip": "Cada camada devolve para a de cima.",
+    "layers": [
+      {
+        "label": "Rota",
+        "icon": "route",
+        "tip": "Lê o endereço e escolhe a função certa."
+      },
+      {
+        "label": "Autenticação",
+        "icon": "lock",
+        "tip": "Confere a chave antes de qualquer trabalho."
+      },
+      {
+        "label": "Regras",
+        "icon": "gear",
+        "tip": "Aplica as regras do negócio ao pedido."
+      },
+      {
+        "label": "Dados",
+        "icon": "database",
+        "tip": "Conversa com o banco e devolve os registros."
+      }
+    ]
+  }
+}

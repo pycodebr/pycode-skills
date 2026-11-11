@@ -1,0 +1,23 @@
+{
+  "slug": "noir-champanhe",
+  "name": "Noir champanhe",
+  "summary": "Preto de sala de cinema, grafite e champanhe, com letreiro largo de trailer, faixas de tela panorâmica, feixe de projetor e créditos. Para aberturas, lançamentos de aula e anúncios com pausa dramática.",
+  "mode": "dark",
+  "fonts": [
+    "syncopate",
+    "geist",
+    "geist-mono"
+  ],
+  "best_for": [
+    "deck",
+    "page",
+    "carousel"
+  ],
+  "mood": [
+    "cinematográfico",
+    "suspense",
+    "elegante",
+    "noturno"
+  ],
+  "version": "1.0.0"
+}

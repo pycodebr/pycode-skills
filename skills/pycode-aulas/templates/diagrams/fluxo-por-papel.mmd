@@ -1,0 +1,20 @@
+%% Fluxo com cores por papel: cola bem no Whimsical (vira objetos nativos) e renderiza com pycode mermaid.
+%% Troque os rótulos; mantenha um nível de subgrafo no máximo e um nó-título escuro.
+flowchart LR
+    T[Como um pedido vira resposta]:::titulo ~~~ A
+    subgraph Cliente
+        A[App]:::quem --> P[Monta o pedido]:::acao
+    end
+    P --> G{Porta da API}:::regra
+    G -- chave válida --> S[Servidor]:::sistema
+    G -- sem chave --> X[401]:::erro
+    S --> D[(Banco)]:::dado
+    D --> R[JSON]:::dado
+    R --> A
+    classDef titulo fill:#1f2937,color:#ffffff,stroke:#1f2937
+    classDef quem fill:#dbeafe,stroke:#2563eb,color:#1e3a8a
+    classDef acao fill:#fef3c7,stroke:#d97706,color:#78350f
+    classDef regra fill:#ede9fe,stroke:#7c3aed,color:#4c1d95
+    classDef sistema fill:#dcfce7,stroke:#16a34a,color:#14532d
+    classDef dado fill:#cffafe,stroke:#0891b2,color:#164e63
+    classDef erro fill:#fee2e2,stroke:#dc2626,color:#7f1d1d

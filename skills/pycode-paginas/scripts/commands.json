@@ -1,0 +1,13 @@
+{
+  "group": "page",
+  "help": "Páginas e sites estáticos: modelo, build, imagens, QA e performance",
+  "commands": {
+    "new": {"script": "new_page.py", "help": "cria uma landing page ou um site a partir do modelo, com estilo e marca"},
+    "build": {"script": "build_page.py", "help": "gera dist/: CSS crítico incorporado, hashes no nome, build reproduzível"},
+    "images": {"script": "images_page.py", "help": "gera variantes responsivas (WebP/AVIF) e imprime o <img>/<picture>"},
+    "qa": {"script": "qa_page.py", "help": "QA no navegador (fail-closed): viewports, âncoras, sem JS, movimento, CLS"},
+    "perf": {"script": "perf_page.py", "help": "Lighthouse celular e desktop com mediana de várias rodadas"},
+    "check-links": {"script": "links_page.py", "help": "confere links, âncoras e arquivos referenciados"},
+    "og": {"script": "og_page.py", "help": "renderiza og.html do projeto em img/og.jpg (1200x630)"}
+  }
+}

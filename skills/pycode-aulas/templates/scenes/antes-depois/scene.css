@@ -1,0 +1,31 @@
+.s-__ID__ .ad-half { position: absolute; top: 0; height: 716px; padding: 6px 0 0 0; border-radius: var(--radius-lg); transition: opacity .35s; }
+.s-__ID__ .ad-before { left: 0; width: 800px; }
+.s-__ID__ .ad-after { left: 896px; width: 800px; }
+.s-__ID__ .ad-half h3 { margin-top: 14px; font-family: var(--font-display); font-weight: var(--weight-display); letter-spacing: var(--tracking-display); font-size: 44px; line-height: 1; }
+.s-__ID__ .ad-before .chip { color: var(--danger); border-color: color-mix(in srgb, var(--danger) 50%, transparent); }
+.s-__ID__ .ad-after .chip { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 50%, transparent); }
+.s-__ID__ .ad-divider { position: absolute; left: 847px; top: 0; width: 2px; height: 716px; background: linear-gradient(var(--line), var(--line) 40%, transparent); transform-origin: 50% 0; }
+.s-__ID__ .ad-divider i { position: absolute; left: -15px; top: 410px; width: 32px; height: 32px; border-radius: 50%; background: var(--bg); border: 2px solid var(--line); }
+.s-__ID__ .ad-svg { position: absolute; inset: 0; width: 1696px; height: 716px; overflow: visible; pointer-events: none; }
+.s-__ID__ .ad-tangle path { fill: none; stroke: var(--danger); stroke-width: 2.6; opacity: .62; }
+.s-__ID__ .ad-neat path { fill: none; stroke: var(--accent); stroke-width: 3.2; opacity: .8; }
+.s-__ID__ .ad-neat .ad-trunk { stroke-width: 10; opacity: 1; stroke-linecap: round; }
+.s-__ID__ .ad-pk { fill: var(--accent-2); }
+.s-__ID__ .ad-cl .disc { width: 96px; height: 96px; font-size: 42px; border-radius: 26px; }
+.s-__ID__ .ad-cl .name { font-size: 19px; }
+.s-__ID__ .ad-cl { flex-direction: row; gap: 0; }
+.s-__ID__ .ad-cl .name { position: absolute; top: calc(100% + 6px); }
+.s-__ID__ .ad-db .disc { width: 132px; height: 132px; font-size: 62px; border-radius: 50%; }
+.s-__ID__ .ad-db-l .disc { border-color: var(--danger); color: var(--danger); }
+.s-__ID__ .ad-crack { position: absolute; right: -10px; top: -12px; width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; background: var(--danger); color: var(--bg); font-size: 24px; }
+.s-__ID__ .ad-crack .ic { stroke-width: 3; }
+.s-__ID__ .ad-gate .disc { width: 132px; height: 132px; font-size: 60px; background: var(--accent); color: var(--accent-ink); border-color: var(--accent); box-shadow: var(--glow), var(--shadow); }
+.s-__ID__ .ad-gate .name { font-size: 26px; color: var(--text); }
+.s-__ID__ .ad-rules { position: absolute; left: 1090px; top: 560px; width: 600px; display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+.s-__ID__ .ad-rule { font-size: 21px; }
+.s-__ID__ .ad-rule .ic { font-size: 22px; color: var(--accent); }
+.s-__ID__ .ad-rule.on .ic { color: var(--accent-ink); }
+.s-__ID__ .show-before .ad-after, .s-__ID__ .show-after .ad-before { opacity: .45; }
+.s-__ID__ .show-before .ad-neat, .s-__ID__ .show-after .ad-tangle { opacity: .25; }
+.s-__ID__ .ad-tangle, .s-__ID__ .ad-neat { transition: opacity .35s; }
+.s-__ID__ .ad-cl, .s-__ID__ .ad-db, .s-__ID__ .ad-gate { pointer-events: none; }

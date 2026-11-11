@@ -1,0 +1,23 @@
+{
+  "slug": "fliperama",
+  "name": "Fliperama",
+  "summary": "Tela de jogo 16-bit: caixas de diálogo azul-royal, barras de HP e XP, inventário em slots, sprites em pixel e movimento em degraus. Para trilhas de aprendizado, desafios, níveis e conteúdo leve.",
+  "mode": "dark",
+  "fonts": [
+    "press-start-2p",
+    "vt323",
+    "jersey-10"
+  ],
+  "best_for": [
+    "carousel",
+    "deck",
+    "page"
+  ],
+  "mood": [
+    "lúdico",
+    "retrô",
+    "gamificado",
+    "energético"
+  ],
+  "version": "1.0.0"
+}

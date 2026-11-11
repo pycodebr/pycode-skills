@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="{{LANG}}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Oficinas · {{BRAND}}</title>
+  <meta name="description" content="As quatro oficinas do estúdio, com o número de encontros, o projeto de cada uma e a ordem sugerida para quem está começando.">
+  <meta name="theme-color" content="{{THEME_COLOR}}">
+  <meta name="color-scheme" content="{{COLOR_SCHEME}}">
+  <link rel="canonical" href="{{CANONICAL}}">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="{{OG_LOCALE}}">
+  <meta property="og:site_name" content="{{BRAND}}">
+  <meta property="og:title" content="Oficinas · {{BRAND}}">
+  <meta property="og:description" content="As quatro oficinas do estúdio, com o número de encontros, o projeto de cada uma e a ordem sugerida para quem está começando.">
+  <meta property="og:url" content="{{CANONICAL}}">
+  <meta property="og:image" content="{{OG_IMAGE}}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="{{TITLE}}">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+{{PRELOAD}}
+  <script>document.documentElement.classList.add('js')</script>
+  <!-- pycode:critical (o build troca estes três links por um <style id="critical-css"> incorporado) -->
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/critical.css">
+  <!-- /pycode:critical -->
+  <link rel="stylesheet" href="css/styles.css" data-defer>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="site-header" id="topo">
+    <div class="wrap header-row">
+      <a class="brand" href="index.html" aria-label="{{BRAND}}, página inicial">{{BRAND_MARK}}<span>{{BRAND}}</span></a>
+      <nav class="site-nav" aria-label="Navegação principal">
+        <ul class="nav-links">
+          <li><a href="index.html">Início</a></li>
+          <li><a href="oficinas.html" aria-current="page">Oficinas</a></li>
+          <li><a href="index.html#caminho">O caminho</a></li>
+        </ul>
+        <details class="menu">
+          <summary><span>Menu</span><i aria-hidden="true"></i></summary>
+          <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="oficinas.html" aria-current="page">Oficinas</a></li>
+            <li><a href="index.html#caminho">O caminho</a></li>
+            <li><a href="index.html#inscricao">Guardar um lugar</a></li>
+          </ul>
+        </details>
+      </nav>
+      <a class="button button-small" href="index.html#inscricao">Guardar um lugar</a>
+    </div>
+  </header>
+
+
+  <main id="conteudo" tabindex="-1">
+    <section class="page-head" aria-labelledby="page-title">
+      <div class="wrap">
+        <p class="crumbs"><a href="index.html">Início</a> <span aria-hidden="true">/</span> Oficinas</p>
+        <h1 id="page-title">Quatro oficinas, cada uma com um projeto que você termina</h1>
+        <p class="lead">Todas acontecem ao vivo, à noite, com turmas pequenas. A altura de cada livro na estante é proporcional ao número de encontros.</p>
+      </div>
+    </section>
+
+    <!-- Estante em escala: a altura de cada lombada é proporcional ao número de encontros. -->
+    <section class="section motion-scene" id="estante" aria-labelledby="estante-title">
+      <div class="wrap shelf-grid">
+        <div class="shelf" aria-hidden="true">
+          <div class="shelf-books">
+            <span class="book" style="--n: 4"><i>Como funciona uma API</i><b>4</b></span>
+            <span class="book" style="--n: 3"><i>Banco de dados sem mistério</i><b>3</b></span>
+            <span class="book" style="--n: 2"><i>Git para trabalhar em equipe</i><b>2</b></span>
+            <span class="book" style="--n: 3"><i>Testes automáticos</i><b>3</b></span>
+          </div>
+          <div class="shelf-board"></div>
+        </div>
+        <div>
+          <h2 id="estante-title">O que cada oficina constrói</h2>
+          <dl class="archive-list">
+            <div><dt>Como funciona uma API · 4 encontros</dt><dd>Uma API pequena em Python, documentada e testada, publicada no seu GitHub.</dd></div>
+            <div><dt>Banco de dados sem mistério · 3 encontros</dt><dd>Um banco com três tabelas relacionadas e as consultas que respondem perguntas reais sobre os dados.</dd></div>
+            <div><dt>Git para trabalhar em equipe · 2 encontros</dt><dd>Um repositório compartilhado com ramificações, revisão de código e um conflito resolvido com calma.</dd></div>
+            <div><dt>Testes automáticos · 3 encontros</dt><dd>Uma suíte de testes para um projeto existente, rodando sozinha a cada envio de código.</dd></div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-alt" id="ordem" aria-labelledby="ordem-title">
+      <div class="wrap prose">
+        <h2 id="ordem-title">Uma ordem que funciona para quem está começando</h2>
+        <p>As oficinas são independentes, mas algumas ficam mais fáceis depois de outras. Esta é a sequência que recomendamos quando alguém pergunta por onde começar.</p>
+        <ol>
+          <li><strong>Git para trabalhar em equipe</strong>, porque todas as outras usam um repositório.</li>
+          <li><strong>Como funciona uma API</strong>, que apresenta o caminho de uma requisição.</li>
+          <li><strong>Banco de dados sem mistério</strong>, para guardar o que a API recebe.</li>
+          <li><strong>Testes automáticos</strong>, que protegem tudo o que veio antes.</li>
+        </ol>
+        <p>Se você já conhece uma parte, pode pular direto para a próxima. <a href="index.html#inscricao">Deixe o seu e-mail</a> e avisamos quando abrir a próxima turma.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-row">
+      <p><strong>{{BRAND}}</strong> · <a href="{{SITE}}">{{SITE_LABEL}}</a></p>
+      <p>© {{YEAR}} {{BRAND}}. Página estática, sem framework, com fontes servidas pelo próprio site.</p>
+      <a class="to-top" href="#topo">Voltar ao topo</a>
+    </div>
+  </footer>
+</body>
+</html>

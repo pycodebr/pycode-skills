@@ -1,0 +1,34 @@
+/* Papel e colagem · tokens do contrato comum do pycode-design (não renomeie as variáveis do contrato). */
+:root {
+  --bg: #ece2d0;
+  --bg-2: #e2d5bd;
+  --surface: #fbf7ef;
+  --surface-2: #f3ead9;
+  --text: #211a14;
+  --muted: #5a4c3e;
+  --line: #c2ae8e;
+  --accent: #d23f22;
+  --accent-2: #2c47c4;
+  --accent-ink: #ffffff;
+  --paper: #fbf7ef;
+  --paper-ink: #211a14;
+  --danger: #b3261e;
+  --ok: #2f6e3e;
+  --warn: #8a5a00;
+  --font-display: 'Anton', Impact, 'Arial Narrow', sans-serif;
+  --font-body: 'Bricolage Grotesque', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --weight-display: 400;
+  --tracking-display: 0em;
+  --radius: 2px;
+  --radius-lg: 4px;
+  --shadow: 0 1px 1px rgba(33, 26, 20, .18), 0 10px 22px rgba(33, 26, 20, .18);
+  --glow: 0 0 0 2px #211a14;
+  /* extras do estilo (prefixo do slug) */
+  --colagem-tape: rgba(248, 236, 190, .82);
+  --colagem-kraft: #c9a77a;
+  --colagem-tomato: #d23f22;
+  --colagem-cobalt: #2c47c4;
+  --colagem-mustard: #e9b21a;
+  --colagem-font-hand: 'Caveat', 'Segoe Print', cursive;
+}

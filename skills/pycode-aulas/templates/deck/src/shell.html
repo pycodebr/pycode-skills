@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="{{LANG}}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>{{TITLE}}</title>
+<meta name="description" content="{{DESCRIPTION}}">
+<meta name="generator" content="pycode-aulas {{ENGINE_VERSION}}">
+<link rel="icon" href="data:,">
+{{FONT_PRELOADS}}
+<link rel="stylesheet" href="assets/css/deck.css?v={{H_CSS}}">
+{{HEAD_EXTRA}}
+</head>
+<body class="reading" data-mode="{{MODE}}" data-deck-key="{{STORAGE_KEY}}" data-version="{{VERSION}}">
+<script>document.body.classList.remove('reading');document.documentElement.classList.add('js');</script>
+<canvas id="bg-canvas" aria-hidden="true"></canvas>
+<div id="bg-glow" aria-hidden="true"></div>
+<div id="reading-bar" aria-hidden="true"><span class="rb-chapter"></span><b class="rb-count"></b><i class="rb-progress"></i></div>
+<main id="viewport" aria-label="{{TITLE}}">
+<div id="frame"><div id="deck" aria-roledescription="{{UI_DECK}}">
+{{SLIDES}}
+<div id="hud" aria-hidden="true">
+  <div class="top"><span class="brand">{{BRAND}}</span><span class="chapter"></span></div>
+  <div class="thread"><span class="thread-label"></span><span class="thread-track"><i class="thread-fill"></i><i class="thread-dot"></i>{{THREAD_STOPS}}</span><span class="count"></span></div>
+</div>
+<div id="curtain" aria-hidden="true"></div><div id="iris" aria-hidden="true"></div>
+</div>
+<button id="edge-prev" class="edge" type="button" aria-label="{{UI_PREV}}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
+<button id="edge-next" class="edge" type="button" aria-label="{{UI_NEXT}}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
+</div>
+</main>
+<section id="mobile-info" aria-label="{{UI_SUMMARY}}">
+  <p class="mi-rotate"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="2.5" width="10" height="19" rx="2"/><path d="M3 9.5a9 9 0 0 1 4-6M21 14.5a9 9 0 0 1-4 6"/></svg>{{UI_ROTATE}}</p>
+  <h2 class="mi-title"></h2>
+  <p class="mi-apoio"></p>
+  <details class="mi-more"><summary>{{UI_MORE}}</summary><div class="mi-more-body"></div></details>
+  <button id="mi-text" type="button">{{UI_TEXT_MODE}}</button>
+</section>
+<nav id="toolbar" aria-label="{{UI_CONTROLS}}">
+  <button id="previous" class="nav-arrow" type="button" aria-label="{{UI_PREV}}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 12H4m6-6-6 6 6 6"/></svg></button>
+  <span id="counter" aria-live="polite"></span>
+  <button id="next" class="nav-arrow" type="button" aria-label="{{UI_NEXT}}"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6"/></svg></button>
+  <button id="open-overview" type="button">{{UI_INDEX}}</button>
+  <button id="timer" class="wide-only" type="button" aria-pressed="false" title="{{UI_TIMER_HELP}}">00:00</button>
+  <button id="open-menu" type="button">{{UI_OPTIONS}}</button>
+</nav>
+<dialog id="overview" aria-label="{{UI_INDEX}}"><button id="close-overview" class="dialog-close" type="button">{{UI_CLOSE}}</button><h2>{{UI_INDEX_TITLE}}</h2><div id="overview-list"></div></dialog>
+<dialog id="menu" aria-label="{{UI_OPTIONS}}"><button id="close-menu" class="dialog-close" type="button">{{UI_CLOSE}}</button><h2>{{UI_OPTIONS}}</h2>
+  <div class="menu-actions">
+    <button id="fullscreen" type="button">{{UI_FULLSCREEN}}</button>
+    <button id="motion" type="button" aria-pressed="true">{{UI_MOTION_OFF}}</button>
+    <button id="replay" type="button">{{UI_REPLAY}}</button>
+    <button id="textmode" type="button" aria-pressed="false">{{UI_TEXT_MODE}}</button>
+  </div>
+  <p id="fullscreen-help" class="keys" hidden>{{UI_FULLSCREEN_HELP}}</p>
+  <p class="keys">{{UI_KEYS}}</p>
+  <p class="keys">{{UI_HELP}}</p>
+</dialog>
+<div id="blank" aria-hidden="true"></div>
+<script src="assets/vendor/gsap.min.js?v={{H_GSAP}}"></script>
+<script src="assets/js/content.js?v={{H_CONTENT}}"></script>
+<script src="assets/js/deck.js?v={{H_JS}}"></script>
+</body>
+</html>

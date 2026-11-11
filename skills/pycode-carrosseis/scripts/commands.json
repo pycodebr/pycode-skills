@@ -1,0 +1,17 @@
+[
+  {
+    "group": "carousel",
+    "help": "Carrosséis de Instagram 4:5 com slides estáticos e em vídeo",
+    "commands": {
+      "new": {"script": "new_carousel.py", "help": "cria um carrossel a partir do modelo ou de um exemplo (--example)"},
+      "render": {"script": "render.py", "help": "renderiza os slides em 1080x1350 exatos (out/slide-NN.png)"},
+      "video": {"script": "video.py", "help": "grava um slide animado em MP4 H.264 (setT determinístico, áudio opcional)"},
+      "qa": {"script": "qa.py", "help": "confere tamanho, texto, contraste, margens, CTA, código e emendas (fail-closed)"},
+      "preview": {"script": "preview.py", "help": "gera preview.html que simula o carrossel no celular, com arrasto"},
+      "compose": {"script": "compose.py", "help": "aplica uma tela ou documento na área magenta de uma cena (homografia)"},
+      "fit": {"script": "fit.py", "help": "enquadra uma imagem em 4:5 medindo o conteúdo, sem esticar"},
+      "caption": {"script": "caption.py", "help": "gera o esqueleto de legenda.md a partir do slides.json"},
+      "pack": {"script": "pack.py", "help": "empacota slides numerados, vídeos, legenda e folha de contato num zip"}
+    }
+  }
+]

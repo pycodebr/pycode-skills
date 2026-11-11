@@ -1,0 +1,31 @@
+/* Noir champanhe · tokens do contrato comum do pycode-design (não renomeie as variáveis do contrato). */
+:root {
+  --bg: #050505;
+  --bg-2: #0d0c0a;
+  --surface: #151410;
+  --surface-2: #1e1c17;
+  --text: #f8f4ea;
+  --muted: #bdb5a3;
+  --line: #3b3426;
+  --accent: #e8c27e;
+  --accent-2: #8fd1f2;
+  --accent-ink: #1b160e;
+  --paper: #f5ecd7;
+  --paper-ink: #1b160e;
+  --danger: #f59a7a;
+  --ok: #9ad9b0;
+  --warn: #ffad5c;
+  --font-display: 'Syncopate', 'Arial Black', system-ui, sans-serif;
+  --font-body: 'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --weight-display: 700;
+  --tracking-display: 0.18em;
+  --radius: 2px;
+  --radius-lg: 4px;
+  --shadow: 0 30px 80px rgba(0, 0, 0, .7);
+  --glow: 0 0 0 1px rgba(232, 194, 126, .22), 0 0 70px rgba(232, 194, 126, .14);
+  /* extras do estilo (prefixo do slug) */
+  --noir-champanhe-champagne-gradient: linear-gradient(135deg, #faf0d7, #e8c27e 60%, #a9812f);
+  --noir-champanhe-letterbox: 11vh;
+  --noir-champanhe-grain-opacity: .07;
+}

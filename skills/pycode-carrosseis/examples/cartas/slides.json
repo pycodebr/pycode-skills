@@ -1,0 +1,171 @@
+{
+  "meta": {
+    "title": "Cinco módulos da biblioteca padrão do Python",
+    "slug": "cartas-stdlib",
+    "lang": "pt-BR",
+    "concept": "cartas colecionáveis: uma carta por módulo, com arte desenhada em código, uso e comando conferido"
+  },
+  "brand": {
+    "name": "Sua Marca",
+    "handle": "@suamarca"
+  },
+  "rules": {
+    "cover_words": 20,
+    "slide_words": 35
+  },
+  "slides": [
+    {
+      "layout": "cover",
+      "title": "*Cinco módulos* que já vêm no Python e que eu abro antes de instalar qualquer pacote",
+      "video": {
+        "seconds": 5,
+        "still": 5
+      },
+      "keywords": [
+        "biblioteca padrão",
+        "Python"
+      ]
+    },
+    {
+      "layout": "card",
+      "card": {
+        "name": "pathlib",
+        "type": "caminhos de arquivo",
+        "no": "01/05",
+        "art": "pathlib",
+        "gold": true
+      },
+      "body": "O *pathlib*, um dos cinco módulos que já vêm com o Python, trata caminho de arquivo como objeto: você pega nome, extensão e pasta sem recortar texto na mão.",
+      "code": {
+        "lines": [
+          ">>> from pathlib import Path",
+          ">>> Path(\"aulas/api.md\").suffix",
+          "'.md'"
+        ],
+        "run": "doctest"
+      },
+      "keywords": [
+        "pathlib",
+        "Path"
+      ]
+    },
+    {
+      "layout": "card",
+      "card": {
+        "name": "Counter",
+        "type": "módulo collections",
+        "no": "02/05",
+        "art": "counter"
+      },
+      "body": "O *Counter*, do módulo collections, conta quantas vezes cada item aparece numa lista ou num texto e já devolve os mais frequentes, sem dicionário nem laço escrito por você.",
+      "code": {
+        "lines": [
+          ">>> from collections import Counter",
+          ">>> Counter(\"banana\").most_common(2)",
+          "[('a', 3), ('n', 2)]"
+        ],
+        "run": "doctest"
+      },
+      "keywords": [
+        "collections",
+        "Counter"
+      ]
+    },
+    {
+      "layout": "card",
+      "card": {
+        "name": "datetime",
+        "type": "datas e prazos",
+        "no": "03/05",
+        "art": "datetime"
+      },
+      "body": "Com o *datetime*, subtrair uma data da outra devolve a diferença pronta, e o Python já considera meses de 28 a 31 dias e o ano bissexto por você.",
+      "code": {
+        "lines": [
+          ">>> from datetime import date",
+          ">>> date(2028, 3, 1) - date(2028, 2, 1)",
+          "datetime.timedelta(days=29)"
+        ],
+        "run": "doctest"
+      },
+      "keywords": [
+        "datetime",
+        "timedelta"
+      ]
+    },
+    {
+      "layout": "card",
+      "card": {
+        "name": "json",
+        "type": "dados de API",
+        "no": "04/05",
+        "art": "json"
+      },
+      "body": "O *json* transforma texto em dicionário e dicionário em texto, e esse é o formato que quase toda API usa pra mandar e receber dados.",
+      "code": {
+        "lines": [
+          ">>> import json",
+          ">>> json.loads('{\"nota\": 9.5, \"ok\": true}')",
+          "{'nota': 9.5, 'ok': True}"
+        ],
+        "run": "doctest"
+      },
+      "keywords": [
+        "json",
+        "API"
+      ]
+    },
+    {
+      "layout": "card",
+      "card": {
+        "name": "statistics",
+        "type": "média e mediana",
+        "no": "05/05",
+        "art": "statistics"
+      },
+      "body": "O *statistics* calcula média, mediana e desvio padrão, e a mediana, o valor do meio da lista, quase não muda quando aparece um número fora da curva.",
+      "code": {
+        "lines": [
+          ">>> from statistics import mean, median",
+          ">>> mean([7, 8, 9, 40]), median([7, 8, 9, 40])",
+          "(16, 8.5)"
+        ],
+        "run": "doctest"
+      },
+      "keywords": [
+        "statistics",
+        "média",
+        "mediana"
+      ]
+    },
+    {
+      "layout": "combo",
+      "body": "Num script de relatório, os cinco jogam juntos: o *pathlib* acha os arquivos, o *json* lê os dados, o *Counter* conta, o *statistics* resume e o *datetime* marca o período.",
+      "code": {
+        "lines": [
+          "from pathlib import Path",
+          "import json",
+          "from collections import Counter",
+          "from statistics import median",
+          "from datetime import date"
+        ],
+        "run": "python"
+      },
+      "labels": {
+        "file": "relatorio.py"
+      },
+      "keywords": [
+        "script",
+        "relatório"
+      ]
+    },
+    {
+      "layout": "cta",
+      "title": "As cinco cartas já estão instaladas no seu Python, sem nenhum pip install.",
+      "cta": "Salva este carrossel pra ter as cinco à mão no próximo script.",
+      "keywords": [
+        "pip"
+      ]
+    }
+  ]
+}

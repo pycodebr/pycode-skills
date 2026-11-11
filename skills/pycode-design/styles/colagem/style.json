@@ -1,0 +1,24 @@
+{
+  "slug": "colagem",
+  "name": "Papel e colagem",
+  "summary": "Mesa de recortes em papel kraft: pedaços rasgados, fita adesiva, carimbos, etiquetas, polaroides e letras recortadas, com anotações à mão. Para conteúdo de bastidores, listas, comparações e posts de comunidade.",
+  "mode": "light",
+  "fonts": [
+    "anton",
+    "bricolage-grotesque",
+    "caveat",
+    "geist-mono"
+  ],
+  "best_for": [
+    "carousel",
+    "page",
+    "deck"
+  ],
+  "mood": [
+    "artesanal",
+    "humano",
+    "vibrante",
+    "informal"
+  ],
+  "version": "1.0.0"
+}

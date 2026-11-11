@@ -1,0 +1,33 @@
+/* Sala de controle · tokens do contrato comum do pycode-design (não renomeie as variáveis do contrato). */
+:root {
+  --bg: #0e100f;
+  --bg-2: #141715;
+  --surface: #1b1f1c;
+  --surface-2: #242a26;
+  --text: #e9efe9;
+  --muted: #a9b4ab;
+  --line: #38413b;
+  --accent: #ffb000;
+  --accent-2: #6cff9c;
+  --accent-ink: #1f1500;
+  --paper: #e4e0d4;
+  --paper-ink: #141715;
+  --danger: #ff4d3d;
+  --ok: #6cff9c;
+  --warn: #ffb000;
+  --font-display: 'Bebas Neue', Impact, 'Arial Narrow', sans-serif;
+  --font-body: 'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --weight-display: 400;
+  --tracking-display: 0.04em;
+  --radius: 6px;
+  --radius-lg: 14px;
+  --shadow: inset 0 1px 0 rgba(255, 255, 255, .06), 0 14px 30px rgba(0, 0, 0, .55);
+  --glow: 0 0 12px rgba(255, 176, 0, .55);
+  /* extras do estilo (prefixo do slug) */
+  --sala-de-controle-amber: #ffb000;
+  --sala-de-controle-phosphor: #6cff9c;
+  --sala-de-controle-bezel: #2c332e;
+  --sala-de-controle-screw: #56605a;
+  --sala-de-controle-font-readout: 'Jersey 10', Impact, sans-serif;
+}

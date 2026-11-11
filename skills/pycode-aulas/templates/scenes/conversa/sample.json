@@ -1,0 +1,66 @@
+{
+  "id": "conversa",
+  "archetype": "conversa",
+  "title": "Dois programas conversando",
+  "chapter": "o problema",
+  "thread": "pedido 42 · em palavras",
+  "transition": "sobe",
+  "bg": "rede",
+  "budget": 75,
+  "apoio": "Uma API é o combinado que permite a um programa pedir algo a outro. Leia a conversa como se fosse entre pessoas e veja, ao lado, o que viaja pela rede.",
+  "hook": "Essa conversa só funciona porque os dois seguem o mesmo contrato.",
+  "notes": "Leia a conversa em voz alta. Depois clique em cada mensagem para mostrar a versão que a máquina envia. A conversa é o objeto da cena, por isso o texto é maior.",
+  "reading": [
+    {
+      "label": "Pedido",
+      "title": "Quais pedidos o cliente 42 fez?",
+      "text": "Na rede, isso vira GET /clientes/42/pedidos: um verbo e um endereço."
+    },
+    {
+      "label": "Recusa",
+      "title": "Quem está perguntando?",
+      "text": "Sem identificação, o servidor responde 401 e não entrega nada."
+    },
+    {
+      "label": "Chave",
+      "title": "Sou o app da loja",
+      "text": "A chave vai num cabeçalho chamado Authorization, junto com o pedido."
+    },
+    {
+      "label": "Resposta",
+      "title": "São três pedidos",
+      "text": "O servidor responde 200 e manda a lista em JSON."
+    }
+  ],
+  "data": {
+    "a": "App da loja",
+    "b": "Servidor",
+    "wire": "o que viaja na rede",
+    "messages": [
+      {
+        "from": "a",
+        "text": "Oi, servidor. Quais pedidos o cliente 42 fez?",
+        "code": "GET /clientes/42/pedidos",
+        "note": "Um verbo e um endereço dizem o que o app quer."
+      },
+      {
+        "from": "b",
+        "text": "Antes, preciso saber quem está perguntando.",
+        "code": "401 Unauthorized",
+        "note": "Sem identificação, o pedido é recusado."
+      },
+      {
+        "from": "a",
+        "text": "Sou o app da loja. Envio a minha chave junto.",
+        "code": "Authorization: Bearer chave-do-app",
+        "note": "A chave viaja num cabeçalho do pedido."
+      },
+      {
+        "from": "b",
+        "text": "Certo. São três pedidos, segue a lista.",
+        "code": "200 OK  [7, 9, 12]",
+        "note": "Um código de status e os dados em JSON."
+      }
+    ]
+  }
+}

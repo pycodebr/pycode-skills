@@ -1,0 +1,20 @@
+.s-__ID__ .cp2-svg { position: absolute; inset: 0; width: 1696px; height: 716px; overflow: visible; pointer-events: none; }
+.s-__ID__ .cp2-post { fill: var(--surface-2); stroke: var(--line); stroke-width: 2; }
+.s-__ID__ .cp2-bar { stroke: var(--text); stroke-width: 10; stroke-linecap: round; }
+.s-__ID__ .cp2-pan path { fill: none; stroke: var(--muted); stroke-width: 2.5; }
+.s-__ID__ .cp2-pan .cp2-bowl { fill: var(--surface-2); stroke: var(--line); }
+.s-__ID__ [data-win="l"] .cp2-pan.l .cp2-bowl, .s-__ID__ [data-win="r"] .cp2-pan.r .cp2-bowl { fill: var(--accent); stroke: var(--accent); }
+.s-__ID__ [data-win="="] .cp2-bowl { fill: var(--accent-2); stroke: var(--accent-2); }
+.s-__ID__ .cp2-pin { fill: var(--accent); }
+.s-__ID__ .cp2-side { position: absolute; top: 0; display: flex; align-items: center; gap: 16px; }
+.s-__ID__ .cp2-side.l { left: 150px; }
+.s-__ID__ .cp2-side.r { right: 150px; flex-direction: row-reverse; }
+.s-__ID__ .cp2-side span { width: 72px; height: 72px; border-radius: 20px; display: grid; place-items: center; font-size: 36px; background: var(--surface); border: 1.5px solid var(--line); }
+.s-__ID__ .cp2-side b { font-family: var(--font-display); font-weight: var(--weight-display); letter-spacing: var(--tracking-display); font-size: 66px; line-height: 1; }
+.s-__ID__ .cp2-rows { position: absolute; left: 348px; top: 400px; width: 1000px; list-style: none; padding: 0; margin: 0; display: grid; gap: 10px; }
+.s-__ID__ .cp2-rows li { display: grid; grid-template-columns: 40px 1fr 40px; align-items: center; gap: 18px; padding: 14px 20px; border-radius: var(--radius); border: 1px solid var(--line); background: var(--surface); font-size: 30px; text-align: center; transition: background-color .3s, border-color .3s, opacity .3s; }
+.s-__ID__ .has-focus .cp2-rows li:not(.on) { opacity: .5; }
+.s-__ID__ .cp2-rows li.on { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 16%, var(--surface)); }
+.s-__ID__ .cp2-m { width: 22px; height: 22px; border-radius: 50%; border: 3px solid var(--line); justify-self: center; }
+.s-__ID__ .cp2-m.win { background: var(--accent); border-color: var(--accent); }
+.s-__ID__ .tip { max-width: 320px; }

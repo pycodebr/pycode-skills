@@ -1,0 +1,129 @@
+{
+  "meta": {
+    "title": "Os cinco níveis de quem testa o próprio código",
+    "slug": "niveis-testes",
+    "lang": "pt-BR",
+    "concept": "níveis: escada isométrica com o degrau atual aceso, numeral gigante e medidor de cinco segmentos"
+  },
+  "brand": {
+    "name": "Sua Marca",
+    "handle": "@suamarca"
+  },
+  "rules": {
+    "cover_words": 20,
+    "slide_words": 35
+  },
+  "ui": {
+    "level": "NÍVEL",
+    "of": "DE 5"
+  },
+  "slides": [
+    {
+      "layout": "cover",
+      "title": "Em qual destes *cinco níveis* você testa o seu código hoje?",
+      "video": {
+        "seconds": 5,
+        "still": 5
+      },
+      "keywords": [
+        "testes",
+        "código"
+      ]
+    },
+    {
+      "layout": "level",
+      "level": 1,
+      "title": "Testa clicando",
+      "body": "Nível 1 dos testes de código: você roda o programa e clica em tudo pra ver se funciona. Serve no começo, mas cada mudança pede pra clicar tudo de novo.",
+      "labels": {
+        "button": "Salvar"
+      },
+      "keywords": [
+        "teste manual"
+      ]
+    },
+    {
+      "layout": "level",
+      "level": 2,
+      "title": "Confere com print",
+      "body": "No nível 2, você espalha *print* pelo código pra ver os valores no terminal. É mais rápido, só que alguém ainda precisa ler a saída e decidir se está certa.",
+      "code": {
+        "lines": [
+          ">>> total = 19 + 23",
+          ">>> print(total)",
+          "42"
+        ],
+        "run": "doctest"
+      },
+      "labels": {
+        "file": "terminal"
+      },
+      "keywords": [
+        "print"
+      ]
+    },
+    {
+      "layout": "level",
+      "level": 3,
+      "title": "Escreve assert",
+      "body": "No nível 3, o próprio código confere o resultado com *assert*, a linha que para o programa com erro quando a condição é falsa.",
+      "code": {
+        "lines": [
+          ">>> def media(n): return sum(n) / len(n)",
+          ">>> assert media([8, 10]) == 9"
+        ],
+        "run": "doctest"
+      },
+      "labels": {
+        "file": "notas.py"
+      },
+      "keywords": [
+        "assert"
+      ]
+    },
+    {
+      "layout": "level",
+      "level": 4,
+      "title": "Roda no pytest",
+      "body": "No nível 4, os testes ficam em arquivos próprios e o *pytest*, a ferramenta que acha e roda todos eles, mostra o que passou e o que quebrou.",
+      "code": {
+        "lines": [
+          "def test_media():",
+          "    assert media([8, 10]) == 9"
+        ],
+        "run": "python"
+      },
+      "labels": {
+        "file": "test_notas.py"
+      },
+      "keywords": [
+        "pytest"
+      ]
+    },
+    {
+      "layout": "level",
+      "level": 5,
+      "title": "Testa a cada envio",
+      "body": "No nível 5, os testes rodam sozinhos a cada envio pro repositório, e o código com erro nem chega a ser publicado. Isso é a *integração contínua*, ou CI.",
+      "labels": {
+        "steps": [
+          "envio",
+          "testes",
+          "publica"
+        ]
+      },
+      "keywords": [
+        "integração contínua",
+        "CI"
+      ]
+    },
+    {
+      "layout": "cta",
+      "title": "Cada nível pede só um passo a mais, e o próximo degrau é o que fica logo acima do seu.",
+      "cta": "Salva o carrossel pra conferir daqui a um mês em qual degrau você chegou.",
+      "keywords": [
+        "evolução"
+      ]
+    }
+  ]
+}

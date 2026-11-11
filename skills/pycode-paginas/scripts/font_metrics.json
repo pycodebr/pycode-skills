@@ -1,0 +1,82 @@
+{
+ "anton": {
+  "ascent": 131.58,
+  "descent": 36.8,
+  "size_adjust": 89.68
+ },
+ "bebas-neue": {
+  "ascent": 123.2,
+  "descent": 41.07,
+  "size_adjust": 73.05
+ },
+ "bricolage-grotesque": {
+  "ascent": 89.1,
+  "descent": 25.87,
+  "size_adjust": 104.38
+ },
+ "caveat": {
+  "ascent": 129.24,
+  "descent": 40.39,
+  "size_adjust": 74.28
+ },
+ "fraunces": {
+  "ascent": 85.35,
+  "descent": 22.64,
+  "size_adjust": 114.82
+ },
+ "geist": {
+  "ascent": 99.42,
+  "descent": 29.53,
+  "size_adjust": 101.59
+ },
+ "geist-mono": {
+  "ascent": 101.02,
+  "descent": 30.0,
+  "size_adjust": 99.98
+ },
+ "instrument-serif": {
+  "ascent": 120.37,
+  "descent": 37.69,
+  "size_adjust": 82.25
+ },
+ "inter": {
+  "ascent": 91.29,
+  "descent": 22.59,
+  "size_adjust": 106.26
+ },
+ "jersey-10": {
+  "ascent": 103.55,
+  "descent": 34.95,
+  "size_adjust": 77.25
+ },
+ "jetbrains-mono": {
+  "ascent": 102.02,
+  "descent": 30.0,
+  "size_adjust": 99.98
+ },
+ "playfair-display": {
+  "ascent": 99.32,
+  "descent": 22.99,
+  "size_adjust": 108.74
+ },
+ "press-start-2p": {
+  "ascent": 60.01,
+  "descent": 0.0,
+  "size_adjust": 166.64
+ },
+ "space-grotesk": {
+  "ascent": 91.44,
+  "descent": 27.06,
+  "size_adjust": 107.17
+ },
+ "syncopate": {
+  "ascent": 48.28,
+  "descent": 13.34,
+  "size_adjust": 157.41
+ },
+ "vt323": {
+  "ascent": 120.02,
+  "descent": 30.0,
+  "size_adjust": 66.66
+ }
+}

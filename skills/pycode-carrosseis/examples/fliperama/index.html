@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=1080">
+  <title>Fliperama</title>
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/scene.css">
+</head>
+<body>
+  <!-- Exemplo "fliperama": cenário e sprites em pixel art desenhados num canvas de 180x225 ampliado 6x. -->
+  <main class="carousel"></main>
+
+  <template id="slide-common">
+    <canvas class="pix" width="180" height="225" aria-hidden="true"></canvas>
+    <div class="scan" aria-hidden="true"></div>
+    <div class="anchors"><span class="brand" data-anchor="brand"></span><span class="counter" data-anchor="counter"></span></div>
+  </template>
+
+  <template data-layout="cover">
+    <section class="slide layout-cover">
+      <div class="marquee" data-anchor="brand"></div>
+      <div class="screen">
+        <h1 class="q" data-field="title"></h1>
+        <div class="start"></div>
+      </div>
+      <div class="flash" aria-hidden="true"></div>
+      <span class="counter cover-counter" data-anchor="counter"></span>
+    </section>
+  </template>
+
+  <template data-layout="phase">
+    <section class="slide layout-phase">
+      <div class="hud"><span class="phase"></span><span class="hearts" aria-hidden="true"></span></div>
+      <div class="box ask"><p data-field="body"></p></div>
+      <div class="crt"><pre class="code" data-code="code"></pre></div>
+      <div class="opts">
+        <div class="opt"><b>A</b><span data-field="quiz.options.0"></span></div>
+        <div class="opt"><b>B</b><span data-field="quiz.options.1"></span></div>
+        <div class="opt"><b>C</b><span data-field="quiz.options.2"></span></div>
+        <div class="opt"><b>D</b><span data-field="quiz.options.3"></span></div>
+      </div>
+    </section>
+  </template>
+
+  <template data-layout="score">
+    <section class="slide layout-score">
+      <h2 class="banner"></h2>
+      <div class="board"></div>
+      <div class="box"><p data-field="body"></p></div>
+    </section>
+  </template>
+
+  <template data-layout="continue">
+    <section class="slide layout-continue">
+      <h2 class="banner"></h2>
+      <div class="box"><p class="cont-title" data-field="title"></p></div>
+      <div class="coin-label"></div>
+      <p class="cta" data-field="cta"></p>
+    </section>
+  </template>
+
+  <script src="js/slides-data.js"></script>
+  <script src="js/carousel.js"></script>
+  <script src="js/scene.js"></script>
+</body>
+</html>

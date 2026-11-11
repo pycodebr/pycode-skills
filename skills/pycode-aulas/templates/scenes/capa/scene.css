@@ -1,0 +1,24 @@
+/* capa: o cabeçalho vira o título grande à esquerda */
+.s-__ID__ .sc-head { position: absolute; left: var(--pad-x); top: 168px; z-index: 3; max-width: 800px; margin: 0; }
+.s-__ID__ .slide-title { font-size: 124px; line-height: .93; }
+.s-__ID__ .cp-text { position: absolute; left: 0; top: 486px; width: 800px; display: grid; gap: 22px; }
+.s-__ID__ .cp-sub { font-size: 31px; line-height: 1.32; color: var(--muted); }
+.s-__ID__ .cp-by { font-size: 19px; color: var(--accent); }
+.s-__ID__ .cp-svg { position: absolute; inset: 0; width: 1696px; height: 716px; overflow: visible; pointer-events: none; }
+.s-__ID__ .cp-orbit { fill: none; stroke: var(--line); stroke-width: 1.5; }
+.s-__ID__ .cp-orbit.thin { stroke-dasharray: 2 10; }
+.s-__ID__ .cp-ticks { fill: none; stroke: var(--line); stroke-width: 1.5; }
+.s-__ID__ .cp-link { fill: none; stroke: color-mix(in srgb, var(--accent) 45%, var(--line)); stroke-width: 2.5; stroke-dasharray: 6 9; transition: stroke .3s, opacity .3s; }
+.s-__ID__ .cp-link.hot { stroke: var(--accent); stroke-dasharray: none; stroke-width: 3.5; }
+.s-__ID__ .has-focus .cp-link:not(.hot) { opacity: .35; }
+.s-__ID__ .cp-pk { fill: var(--accent-2); }
+.s-__ID__ .cp-core {
+  position: absolute; width: 196px; height: 196px; margin: -98px 0 0 -98px; border-radius: 50%; display: grid; place-items: center; align-content: center; gap: 6px;
+  background: radial-gradient(circle at 38% 32%, color-mix(in srgb, var(--accent) 70%, var(--paper)), var(--accent) 62%);
+  color: var(--accent-ink); box-shadow: var(--glow), 0 0 0 16px color-mix(in srgb, var(--accent) 14%, transparent), 0 0 0 40px color-mix(in srgb, var(--accent) 6%, transparent);
+}
+.s-__ID__ .cp-core .ic { font-size: 54px; stroke-width: 1.6; }
+.s-__ID__ .cp-core b { font-family: var(--font-display); font-weight: var(--weight-display); letter-spacing: var(--tracking-display); font-size: 40px; line-height: 1; }
+.s-__ID__ .cp-sat .disc { width: 104px; height: 104px; border-radius: 50%; font-size: 46px; }
+.s-__ID__ .has-focus .cp-sat:not(.on) { opacity: .55; }
+.s-__ID__ .cp-sat { transition: opacity .3s; }

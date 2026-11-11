@@ -1,0 +1,114 @@
+{
+  "id": "anatomia",
+  "archetype": "terminal",
+  "title": "Anatomia de um pedido",
+  "chapter": "o mecanismo",
+  "thread": "pedido 42 · montado",
+  "transition": "cortina",
+  "bg": "nenhum",
+  "budget": 60,
+  "apoio": "Um pedido HTTP tem método, endereço, cabeçalhos e, às vezes, um corpo. O curl mostra tudo isso em uma linha, e a resposta volta com um código e os dados.",
+  "hook": "Montado, o pedido sai para a rede. Vamos seguir o caminho dele.",
+  "notes": "Deixe o comando ser digitado. Clique em cada parte sublinhada: método, endereço, cabeçalho, código e corpo. O comando e a resposta são o próprio objeto da cena, por isso o orçamento de palavras é maior.",
+  "reading": [
+    {
+      "label": "Método",
+      "title": "GET",
+      "text": "GET lê. POST cria, PUT substitui, PATCH altera e DELETE apaga."
+    },
+    {
+      "label": "Endereço",
+      "title": "https://api.exemplo.com/v1/clientes/42/pedidos",
+      "text": "Domínio, versão da API e o recurso pedido, do geral para o específico."
+    },
+    {
+      "label": "Cabeçalho",
+      "title": "Authorization: Bearer chave-do-app",
+      "text": "Informações extras do pedido, como a chave de quem pergunta."
+    },
+    {
+      "label": "Código",
+      "title": "200 OK",
+      "text": "Resume o resultado antes dos dados."
+    },
+    {
+      "label": "Corpo",
+      "title": "JSON",
+      "text": "Os dados que o app usa para desenhar a lista na tela."
+    }
+  ],
+  "data": {
+    "prompt": "$",
+    "command": [
+      {
+        "code": "curl -X "
+      },
+      {
+        "code": "GET",
+        "part": "metodo"
+      },
+      {
+        "code": " \\\n  "
+      },
+      {
+        "code": "https://api.exemplo.com/v1/clientes/42/pedidos",
+        "part": "endereco"
+      },
+      {
+        "code": " \\\n  -H "
+      },
+      {
+        "code": "\"Authorization: Bearer chave-do-app\"",
+        "part": "cabecalho"
+      }
+    ],
+    "output": [
+      {
+        "code": "HTTP/1.1 200 OK",
+        "tone": "ok",
+        "part": "status"
+      },
+      {
+        "code": "Content-Type: application/json",
+        "tone": "muted"
+      },
+      {
+        "code": ""
+      },
+      {
+        "code": "{\n  \"cliente\": 42,\n  \"pedidos\": [7, 9, 12]\n}",
+        "tone": "json",
+        "part": "corpo"
+      }
+    ],
+    "parts": {
+      "metodo": {
+        "label": "Método",
+        "text": "GET lê. POST cria, PUT troca e DELETE apaga."
+      },
+      "endereco": {
+        "label": "Endereço",
+        "text": "Domínio, versão da API e o recurso pedido."
+      },
+      "cabecalho": {
+        "label": "Cabeçalho",
+        "text": "Informação extra: aqui, a chave de quem pede."
+      },
+      "status": {
+        "label": "Código",
+        "text": "200 diz que deu certo, antes de qualquer dado."
+      },
+      "corpo": {
+        "label": "Corpo",
+        "text": "Os dados em JSON, prontos para a tela."
+      }
+    }
+  },
+  "study": {
+    "text": [
+      "O mesmo pedido pode ser feito em Python só com a biblioteca padrão. O serviço de teste httpbin devolve o que recebeu, o que ajuda a enxergar o cabeçalho e os parâmetros enviados."
+    ],
+    "lang": "python",
+    "code": "import json\nimport urllib.request\n\npedido = urllib.request.Request(\n    \"https://httpbin.org/get?cliente=42\",\n    headers={\"Authorization\": \"Bearer chave-do-app\"},\n)\nwith urllib.request.urlopen(pedido, timeout=10) as resposta:\n    print(resposta.status)                      # 200\n    dados = json.load(resposta)\n    print(dados[\"args\"])                        # {'cliente': '42'}\n    print(dados[\"headers\"][\"Authorization\"])   # Bearer chave-do-app"
+  }
+}

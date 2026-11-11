@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lousa de giz · prévia do estilo</title>
+<meta name="description" content="Ardósia verde com marcas de apagador, moldura de madeira e giz em quatro cores fixas, com diagramas que se desenham enquanto a explicação avança. Para aulas conceituais, comparações e passo a passo.">
+<!-- Abra pela galeria (pycode styles preview): ela copia as fontes para fonts/ ao lado deste arquivo. -->
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="tokens.css">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+/* ---------- chassi comum da prévia: só variáveis do contrato ---------- */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:17px;line-height:1.6;overflow-x:hidden}
+img,svg{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.pv-wrap{width:min(1240px,calc(100% - 40px));margin-inline:auto}
+.pv-section{padding-block:clamp(56px,8vw,112px);position:relative}
+.pv-section + .pv-section{border-top:1px solid var(--line)}
+h1,h2,h3{font-family:var(--font-display);font-weight:var(--weight-display);letter-spacing:var(--tracking-display);line-height:1.05;margin:0;text-wrap:balance}
+p{margin:0;text-wrap:pretty}
+.pv-h2{font-size:clamp(30px,4.2vw,54px);max-width:18ch}
+.pv-intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px 48px;align-items:end;margin-bottom:clamp(32px,5vw,56px)}
+.pv-intro p{color:var(--muted);max-width:56ch}
+.pv-top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 0;font-family:var(--font-mono);font-size:14px;color:var(--muted)}
+.pv-top b{color:var(--text);font-weight:600}
+.pv-top nav{display:flex;gap:18px;flex-wrap:wrap}
+.pv-top nav a{text-decoration:none;color:var(--muted)}
+.pv-top nav a:hover{color:var(--text)}
+/* paleta */
+.pv-palette{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,190px),1fr));gap:14px}
+@media (max-width:600px){.pv-palette{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.pv-chip{grid-template-rows:56px auto}.pv-chip div{padding:10px}.pv-chip code{font-size:12px;word-break:break-all}.pv-chip span{font-size:13px}}
+.pv-chip{display:grid;grid-template-rows:84px auto;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--surface)}
+.pv-chip i{display:block;border-bottom:1px solid var(--line)}
+.pv-chip div{padding:12px 14px 14px;display:grid;gap:2px}
+.pv-chip code{font-family:var(--font-mono);font-size:13px;color:var(--text)}
+.pv-chip span{font-size:14px;line-height:1.45;color:var(--muted)}
+/* tipografia */
+.pv-type{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:clamp(24px,4vw,56px)}
+.pv-type-display{font-family:var(--font-display);font-weight:var(--weight-display);letter-spacing:var(--tracking-display);font-size:clamp(46px,7.4vw,112px);line-height:.98}
+.pv-type-scale{display:grid;gap:14px;align-content:start}
+.pv-type-scale div{display:grid;grid-template-columns:120px minmax(0,1fr);gap:12px;align-items:baseline;border-top:1px solid var(--line);padding-top:10px}
+.pv-type-scale code{font-family:var(--font-mono);font-size:13px;color:var(--muted)}
+.pv-type-body{margin-top:26px;max-width:58ch;color:var(--muted)}
+.pv-type-mono{margin-top:18px;font-family:var(--font-mono);font-size:15px;color:var(--text)}
+/* objetos */
+.pv-objects{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:clamp(16px,2vw,28px)}
+.pv-objects > figure{margin:0;grid-column:span 2;display:grid;grid-template-rows:auto 1fr;gap:14px;min-width:0}
+.pv-objects > figure.wide{grid-column:span 3}
+.pv-objects > figure.full{grid-column:1 / -1}
+.pv-stage{position:relative;min-height:340px;padding:28px;border-radius:var(--radius-lg);overflow:hidden;display:grid;place-items:center;isolation:isolate}
+.pv-objects figcaption{font-size:15px;line-height:1.5;color:var(--muted)}
+.pv-objects figcaption b{display:block;color:var(--text);font-family:var(--font-display);font-weight:var(--weight-display);letter-spacing:var(--tracking-display);font-size:19px;margin-bottom:2px}
+/* formatos */
+.pv-formats{display:grid;grid-template-columns:minmax(0,1.85fr) minmax(0,1fr);gap:clamp(20px,3vw,36px);align-items:start}
+.pv-formats > [data-format="page"]{grid-column:1 / -1}
+.pv-format-label{font-family:var(--font-mono);font-size:13px;color:var(--muted);margin:0 0 10px}
+[data-format="deck"]{aspect-ratio:16/9;container-type:inline-size;position:relative;overflow:hidden;border-radius:var(--radius)}
+[data-format="carousel"]{aspect-ratio:4/5;container-type:inline-size;position:relative;overflow:hidden;border-radius:var(--radius)}
+.pv-foot{padding:40px 0 56px;color:var(--muted);font-size:14px;font-family:var(--font-mono)}
+/* movimento: entradas só quando há JS; loops só rodam com a cena visível */
+html.js [data-scene]:not([data-entered]) .rise{opacity:0;transform:translateY(18px)}
+.rise{transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1);transition-delay:calc(var(--i,0) * 70ms)}
+html.js .loop,html.js .loop::before,html.js .loop::after{animation-play-state:paused !important}
+html.js [data-scene][data-motion="on"] .loop,html.js [data-scene][data-motion="on"] .loop::before,html.js [data-scene][data-motion="on"] .loop::after{animation-play-state:running !important}
+html.js body[data-background="true"] .loop,html.js body[data-background="true"] .loop::before,html.js body[data-background="true"] .loop::after{animation-play-state:paused !important}
+@media (max-width:900px){
+  .pv-intro,.pv-type,.pv-formats{grid-template-columns:minmax(0,1fr)}
+  .pv-objects{grid-template-columns:minmax(0,1fr)}
+  .pv-objects > figure,.pv-objects > figure.wide{grid-column:1 / -1}
+}
+@media (max-width:600px){.pv-top nav{display:none}body{font-size:16px}}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none !important;transition:none !important;scroll-behavior:auto !important}
+  html.js [data-scene]:not([data-entered]) .rise{opacity:1;transform:none}
+}
+
+/* ---------- Lousa de giz: superfícies, objetos e movimento do estilo ---------- */
+.pv-lousa{background:var(--bg-2)}
+.pv-lousa .pv-h2{font-size:clamp(42px,5.4vw,72px);line-height:.95}
+.pv-lousa .pv-objects figcaption b{font-size:27px;line-height:1.1}
+.ls-board{position:relative;border-radius:var(--radius-lg);padding:clamp(22px,4vw,56px);background:radial-gradient(ellipse at 20% 30%,rgba(241,238,227,.07),transparent 35%),radial-gradient(ellipse at 75% 70%,rgba(241,238,227,.06),transparent 40%),radial-gradient(ellipse at 60% 20%,rgba(241,238,227,.04),transparent 30%),var(--bg);box-shadow:inset 0 0 0 clamp(10px,1.4vw,18px) var(--lousa-frame),inset 0 0 0 calc(clamp(10px,1.4vw,18px) + 2px) #3d2a19,inset 0 0 60px rgba(0,0,0,.5),var(--shadow);overflow:hidden}
+.ls-board::before{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(100deg,transparent 0 40px,rgba(241,238,227,.025) 40px 80px)}
+.ls-hero .ls-board{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(16px,3vw,40px);align-items:center;min-height:min(78vh,640px)}
+.ls-hero h1{font-size:clamp(52px,6.6vw,98px);line-height:.95;color:var(--text)}
+.ls-hero h1 span{color:var(--accent)}
+.ls-under{display:block;width:min(340px,80%);height:24px;margin-top:4px}
+.ls-hero p.lead{color:var(--muted);font-size:18px;max-width:42ch;margin-top:12px}
+.ls-chalk{fill:none;stroke-linecap:round;stroke-linejoin:round;filter:url(#lsChalk)}
+.ls-draw{stroke-dasharray:1;stroke-dashoffset:0;transition:stroke-dashoffset 1.4s cubic-bezier(.5,0,.3,1);transition-delay:calc(var(--d,0) * .45s)}
+html.js [data-scene]:not([data-entered]) .ls-draw{stroke-dashoffset:1}
+.ls-write{transition:opacity .5s ease,transform .5s ease;transition-delay:calc(var(--d,0) * .45s + .5s)}
+html.js [data-scene]:not([data-entered]) .ls-write{opacity:0;transform:translateY(6px)}
+.ls-svg text{font-family:var(--font-display);font-weight:700}
+.ls-dot{animation:ls-travel 4.5s cubic-bezier(.5,0,.5,1) infinite}
+@keyframes ls-travel{0%{transform:translateX(0);opacity:0}8%{opacity:1}45%{transform:translateX(196px);opacity:1}50%{opacity:0;transform:translateX(196px)}100%{opacity:0;transform:translateX(196px)}}
+.ls-dot.back{animation-name:ls-back}
+@keyframes ls-back{0%,50%{transform:translateX(196px);opacity:0}58%{opacity:1}95%{transform:translateX(0);opacity:1}100%{opacity:0}}
+/* bandeja */
+.ls-tray{position:relative;height:22px;margin:0 clamp(24px,5vw,72px);background:linear-gradient(#8a6440,#5a3e25);border-radius:0 0 8px 8px;box-shadow:0 8px 16px rgba(0,0,0,.35)}
+.ls-tray i{position:absolute;top:-7px;height:9px;width:46px;border-radius:5px}
+.ls-tray .eraser{position:absolute;top:-16px;right:18%;width:90px;height:20px;border-radius:4px;background:linear-gradient(#cbb89a 0 45%,#3b3a36 45%)}
+/* estágio */
+.ls-stage{background:radial-gradient(ellipse at 30% 30%,rgba(241,238,227,.06),transparent 45%),var(--bg);box-shadow:inset 0 0 0 10px var(--lousa-frame),inset 0 0 0 12px #3d2a19}
+.ls-stage svg{width:100%;max-width:340px}
+.ls-wobble{transform-box:fill-box;transform-origin:50% 50%;animation:ls-wobble 6s ease-in-out infinite}
+@keyframes ls-wobble{0%,100%{transform:rotate(-1.5deg)}50%{transform:rotate(1.5deg)}}
+.ls-sticks{list-style:none;padding:0;margin:0;display:grid;gap:14px;width:min(100%,300px)}
+.ls-sticks li{display:grid;grid-template-columns:70px 1fr;gap:14px;align-items:center;font-size:15px}
+.ls-sticks i{display:block;height:12px;border-radius:6px;box-shadow:inset 0 -3px 0 rgba(0,0,0,.18)}
+.ls-sticks b{font:700 24px/1 var(--font-display)}
+/* página */
+.ls-page{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(20px,4vw,48px);align-items:center}
+.ls-page h3{font-size:clamp(38px,4.4vw,58px);line-height:1}
+.ls-page p{color:var(--muted);margin-top:12px}
+.ls-note{background:var(--paper);color:var(--paper-ink);padding:22px 24px;border-radius:2px;transform:rotate(-1.2deg);box-shadow:var(--shadow);background-image:repeating-linear-gradient(transparent 0 29px,rgba(29,47,39,.16) 29px 30px);line-height:30px}
+.ls-note b{font:700 30px/30px var(--font-display);display:block}
+.ls-btn{display:inline-flex;align-items:center;min-height:50px;padding:0 22px;margin-top:20px;border-radius:var(--radius);background:var(--accent);color:var(--accent-ink);font-weight:700;text-decoration:none}
+/* deck */
+.ls-deck{position:absolute;inset:0;border-radius:var(--radius);background:radial-gradient(ellipse at 25% 30%,rgba(241,238,227,.07),transparent 40%),var(--bg);box-shadow:inset 0 0 0 1.4cqw var(--lousa-frame);padding:4cqw 5cqw;display:grid;grid-template-columns:.8fr 1.2fr;gap:3cqw;align-items:center}
+.ls-deck h3{font-size:6cqw;line-height:.95}
+.ls-deck p{font-size:1.6cqw;color:var(--muted);margin-top:1.4cqw}
+.ls-deck svg{width:100%}
+/* carrossel */
+.ls-car{position:absolute;inset:0;border-radius:var(--radius);background:radial-gradient(ellipse at 70% 30%,rgba(241,238,227,.07),transparent 45%),var(--bg);box-shadow:inset 0 0 0 2.4cqw var(--lousa-frame);padding:9cqw;display:grid;grid-template-rows:auto 1fr auto}
+.ls-car h3{font-size:12cqw;line-height:.95}
+.ls-car svg{width:100%;align-self:center}
+.ls-car footer{display:flex;justify-content:space-between;font:400 3.4cqw var(--font-mono);color:var(--muted)}
+@media (max-width:900px){
+  .ls-hero .ls-board,.ls-page{grid-template-columns:minmax(0,1fr)}
+  .ls-hero .ls-board{min-height:0}
+}
+</style>
+</head>
+<body class="pv pv-lousa">
+<div class="pv-wrap pv-top"><span><b>Lousa de giz</b> · lousa · dark</span>
+<nav aria-label="Seções da prévia"><a href="#paleta">Paleta</a><a href="#tipografia">Tipografia</a><a href="#objetos">Objetos</a><a href="#formatos">Formatos</a></nav></div>
+<main>
+<section class="pv-section ls-hero" data-scene>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true"><filter id="lsChalk" x="-5%" y="-5%" width="110%" height="110%"><feTurbulence type="fractalNoise" baseFrequency="1.4" numOctaves="2" seed="3" result="n"/><feDisplacementMap in="SourceGraphic" in2="n" scale="2.6"/></filter></svg>
+  <div class="pv-wrap">
+    <div class="ls-board">
+      <div>
+        <h1 class="rise">Como uma <span>requisição</span> viaja</h1>
+        <svg class="ls-under" viewBox="0 0 340 24" aria-hidden="true"><path class="ls-chalk ls-draw" pathLength="1" style="--d:1" d="M6 14 C80 6, 180 20, 334 9" stroke="#f4dc72" stroke-width="4"/></svg>
+        <p class="lead rise" style="--i:2">O navegador faz um pedido, o servidor procura a resposta no banco e devolve um código. Vamos desenhar cada parte antes de escrever código.</p>
+      </div>
+      <svg class="ls-svg" viewBox="0 0 560 360" role="img" aria-label="Diagrama de giz: navegador envia pedido ao servidor, servidor consulta o banco e devolve resposta" data-object="diagrama desenhado ao vivo">
+        <g class="ls-chalk" stroke="#f1eee3" stroke-width="3.2">
+          <path class="ls-draw" pathLength="1" style="--d:0" d="M24 96 L150 92 L154 196 L26 200 Z"/>
+          <path class="ls-draw" pathLength="1" style="--d:2" d="M370 92 L500 96 L496 200 L366 196 Z"/>
+          <path class="ls-draw" pathLength="1" style="--d:4" d="M392 262 C392 248, 474 248, 474 262 L474 330 C474 344, 392 344, 392 330 Z M392 262 C392 276, 474 276, 474 262"/>
+        </g>
+        <g class="ls-chalk" stroke="#f4dc72" stroke-width="3.2"><path class="ls-draw" pathLength="1" style="--d:1" d="M162 126 C220 112, 290 112, 356 126 M340 114 L358 126 L340 138"/></g>
+        <g class="ls-chalk" stroke="#9fd2ee" stroke-width="3.2"><path class="ls-draw" pathLength="1" style="--d:5" d="M356 170 C290 184, 220 184, 162 170 M178 158 L160 170 L178 182"/></g>
+        <g class="ls-chalk" stroke="#f1eee3" stroke-width="2.6" stroke-dasharray="2 8"><path d="M433 204 L433 244"/></g>
+        <g class="ls-write" style="--d:0" fill="#f1eee3" font-size="30"><text x="38" y="156">navegador</text></g>
+        <g class="ls-write" style="--d:2" fill="#f1eee3" font-size="30"><text x="390" y="156">servidor</text></g>
+        <g class="ls-write" style="--d:4" fill="#f1eee3" font-size="26"><text x="404" y="306">banco</text></g>
+        <g class="ls-write" style="--d:1" fill="#f4dc72" font-size="28"><text x="196" y="96">GET /livros</text></g>
+        <g class="ls-write" style="--d:5" fill="#9fd2ee" font-size="28"><text x="214" y="222">200 + JSON</text></g>
+        <g class="ls-write" style="--d:6" fill="#f2a7bd" font-size="24"><text x="30" y="262">se faltar a chave:</text><text x="30" y="292">401</text></g>
+        <circle class="ls-dot loop" cx="164" cy="120" r="6" fill="#f4dc72"/>
+        <circle class="ls-dot back loop" cx="164" cy="176" r="6" fill="#9fd2ee"/>
+      </svg>
+    </div>
+    <div class="ls-tray" aria-hidden="true"><i style="left:8%;background:#f1eee3"></i><i style="left:15%;background:#f4dc72;width:34px"></i><i style="left:21%;background:#9fd2ee;width:40px"></i><i style="left:28%;background:#f2a7bd;width:28px"></i><span class="eraser"></span></div>
+  </div>
+</section>
+
+<section class="pv-section" id="paleta" data-scene>
+  <div class="pv-wrap">
+    <div class="pv-intro"><h2 class="pv-h2 rise">Ardósia, madeira e quatro gizes</h2><p class="rise" style="--i:1">Cada cor de giz representa uma categoria do começo ao fim da aula: branco para a estrutura, amarelo para o pedido, azul para a resposta e rosa para o erro. Trocar o significado no meio confunde quem está aprendendo.</p></div>
+    <div class="pv-palette rise" style="--i:2">
+<div class="pv-chip"><i style="background:var(--bg)"></i><div><code>--bg · #1d2f27</code><span>ardósia verde da lousa</span></div></div>
+<div class="pv-chip"><i style="background:var(--bg-2)"></i><div><code>--bg-2 · #172720</code><span>ardósia mais escura, perto da moldura</span></div></div>
+<div class="pv-chip"><i style="background:var(--surface)"></i><div><code>--surface · #24392f</code><span>área de apoio e cartões da lousa</span></div></div>
+<div class="pv-chip"><i style="background:var(--surface-2)"></i><div><code>--surface-2 · #2c4438</code><span>marcas de apagador mais visíveis</span></div></div>
+<div class="pv-chip"><i style="background:var(--text)"></i><div><code>--text · #f1eee3</code><span>giz branco, usado para a estrutura e os nós</span></div></div>
+<div class="pv-chip"><i style="background:var(--muted)"></i><div><code>--muted · #c3cbbf</code><span>giz meio apagado para notas</span></div></div>
+<div class="pv-chip"><i style="background:var(--line)"></i><div><code>--line · #5b7466</code><span>traço fraco de giz e divisões</span></div></div>
+<div class="pv-chip"><i style="background:var(--accent)"></i><div><code>--accent · #f4dc72</code><span>giz amarelo, uma categoria fixa (ex.: o pedido)</span></div></div>
+<div class="pv-chip"><i style="background:var(--accent-2)"></i><div><code>--accent-2 · #9fd2ee</code><span>giz azul, outra categoria fixa (ex.: a resposta)</span></div></div>
+<div class="pv-chip"><i style="background:var(--accent-ink)"></i><div><code>--accent-ink · #2a2306</code><span>tinta escura sobre o amarelo</span></div></div>
+<div class="pv-chip"><i style="background:var(--paper)"></i><div><code>--paper · #f1eee3</code><span>folha de caderno presa na lousa</span></div></div>
+<div class="pv-chip"><i style="background:var(--paper-ink)"></i><div><code>--paper-ink · #1d2f27</code><span>tinta sobre a folha</span></div></div>
+<div class="pv-chip"><i style="background:var(--danger)"></i><div><code>--danger · #f2a7bd</code><span>giz rosa, a categoria de erro</span></div></div>
+<div class="pv-chip"><i style="background:var(--ok)"></i><div><code>--ok · #b8e3a1</code><span>giz verde-claro de acerto</span></div></div>
+<div class="pv-chip"><i style="background:var(--warn)"></i><div><code>--warn · #f4dc72</code><span>giz amarelo de atenção</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="pv-section" id="tipografia" data-scene>
+  <div class="pv-wrap pv-type">
+<div>
+      <p class="pv-type-display rise">Letra de quadro</p>
+      <p class="pv-type-body rise" style="--i:1">Caveat em peso 700 para títulos e rótulos escritos no quadro, sempre grandes (a partir de 24 px). Inter para o texto de apoio, que precisa ser lido com calma. Geist Mono só para código e contadores.</p>
+      <p class="pv-type-mono rise" style="--i:2">GET /livros → 200</p>
+    </div>
+    <div class="pv-type-scale rise" style="--i:2">
+      <div><code>título · 98 / 700</code><span style="font:700 clamp(40px,5vw,64px)/1 var(--font-display)">Quadro</span></div>
+      <div><code>rótulo · 30 / 700</code><span style="font:700 30px/1 var(--font-display);color:var(--accent)">pedido</span></div>
+      <div><code>nota · 24 / 400</code><span style="font:400 24px/1 var(--font-display);color:var(--muted)">lembrete do canto</span></div>
+      <div><code>corpo · 17 / 1,6</code><span>Texto de apoio em Inter.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="pv-section" id="objetos" data-scene>
+  <div class="pv-wrap">
+    <div class="pv-intro"><h2 class="pv-h2 rise">O que um professor desenha no quadro</h2><p class="rise" style="--i:1">A explicação nasce peça por peça, no ritmo da fala: a caixa, a seta, o rótulo e o círculo em volta da palavra que importa.</p></div>
+    <div class="pv-objects">
+<figure>
+        <div class="pv-stage ls-stage" data-object="círculo de giz">
+          <svg viewBox="0 0 320 160" role="img" aria-label="A palavra status circulada a giz">
+            <text x="160" y="96" text-anchor="middle" style="font:700 52px var(--font-display);fill:#f1eee3">status</text>
+            <path class="ls-chalk ls-draw" pathLength="1" style="--d:1" d="M70 70 C80 30, 250 26, 268 68 C286 112, 120 132, 74 108 C52 96, 62 60, 120 46" stroke="#f2a7bd" stroke-width="3.5"/>
+          </svg>
+        </div>
+        <figcaption><b>Círculo de giz</b>Contorna a palavra que importa, com começo e fim desencontrados como num traço à mão.</figcaption>
+      </figure>
+      <figure>
+        <div class="pv-stage ls-stage" data-object="seta curva">
+          <svg viewBox="0 0 320 180" role="img" aria-label="Seta curva de giz ligando pedido a resposta">
+            <text x="20" y="50" style="font:700 30px var(--font-display);fill:#f4dc72">pedido</text>
+            <text x="190" y="160" style="font:700 30px var(--font-display);fill:#9fd2ee">resposta</text>
+            <path class="ls-chalk ls-draw" pathLength="1" style="--d:1" d="M70 66 C70 140, 140 150, 180 140 M166 128 L182 140 L164 152" stroke="#f1eee3" stroke-width="3.2"/>
+          </svg>
+        </div>
+        <figcaption><b>Seta curva</b>Liga duas ideias com uma curva só. A ponta é desenhada por último.</figcaption>
+      </figure>
+      <figure>
+        <div class="pv-stage ls-stage" data-object="caixa de definição">
+          <svg viewBox="0 0 320 170" role="img" aria-label="Caixa de giz com a definição de endpoint">
+            <g class="ls-wobble loop"><path class="ls-chalk ls-draw" pathLength="1" d="M14 18 L306 14 L304 156 L16 152 Z" stroke="#f1eee3" stroke-width="3"/></g>
+            <text x="34" y="62" style="font:700 30px var(--font-display);fill:#f4dc72">endpoint =</text>
+            <text x="34" y="102" style="font:400 26px var(--font-display);fill:#f1eee3">o endereço de uma coisa</text>
+            <text x="34" y="134" style="font:400 26px var(--font-display);fill:#f1eee3">que a API sabe entregar</text>
+          </svg>
+        </div>
+        <figcaption><b>Caixa de definição</b>Um termo, um sinal de igual e uma frase. Fica num canto da lousa até o fim da aula.</figcaption>
+      </figure>
+      <figure class="wide">
+        <div class="pv-stage ls-stage" data-object="tabela de giz">
+          <svg viewBox="0 0 420 210" role="img" aria-label="Tabela de giz comparando GET e POST" style="max-width:420px">
+            <g class="ls-chalk" stroke="#f1eee3" stroke-width="2.6"><path class="ls-draw" pathLength="1" d="M20 60 L400 56"/><path class="ls-draw" pathLength="1" style="--d:1" d="M210 16 L212 196"/></g>
+            <text x="90" y="44" style="font:700 32px var(--font-display);fill:#f4dc72">GET</text><text x="270" y="44" style="font:700 32px var(--font-display);fill:#9fd2ee">POST</text>
+            <g style="font:400 24px var(--font-display);fill:#f1eee3"><text x="34" y="100">lê dados</text><text x="34" y="140">pode repetir</text><text x="34" y="180">sem corpo</text><text x="226" y="100">cria dados</text><text x="226" y="140">repetir duplica</text><text x="226" y="180">leva um corpo</text></g>
+          </svg>
+        </div>
+        <figcaption><b>Tabela de giz</b>Duas colunas, uma linha horizontal e uma vertical. A cor do título repete a cor da categoria usada no diagrama.</figcaption>
+      </figure>
+      <figure class="wide">
+        <div class="pv-stage ls-stage" data-object="bandeja de giz">
+          <ul class="ls-sticks">
+            <li><i style="background:#f1eee3"></i><span><b style="color:#f1eee3">branco</b> estrutura e nós</span></li>
+            <li><i style="background:#f4dc72"></i><span><b style="color:#f4dc72">amarelo</b> o pedido</span></li>
+            <li><i style="background:#9fd2ee"></i><span><b style="color:#9fd2ee">azul</b> a resposta</span></li>
+            <li><i style="background:#f2a7bd"></i><span><b style="color:#f2a7bd">rosa</b> o erro</span></li>
+          </ul>
+        </div>
+        <figcaption><b>Bandeja de giz</b>A legenda fixa das quatro cores. Combine o significado no começo da aula e não troque depois.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="pv-section" id="formatos" data-scene>
+  <div class="pv-wrap">
+    <div class="pv-intro"><h2 class="pv-h2 rise">O mesmo estilo em página, deck e carrossel</h2><p class="rise" style="--i:1">Um trecho de página, um slide 16:9 e um slide de carrossel 4:5, todos com as mesmas variáveis do contrato.</p></div>
+    <div class="pv-formats">
+      <div data-format="page">
+<p class="pv-format-label">Trecho de página</p>
+        <div class="ls-board ls-page">
+          <div>
+            <h3>O código de resposta resume tudo</h3>
+            <p>Antes de ler o corpo da resposta, olhe o número. Ele já diz se deu certo, se o erro foi seu ou se o servidor falhou.</p>
+            <a class="ls-btn" href="#objetos">Praticar com três exemplos</a>
+          </div>
+          <div class="ls-note"><b>Para lembrar</b>2xx: deu certo<br>4xx: o pedido tem problema<br>5xx: o servidor falhou</div>
+        </div>
+      </div>
+      <div><p class="pv-format-label">Slide de aula · 16:9</p><div data-format="deck">
+<div class="ls-deck">
+          <div><h3>Quem responde é o servidor</h3><p>O navegador só pede. Quem decide a resposta é o servidor.</p></div>
+          <svg viewBox="0 0 400 220" role="img" aria-label="Duas caixas de giz ligadas por setas de pedido e resposta">
+            <g class="ls-chalk" stroke="#f1eee3" stroke-width="3"><path d="M10 60 L120 58 L122 150 L12 152 Z M280 58 L390 60 L388 152 L278 150 Z"/></g>
+            <g class="ls-chalk" stroke="#f4dc72" stroke-width="3"><path d="M130 84 C180 72, 220 72, 270 84 M256 74 L272 84 L256 94"/></g>
+            <g class="ls-chalk" stroke="#9fd2ee" stroke-width="3"><path d="M270 126 C220 138, 180 138, 130 126 M146 116 L130 126 L146 136"/></g>
+            <text x="22" y="112" style="font:700 24px var(--font-display);fill:#f1eee3">navegador</text><text x="298" y="112" style="font:700 24px var(--font-display);fill:#f1eee3">servidor</text>
+            <text x="170" y="66" style="font:700 20px var(--font-display);fill:#f4dc72">pedido</text><text x="164" y="164" style="font:700 20px var(--font-display);fill:#9fd2ee">resposta</text>
+          </svg>
+        </div>
+      </div></div>
+      <div><p class="pv-format-label">Slide de carrossel · 4:5</p><div data-format="carousel">
+<div class="ls-car">
+          <h3>Olhe o <span style="color:var(--accent)">número</span> primeiro</h3>
+          <svg viewBox="0 0 300 240" role="img" aria-label="O número 404 circulado a giz com a nota: o endereço não existe">
+            <text x="150" y="130" text-anchor="middle" style="font:700 96px var(--font-display);fill:#f1eee3">404</text>
+            <path class="ls-chalk" d="M60 100 C70 40, 240 36, 252 92 C266 150, 100 170, 64 140 C44 126, 52 84, 110 66" stroke="#f2a7bd" stroke-width="4"/>
+            <text x="150" y="214" text-anchor="middle" style="font:400 28px var(--font-display);fill:#f2a7bd">o endereço não existe</text>
+          </svg>
+          <footer><span>@suamarca</span><span>4 / 6</span></footer>
+        </div>
+      </div></div>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="pv-wrap pv-foot">Prévia do estilo lousa · pycode-design · tokens em tokens.css, regras em DESIGN.md. Conteúdo fictício de exemplo.</footer>
+<script>
+/* Movimento: liga cada cena só quando visível, pausa com a aba oculta e respeita movimento reduzido. */
+(() => {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const scenes = document.querySelectorAll('[data-scene]');
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      e.target.dataset.motion = e.isIntersecting && !reduce.matches ? 'on' : 'off';
+      if (e.isIntersecting) e.target.dataset.entered = 'true';
+    }
+  }, { threshold: 0.12 });
+  scenes.forEach((s) => io.observe(s));
+  document.addEventListener('visibilitychange', () => {
+    document.body.dataset.background = document.hidden ? 'true' : 'false';
+  });
+})();
+
+
+</script>
+</body>
+</html>

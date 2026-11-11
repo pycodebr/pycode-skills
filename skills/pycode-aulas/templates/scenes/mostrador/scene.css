@@ -1,0 +1,17 @@
+.s-__ID__ .board { --tone: var(--accent); }
+.s-__ID__ .nm-left { position: absolute; left: 0; top: 40px; width: 760px; }
+.s-__ID__ .nm-num { display: flex; font-family: var(--font-display); font-weight: var(--weight-display); font-size: 330px; line-height: 1; letter-spacing: -.02em; color: var(--tone); font-variant-numeric: tabular-nums; transition: color .4s; }
+.s-__ID__ .nm-d { display: inline-block; height: 1em; overflow: hidden; width: .62em; }
+.s-__ID__ .nm-d::before { content: "0\A 1\A 2\A 3\A 4\A 5\A 6\A 7\A 8\A 9"; white-space: pre; display: block; text-align: center; line-height: 1em; transform: translateY(calc(var(--d, 0) * -1em)); transition: transform 1.1s var(--ease-out) var(--dl, 0s); }
+.s-__ID__ .nm-d.blank { width: 0; }
+.s-__ID__ .instant .nm-d::before { transition: none; }
+.s-__ID__ .nm-label { margin-top: 20px; font-family: var(--font-display); font-weight: var(--weight-display); letter-spacing: var(--tracking-display); font-size: 64px; line-height: 1; }
+.s-__ID__ .nm-tip { margin-top: 18px; font-size: 30px; line-height: 1.32; color: var(--muted); max-width: 640px; }
+.s-__ID__ .nm-svg { position: absolute; inset: 0; width: 1696px; height: 716px; overflow: visible; }
+.s-__ID__ .nm-ticks { fill: none; stroke: var(--line); stroke-width: 2; }
+.s-__ID__ .nm-seg { fill: none; stroke: color-mix(in srgb, var(--tone) 32%, var(--surface)); stroke-width: 74; transition: stroke .3s; }
+.s-__ID__ .nm-seg.on { stroke: var(--tone); }
+.s-__ID__ .nm-needle path { fill: var(--text); }
+.s-__ID__ .nm-needle circle { fill: var(--bg); stroke: var(--tone); stroke-width: 10; transition: stroke .3s; }
+.s-__ID__ .nm-fam { position: absolute; transform: translate(-50%, -50%); font-size: 30px; font-weight: 600; color: var(--muted); padding: 4px 10px; border-radius: 10px; transition: color .3s; }
+.s-__ID__ .nm-fam.on { color: var(--tone); }

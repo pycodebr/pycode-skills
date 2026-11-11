@@ -1,0 +1,70 @@
+/*
+ * Fliperama: o cenário é um canvas de 180x225 ampliado 6x sem suavização (pixel nítido); textos, código
+ * e opções são HTML por cima, com a fonte pixel só nos rótulos curtos (Press Start 2P confunde ")" com ">").
+ */
+.slide { --ex-pixel: 'Press Start 2P', var(--font-display); --px: 6px; }
+.pix { position: absolute; inset: 0; width: 1080px; height: 1350px; z-index: 0; image-rendering: pixelated; }
+.scan { position: absolute; inset: 0; z-index: 8; pointer-events: none; opacity: .10;
+  background: repeating-linear-gradient(180deg, black 0 2px, transparent 2px 6px); }
+.anchors { font-family: var(--ex-pixel); font-size: 24px; }
+.anchors .counter { border-radius: 0; border-width: 4px; }
+.anchors .brand::before { border-radius: 0; }
+
+/* janela de diálogo em pixel: borda dupla, cantos quadrados */
+.box { position: absolute; z-index: 5; left: var(--safe); right: var(--safe); padding: 26px 32px;
+  background: var(--surface); color: var(--text);
+  box-shadow: 0 0 0 6px var(--text), 0 0 0 12px var(--bg), 12px 12px 0 12px color-mix(in srgb, black 55%, transparent); }
+.box p { margin: 0; font: 400 50px/1.12 var(--font-body); text-wrap: pretty; }
+.box p em.hl { color: var(--accent); }
+
+/* ------------------------------------------------------------------ fases */
+.hud { position: absolute; z-index: 6; left: var(--safe); right: var(--safe); top: 140px; height: 60px;
+  display: flex; align-items: center; justify-content: space-between; }
+.hud .phase { font: 400 40px/1 var(--ex-pixel); color: var(--accent); text-shadow: 4px 4px 0 var(--bg); }
+.hud .hearts { display: flex; gap: 10px; }
+.hud .hearts canvas { width: 63px; height: 54px; image-rendering: pixelated; }
+.layout-phase .ask { top: 236px; }
+.crt { position: absolute; z-index: 5; left: 96px; right: 96px; top: 520px; padding: 26px 34px; min-height: 150px;
+  background: color-mix(in srgb, var(--bg) 70%, black); display: flex; align-items: center;
+  box-shadow: 0 0 0 6px var(--line), 0 0 0 12px var(--bg), inset 0 0 40px color-mix(in srgb, var(--accent-2) 22%, transparent); }
+.crt .code { width: 100%; font-size: 58px; line-height: 1.2; color: var(--text); }
+.opts { position: absolute; z-index: 5; left: var(--safe); right: var(--safe); top: 760px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 26px 30px; }
+.opt { display: flex; align-items: center; gap: 20px; height: 96px; padding: 0 22px; background: var(--bg);
+  box-shadow: 0 0 0 5px var(--accent), 8px 8px 0 5px color-mix(in srgb, black 50%, transparent); }
+.opt b { flex: none; width: 58px; height: 58px; display: grid; place-items: center; background: var(--accent);
+  color: var(--accent-ink); font: 400 30px/1 var(--ex-pixel); }
+.opt span { font: 400 54px/1 var(--font-mono); color: var(--text); white-space: nowrap; font-variant-ligatures: none; }
+
+/* ------------------------------------------------------------------ capa: gabinete */
+.layout-cover .anchors { display: none; }
+.marquee { position: absolute; z-index: 5; left: 180px; right: 180px; top: 132px; height: 120px; display: grid; place-items: center;
+  font: 400 40px/1 var(--ex-pixel); color: var(--accent-ink); letter-spacing: .04em; }
+.cover-counter { position: absolute; z-index: 6; right: var(--safe); top: var(--safe); font: 400 24px/1 var(--ex-pixel);
+  color: var(--text); padding: 8px 14px; background: var(--bg); box-shadow: 0 0 0 4px var(--muted); }
+.screen { position: absolute; z-index: 5; left: 264px; right: 264px; top: 318px; height: 396px;
+  display: flex; flex-direction: column; justify-content: center; gap: 30px; padding: 0 6px; text-align: center; }
+.q { margin: 0; font: 400 34px/1.45 var(--ex-pixel); color: var(--text); text-shadow: 4px 4px 0 color-mix(in srgb, black 60%, transparent); }
+.q em.hl { color: var(--accent); }
+.start { font: 400 30px/1 var(--ex-pixel); color: var(--accent-2); }
+.flash { position: absolute; z-index: 7; left: 252px; right: 252px; top: 306px; height: 420px; background: var(--text); opacity: 0; }
+
+/* ------------------------------------------------------------------ placar */
+.banner { position: absolute; z-index: 6; left: 0; right: 0; top: 150px; margin: 0; text-align: center;
+  font: 400 70px/1 var(--ex-pixel); color: var(--accent); text-shadow: 6px 6px 0 var(--bg), 12px 12px 0 color-mix(in srgb, black 40%, transparent); }
+.board { position: absolute; z-index: 5; left: 120px; right: 120px; top: 300px; display: grid; gap: 18px; }
+.board .row { display: flex; align-items: center; gap: 26px; height: 96px; padding: 0 28px; background: var(--bg);
+  box-shadow: 0 0 0 5px var(--line); }
+.board .row .ph { font: 400 28px/1 var(--ex-pixel); color: var(--muted); width: 220px; }
+.board .row b { width: 64px; height: 64px; display: grid; place-items: center; background: var(--ok); color: var(--bg);
+  font: 400 32px/1 var(--ex-pixel); }
+.board .row code { font: 400 50px/1 var(--font-mono); color: var(--text); font-variant-ligatures: none; }
+.layout-score .box { top: 690px; }
+
+/* ------------------------------------------------------------------ continue */
+.layout-continue .banner { top: 170px; font-size: 80px; }
+.layout-continue .box { top: 330px; }
+.coin-label { position: absolute; z-index: 6; left: 0; right: 0; top: 650px; text-align: center; font: 400 34px/1 var(--ex-pixel); color: var(--accent-2); }
+.layout-continue .cta { position: absolute; z-index: 6; left: var(--safe); right: var(--safe); top: 1010px; margin: 0;
+  padding: 24px 30px; background: var(--accent); color: var(--accent-ink); font: 400 46px/1.1 var(--font-body);
+  box-shadow: 0 0 0 6px var(--bg), 10px 10px 0 6px color-mix(in srgb, black 55%, transparent); }

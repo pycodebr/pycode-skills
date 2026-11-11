@@ -1,0 +1,37 @@
+#!/usr/bin/env bash
+# pycode: comando único das skills do pycode-skills (https://github.com/pycodebr/pycode-skills)
+set -euo pipefail
+SELF="${BASH_SOURCE[0]}"
+while [ -L "$SELF" ]; do
+  dir="$(cd "$(dirname "$SELF")" && pwd)"
+  SELF="$(readlink "$SELF")"
+  case "$SELF" in /*) ;; *) SELF="$dir/$SELF" ;; esac
+done
+SRC="$(cd "$(dirname "$SELF")/.." && pwd)"
+export PYCODE_SRC="$SRC"
+export PYCODE_HOME="${PYCODE_HOME:-$HOME/.pycode-skills}"
+if [ -d "$PYCODE_HOME/node/bin" ]; then PATH="$PYCODE_HOME/node/bin:$PATH"; export PATH; fi
+
+case "${1:-help}" in
+  setup)
+    shift
+    exec bash "$SRC/scripts/setup.sh" "$@"
+    ;;
+  update)
+    shift
+    if [ -d "$SRC/.git" ]; then
+      git -C "$SRC" pull --ff-only
+      exec bash "$SRC/install.sh" --reuse "$@"
+    fi
+    echo "[pycode] instalação sem git: baixando a versão atual"
+    curl -fsSL https://raw.githubusercontent.com/pycodebr/pycode-skills/main/install.sh | bash -s -- --reuse "$@"
+    exit $?
+    ;;
+esac
+
+PY="$PYCODE_HOME/venv/bin/python"
+if [ ! -x "$PY" ]; then
+  echo "[pycode] as dependências ainda não foram instaladas. Rode: bash \"$SRC/scripts/setup.sh\"" >&2
+  exit 1
+fi
+exec "$PY" "$SRC/tools/cli.py" "$@"

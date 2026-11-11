@@ -1,0 +1,875 @@
+{
+  "meta": {
+    "title": "Como funciona uma API",
+    "short": "aula de exemplo",
+    "subtitle": "O caminho de um pedido entre o seu aplicativo e o servidor que responde.",
+    "description": "Aula interativa sobre APIs: o pedido HTTP, o caminho até o servidor, as camadas, os códigos de status e o tempo de resposta.",
+    "author": "Seu Nome",
+    "thread": "pedido 42",
+    "background": "grade",
+    "study": {
+      "audience": "Pessoas que já programam um pouco ou usam aplicativos e querem entender o que acontece quando um app busca dados.",
+      "objectives": [
+        "Explicar o que é uma API usando o exemplo de um aplicativo que busca os pedidos de um cliente.",
+        "Ler um pedido HTTP e identificar método, endereço, cabeçalhos e corpo.",
+        "Interpretar os códigos de status mais comuns e o tempo de uma resposta."
+      ],
+      "prerequisites": [
+        "Saber abrir um terminal e rodar um comando.",
+        "Ter o curl instalado (vem nos sistemas Linux e macOS e nas versões recentes do Windows)."
+      ],
+      "glossary": [
+        {
+          "term": "API",
+          "text": "Conjunto de regras que permite a um programa pedir dados ou ações a outro."
+        },
+        {
+          "term": "Endpoint",
+          "text": "Endereço específico de uma API, como /clientes/42/pedidos."
+        },
+        {
+          "term": "Método HTTP",
+          "text": "Verbo do pedido: GET lê, POST cria, PUT substitui, PATCH altera e DELETE apaga."
+        },
+        {
+          "term": "Cabeçalho",
+          "text": "Informação extra que acompanha o pedido ou a resposta, como a chave de acesso e o formato dos dados."
+        },
+        {
+          "term": "JSON",
+          "text": "Formato de texto com chaves e valores, usado pela maioria das APIs web para enviar dados."
+        },
+        {
+          "term": "Código de status",
+          "text": "Número de três dígitos no início da resposta que resume o resultado do pedido."
+        }
+      ],
+      "exercises": [
+        {
+          "title": "Sua primeira chamada",
+          "text": "Rode o comando abaixo e anote o código de status e os campos do JSON que voltaram.",
+          "code": "curl -i https://httpbin.org/get",
+          "answer": "A primeira linha mostra HTTP/2 200 (ou HTTP/1.1 200 OK). O corpo é um JSON com os campos args, headers, origin e url: o serviço devolve o que recebeu, o que ajuda a enxergar os cabeçalhos que o seu curl enviou."
+        },
+        {
+          "title": "Erre de propósito",
+          "text": "Peça um recurso que não existe e compare a resposta com a anterior.",
+          "code": "curl -i https://httpbin.org/status/404",
+          "answer": "A primeira linha traz 404. O pedido chegou ao servidor e foi entendido, mas o recurso não existe. Um erro 500 indicaria um problema do lado do servidor."
+        },
+        {
+          "title": "Monte o pedido da aula",
+          "text": "Escreva, sem rodar, o curl que buscaria os pedidos do cliente 42 na API fictícia api.exemplo.com, enviando a chave chave-do-app no cabeçalho Authorization.",
+          "answer": "curl -X GET https://api.exemplo.com/v1/clientes/42/pedidos -H \"Authorization: Bearer chave-do-app\". O método GET lê, o endereço aponta para o recurso e o cabeçalho identifica quem pede."
+        }
+      ],
+      "sources": [
+        {
+          "title": "MDN: Visão geral do HTTP",
+          "url": "https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Guides/Overview"
+        },
+        {
+          "title": "MDN: Códigos de status de respostas HTTP",
+          "url": "https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Reference/Status"
+        },
+        {
+          "title": "RFC 9110: HTTP Semantics",
+          "url": "https://www.rfc-editor.org/rfc/rfc9110"
+        },
+        {
+          "title": "Manual do curl",
+          "url": "https://curl.se/docs/manpage.html"
+        },
+        {
+          "title": "httpbin: serviço de teste de pedidos HTTP",
+          "url": "https://httpbin.org"
+        }
+      ],
+      "diagrams": [
+        {
+          "after": "viagem",
+          "title": "O pedido 42, do app ao banco e de volta",
+          "mermaid": "sequenceDiagram\n    participant App\n    participant API as Porta da API\n    participant Srv as Servidor\n    participant DB as Banco\n    App->>API: GET /clientes/42/pedidos\n    API->>API: confere a chave e o limite\n    API->>Srv: pedido autorizado\n    Srv->>DB: busca os pedidos do cliente 42\n    DB-->>Srv: 7, 9 e 12\n    Srv-->>API: JSON com a lista\n    API-->>App: 200 OK e o JSON",
+          "caption": "Cada seta é uma mensagem. As setas tracejadas são respostas e fazem o caminho inverso."
+        },
+        {
+          "after": "camadas",
+          "title": "As camadas dentro do servidor",
+          "mermaid": "flowchart TB\n    P([Pedido chega]) --> R[Rota: escolhe a função]\n    R --> A{Chave válida?}\n    A -- não --> E[401: acesso negado]\n    A -- sim --> N[Regras do negócio]\n    N --> D[(Banco de dados)]\n    D --> J[Resposta em JSON]\n    J --> S([200 OK para o app])",
+          "caption": "O pedido sem chave para na segunda camada e nem chega ao banco."
+        }
+      ]
+    }
+  },
+  "ui": {},
+  "scenes": [
+    {
+      "id": "capa",
+      "archetype": "capa",
+      "title": "Como funciona uma API",
+      "chapter": "abertura",
+      "thread": "pedido 42 · no app",
+      "transition": "corte",
+      "bg": "orbita",
+      "apoio": "Uma aula curta sobre o caminho de um pedido entre um aplicativo e um servidor: o que viaja, quem responde e quanto tempo isso leva.",
+      "hook": "Antes do mecanismo, uma conversa entre dois programas.",
+      "notes": "Abra com a pergunta que o aplicativo faz todos os dias: quais pedidos este cliente fez? Clique nos satélites para mostrar quem usa a API.",
+      "reading": [
+        {
+          "label": "API",
+          "title": "A porta no centro",
+          "text": "A API é o ponto de encontro: todos os sistemas pedem por ela, e ela decide como responder."
+        },
+        {
+          "label": "Quem pede",
+          "title": "App, site e parceiros",
+          "text": "O aplicativo, o site e outras empresas fazem pedidos pelo mesmo caminho, com as mesmas regras."
+        },
+        {
+          "label": "Quem responde",
+          "title": "Servidor e banco de dados",
+          "text": "O servidor recebe o pedido, aplica as regras e busca os dados no banco."
+        }
+      ],
+      "data": {
+        "subtitle": "O caminho de um pedido entre o seu app e o servidor.",
+        "byline": "aula de exemplo do pycode-aulas",
+        "core": {
+          "label": "API",
+          "icon": "gate"
+        },
+        "satellites": [
+          {
+            "label": "App",
+            "icon": "app",
+            "tip": "Pede os dados quando você toca num botão."
+          },
+          {
+            "label": "Site",
+            "icon": "site",
+            "tip": "Usa a mesma porta que o aplicativo."
+          },
+          {
+            "label": "Servidor",
+            "icon": "server",
+            "tip": "Recebe o pedido e decide o que fazer."
+          },
+          {
+            "label": "Banco",
+            "icon": "database",
+            "tip": "Guarda clientes, produtos e pedidos."
+          },
+          {
+            "label": "Parceiro",
+            "icon": "card",
+            "tip": "Outra empresa que consulta o mesmo serviço."
+          }
+        ]
+      }
+    },
+    {
+      "id": "conversa",
+      "archetype": "conversa",
+      "title": "Dois programas conversando",
+      "chapter": "o problema",
+      "thread": "pedido 42 · em palavras",
+      "transition": "sobe",
+      "bg": "rede",
+      "budget": 75,
+      "apoio": "Uma API é o combinado que permite a um programa pedir algo a outro. Leia a conversa como se fosse entre pessoas e veja, ao lado, o que viaja pela rede.",
+      "hook": "Essa conversa só funciona porque os dois seguem o mesmo contrato.",
+      "notes": "Leia a conversa em voz alta. Depois clique em cada mensagem para mostrar a versão que a máquina envia. A conversa é o objeto da cena, por isso o texto é maior.",
+      "reading": [
+        {
+          "label": "Pedido",
+          "title": "Quais pedidos o cliente 42 fez?",
+          "text": "Na rede, isso vira GET /clientes/42/pedidos: um verbo e um endereço."
+        },
+        {
+          "label": "Recusa",
+          "title": "Quem está perguntando?",
+          "text": "Sem identificação, o servidor responde 401 e não entrega nada."
+        },
+        {
+          "label": "Chave",
+          "title": "Sou o app da loja",
+          "text": "A chave vai num cabeçalho chamado Authorization, junto com o pedido."
+        },
+        {
+          "label": "Resposta",
+          "title": "São três pedidos",
+          "text": "O servidor responde 200 e manda a lista em JSON."
+        }
+      ],
+      "data": {
+        "a": "App da loja",
+        "b": "Servidor",
+        "wire": "o que viaja na rede",
+        "messages": [
+          {
+            "from": "a",
+            "text": "Oi, servidor. Quais pedidos o cliente 42 fez?",
+            "code": "GET /clientes/42/pedidos",
+            "note": "Um verbo e um endereço dizem o que o app quer."
+          },
+          {
+            "from": "b",
+            "text": "Antes, preciso saber quem está perguntando.",
+            "code": "401 Unauthorized",
+            "note": "Sem identificação, o pedido é recusado."
+          },
+          {
+            "from": "a",
+            "text": "Sou o app da loja. Envio a minha chave junto.",
+            "code": "Authorization: Bearer chave-do-app",
+            "note": "A chave viaja num cabeçalho do pedido."
+          },
+          {
+            "from": "b",
+            "text": "Certo. São três pedidos, segue a lista.",
+            "code": "200 OK  [7, 9, 12]",
+            "note": "Um código de status e os dados em JSON."
+          }
+        ]
+      }
+    },
+    {
+      "id": "contrato",
+      "archetype": "antes-depois",
+      "title": "Sem contrato, com contrato",
+      "chapter": "o problema",
+      "thread": "pedido 42 · com contrato",
+      "transition": "corte",
+      "bg": "grade",
+      "apoio": "Sem uma API, cada sistema mexe direto no banco de dados e qualquer mudança quebra alguém. Com a API, todos passam pela mesma porta, que tem regras.",
+      "hook": "Agora vamos abrir um pedido e ver as peças dele.",
+      "notes": "Clique no lado esquerdo e mostre o emaranhado. Depois no direito, e nas três regras da porta.",
+      "reading": [
+        {
+          "label": "Antes",
+          "title": "Cada sistema entra direto no banco",
+          "text": "Renomear uma coluna exige mudar o app, o site, o parceiro e o relatório ao mesmo tempo."
+        },
+        {
+          "label": "Depois",
+          "title": "Todos passam pela mesma porta",
+          "text": "A API esconde o banco. O formato da resposta continua igual mesmo quando o banco muda."
+        },
+        {
+          "label": "Regra",
+          "title": "Confere a chave",
+          "text": "Só quem tem acesso recebe dados."
+        },
+        {
+          "label": "Regra",
+          "title": "Limita o volume",
+          "text": "Um cliente não derruba o serviço fazendo milhares de pedidos por minuto."
+        },
+        {
+          "label": "Regra",
+          "title": "Responde sempre igual",
+          "text": "O mesmo JSON para todos, documentado num contrato."
+        }
+      ],
+      "data": {
+        "before": {
+          "chip": "antes",
+          "label": "Cada um entra direto",
+          "tip": "Renomear uma coluna quebra quatro sistemas de uma vez."
+        },
+        "after": {
+          "chip": "depois",
+          "label": "Uma porta com regras",
+          "tip": "Todos pedem pela API, e o banco fica escondido atrás dela.",
+          "gate": "API"
+        },
+        "db": "Banco",
+        "clients": [
+          {
+            "label": "App",
+            "icon": "app"
+          },
+          {
+            "label": "Site",
+            "icon": "site"
+          },
+          {
+            "label": "Parceiro",
+            "icon": "card"
+          },
+          {
+            "label": "Relatório",
+            "icon": "chart"
+          }
+        ],
+        "rules": [
+          {
+            "label": "confere a chave",
+            "tip": "Só quem tem acesso recebe dados."
+          },
+          {
+            "label": "limita o volume",
+            "tip": "Por exemplo, cem pedidos por minuto para cada cliente."
+          },
+          {
+            "label": "responde igual",
+            "tip": "O mesmo formato de JSON para todos os sistemas."
+          }
+        ]
+      },
+      "study": {
+        "text": [
+          "Esse contrato costuma ser descrito num documento OpenAPI, que lista os endereços, os parâmetros aceitos e o formato de cada resposta. Ferramentas leem esse arquivo para gerar a documentação, clientes prontos e testes automáticos."
+        ]
+      }
+    },
+    {
+      "id": "anatomia",
+      "archetype": "terminal",
+      "title": "Anatomia de um pedido",
+      "chapter": "o mecanismo",
+      "thread": "pedido 42 · montado",
+      "transition": "cortina",
+      "bg": "nenhum",
+      "budget": 60,
+      "apoio": "Um pedido HTTP tem método, endereço, cabeçalhos e, às vezes, um corpo. O curl mostra tudo isso em uma linha, e a resposta volta com um código e os dados.",
+      "hook": "Montado, o pedido sai para a rede. Vamos seguir o caminho dele.",
+      "notes": "Deixe o comando ser digitado. Clique em cada parte sublinhada: método, endereço, cabeçalho, código e corpo. O comando e a resposta são o próprio objeto da cena, por isso o orçamento de palavras é maior.",
+      "reading": [
+        {
+          "label": "Método",
+          "title": "GET",
+          "text": "GET lê. POST cria, PUT substitui, PATCH altera e DELETE apaga."
+        },
+        {
+          "label": "Endereço",
+          "title": "https://api.exemplo.com/v1/clientes/42/pedidos",
+          "text": "Domínio, versão da API e o recurso pedido, do geral para o específico."
+        },
+        {
+          "label": "Cabeçalho",
+          "title": "Authorization: Bearer chave-do-app",
+          "text": "Informações extras do pedido, como a chave de quem pergunta."
+        },
+        {
+          "label": "Código",
+          "title": "200 OK",
+          "text": "Resume o resultado antes dos dados."
+        },
+        {
+          "label": "Corpo",
+          "title": "JSON",
+          "text": "Os dados que o app usa para desenhar a lista na tela."
+        }
+      ],
+      "data": {
+        "prompt": "$",
+        "command": [
+          {
+            "code": "curl -X "
+          },
+          {
+            "code": "GET",
+            "part": "metodo"
+          },
+          {
+            "code": " \\\n  "
+          },
+          {
+            "code": "https://api.exemplo.com/v1/clientes/42/pedidos",
+            "part": "endereco"
+          },
+          {
+            "code": " \\\n  -H "
+          },
+          {
+            "code": "\"Authorization: Bearer chave-do-app\"",
+            "part": "cabecalho"
+          }
+        ],
+        "output": [
+          {
+            "code": "HTTP/1.1 200 OK",
+            "tone": "ok",
+            "part": "status"
+          },
+          {
+            "code": "Content-Type: application/json",
+            "tone": "muted"
+          },
+          {
+            "code": ""
+          },
+          {
+            "code": "{\n  \"cliente\": 42,\n  \"pedidos\": [7, 9, 12]\n}",
+            "tone": "json",
+            "part": "corpo"
+          }
+        ],
+        "parts": {
+          "metodo": {
+            "label": "Método",
+            "text": "GET lê. POST cria, PUT troca e DELETE apaga."
+          },
+          "endereco": {
+            "label": "Endereço",
+            "text": "Domínio, versão da API e o recurso pedido."
+          },
+          "cabecalho": {
+            "label": "Cabeçalho",
+            "text": "Informação extra: aqui, a chave de quem pede."
+          },
+          "status": {
+            "label": "Código",
+            "text": "200 diz que deu certo, antes de qualquer dado."
+          },
+          "corpo": {
+            "label": "Corpo",
+            "text": "Os dados em JSON, prontos para a tela."
+          }
+        }
+      },
+      "study": {
+        "text": [
+          "O mesmo pedido pode ser feito em Python só com a biblioteca padrão. O serviço de teste httpbin devolve o que recebeu, o que ajuda a enxergar o cabeçalho e os parâmetros enviados."
+        ],
+        "lang": "python",
+        "code": "import json\nimport urllib.request\n\npedido = urllib.request.Request(\n    \"https://httpbin.org/get?cliente=42\",\n    headers={\"Authorization\": \"Bearer chave-do-app\"},\n)\nwith urllib.request.urlopen(pedido, timeout=10) as resposta:\n    print(resposta.status)                      # 200\n    dados = json.load(resposta)\n    print(dados[\"args\"])                        # {'cliente': '42'}\n    print(dados[\"headers\"][\"Authorization\"])   # Bearer chave-do-app"
+      }
+    },
+    {
+      "id": "viagem",
+      "archetype": "circuito",
+      "title": "A viagem do pedido",
+      "chapter": "o mecanismo",
+      "thread": "pedido 42 · na rede",
+      "transition": "corte",
+      "bg": "grade",
+      "apoio": "Entre o toque no botão e a lista na tela, o pedido passa por vários pontos. Cada um tem uma tarefa curta e entrega o trabalho para o próximo.",
+      "hook": "Dentro do servidor, o pedido ainda atravessa camadas.",
+      "notes": "Acompanhe o losango de nó em nó. No fim, ele volta pela trilha de baixo como resposta.",
+      "reading": [
+        {
+          "label": "1",
+          "title": "App",
+          "text": "Monta o pedido e envia pela internet."
+        },
+        {
+          "label": "2",
+          "title": "Internet",
+          "text": "Leva os pacotes até o endereço do servidor."
+        },
+        {
+          "label": "3",
+          "title": "Porta da API",
+          "text": "Confere a chave e o limite de pedidos antes de deixar passar."
+        },
+        {
+          "label": "4",
+          "title": "Servidor",
+          "text": "Roda o código que entende o pedido."
+        },
+        {
+          "label": "5",
+          "title": "Banco",
+          "text": "Busca os três pedidos do cliente 42."
+        },
+        {
+          "label": "Volta",
+          "title": "Resposta",
+          "text": "O JSON faz o caminho inverso e chega ao app."
+        }
+      ],
+      "data": {
+        "packet": "42",
+        "back": "a resposta volta pelo mesmo caminho",
+        "backTip": "O JSON faz o caminho inverso até o app.",
+        "nodes": [
+          {
+            "label": "App",
+            "icon": "app",
+            "tip": "Monta o pedido e envia pela internet."
+          },
+          {
+            "label": "Internet",
+            "icon": "globe",
+            "tip": "Leva os pacotes até o servidor."
+          },
+          {
+            "label": "Porta da API",
+            "icon": "gate",
+            "tip": "Confere a chave e o limite de pedidos."
+          },
+          {
+            "label": "Servidor",
+            "icon": "server",
+            "tip": "Roda o código que entende o pedido."
+          },
+          {
+            "label": "Banco",
+            "icon": "database",
+            "tip": "Busca os três pedidos do cliente 42."
+          }
+        ]
+      }
+    },
+    {
+      "id": "camadas",
+      "archetype": "camadas",
+      "title": "Dentro do servidor",
+      "chapter": "o mecanismo",
+      "thread": "pedido 42 · no servidor",
+      "transition": "sobe",
+      "bg": "nenhum",
+      "accent": "2",
+      "apoio": "O servidor organiza o trabalho em camadas. Cada camada resolve uma parte do pedido e não precisa saber como as outras funcionam por dentro.",
+      "hook": "Quando a resposta sai, ela leva um número na frente.",
+      "notes": "O pedido desce pelas camadas e a resposta sobe. Clique numa camada para destacá-la.",
+      "reading": [
+        {
+          "label": "Camada 1",
+          "title": "Rota",
+          "text": "Lê o endereço e escolhe a função que vai cuidar do pedido."
+        },
+        {
+          "label": "Camada 2",
+          "title": "Autenticação",
+          "text": "Confere a chave antes de qualquer trabalho."
+        },
+        {
+          "label": "Camada 3",
+          "title": "Regras do negócio",
+          "text": "Decide o que pode ser mostrado e em que ordem."
+        },
+        {
+          "label": "Camada 4",
+          "title": "Dados",
+          "text": "Conversa com o banco e devolve os registros."
+        },
+        {
+          "label": "Volta",
+          "title": "Resposta em JSON",
+          "text": "Cada camada devolve o resultado para a de cima até sair pela rota."
+        }
+      ],
+      "data": {
+        "drop": "42",
+        "response": "a resposta sobe em JSON",
+        "responseTip": "Cada camada devolve para a de cima.",
+        "layers": [
+          {
+            "label": "Rota",
+            "icon": "route",
+            "tip": "Lê o endereço e escolhe a função certa."
+          },
+          {
+            "label": "Autenticação",
+            "icon": "lock",
+            "tip": "Confere a chave antes de qualquer trabalho."
+          },
+          {
+            "label": "Regras",
+            "icon": "gear",
+            "tip": "Aplica as regras do negócio ao pedido."
+          },
+          {
+            "label": "Dados",
+            "icon": "database",
+            "tip": "Conversa com o banco e devolve os registros."
+          }
+        ]
+      }
+    },
+    {
+      "id": "status",
+      "archetype": "mostrador",
+      "title": "A resposta tem número",
+      "chapter": "a resposta",
+      "thread": "resposta · 200",
+      "transition": "iris",
+      "bg": "orbita",
+      "apoio": "Todo retorno de uma API começa com um código de status. Ele resume o que aconteceu antes mesmo de alguém ler os dados.",
+      "hook": "Quanto tempo tudo isso levou? Bem menos que um piscar de olhos.",
+      "notes": "Clique em cada faixa do mostrador: o número gira e a agulha aponta para a família.",
+      "reading": [
+        {
+          "label": "2xx",
+          "title": "200 · Deu certo",
+          "text": "Os dados pedidos vieram no corpo da resposta."
+        },
+        {
+          "label": "3xx",
+          "title": "301 · Mudou de lugar",
+          "text": "O recurso tem um endereço novo, informado na resposta."
+        },
+        {
+          "label": "4xx",
+          "title": "404 · Não encontrado",
+          "text": "O pedido chegou, mas o recurso não existe. Erros 4xx são do lado de quem pede."
+        },
+        {
+          "label": "5xx",
+          "title": "500 · Erro no servidor",
+          "text": "O problema foi do lado de quem responde."
+        }
+      ],
+      "data": {
+        "items": [
+          {
+            "value": 200,
+            "family": "2xx",
+            "label": "Deu certo",
+            "tone": "ok",
+            "tip": "Os dados pedidos vieram no corpo."
+          },
+          {
+            "value": 301,
+            "family": "3xx",
+            "label": "Mudou de lugar",
+            "tone": "accent-2",
+            "tip": "O recurso tem um endereço novo."
+          },
+          {
+            "value": 404,
+            "family": "4xx",
+            "label": "Não encontrado",
+            "tone": "warn",
+            "tip": "Não existe pedido com esse número."
+          },
+          {
+            "value": 500,
+            "family": "5xx",
+            "label": "Erro no servidor",
+            "tone": "danger",
+            "tip": "A falha foi de quem responde."
+          }
+        ]
+      },
+      "study": {
+        "text": [
+          "O primeiro dígito indica a família: 1xx informa que o pedido segue em andamento, 2xx indica sucesso, 3xx pede um redirecionamento, 4xx aponta um problema no pedido e 5xx aponta uma falha de quem responde.",
+          "Dois códigos parecidos costumam confundir: 401 indica que falta uma identificação válida, enquanto 403 indica que quem pediu foi identificado, mas não tem permissão para aquele recurso."
+        ]
+      }
+    },
+    {
+      "id": "tempo",
+      "archetype": "linha-do-tempo",
+      "title": "Cento e vinte milissegundos",
+      "chapter": "a resposta",
+      "thread": "resposta · 120 ms",
+      "transition": "corte",
+      "bg": "ondas",
+      "apoio": "Neste exemplo, o pedido completo leva cerca de 120 milissegundos. A maior parte do tempo vai para a rede e para o banco de dados, não para o código.",
+      "hook": "Esse pedido é um entre muitos: apps usam várias APIs ao mesmo tempo.",
+      "notes": "A câmera desliza pela régua de milissegundos. Os tempos são ilustrativos e variam com a rede.",
+      "reading": [
+        {
+          "label": "0 ms",
+          "title": "Toque no botão",
+          "text": "O app monta o pedido."
+        },
+        {
+          "label": "15 ms",
+          "title": "Nome vira endereço",
+          "text": "O DNS traduz api.exemplo.com num endereço IP."
+        },
+        {
+          "label": "40 ms",
+          "title": "Conexão segura",
+          "text": "Cliente e servidor combinam a criptografia (TLS)."
+        },
+        {
+          "label": "62 ms",
+          "title": "Pedido chega",
+          "text": "A porta da API confere a chave."
+        },
+        {
+          "label": "95 ms",
+          "title": "Banco responde",
+          "text": "A consulta dos pedidos termina."
+        },
+        {
+          "label": "120 ms",
+          "title": "Lista na tela",
+          "text": "O app recebe o JSON e desenha a lista."
+        }
+      ],
+      "data": {
+        "unit": "ms",
+        "events": [
+          {
+            "at": 0,
+            "label": "Toque no botão",
+            "tip": "O app monta o pedido."
+          },
+          {
+            "at": 15,
+            "label": "Nome vira endereço",
+            "tip": "O DNS traduz o domínio num endereço IP."
+          },
+          {
+            "at": 40,
+            "label": "Conexão segura",
+            "tip": "Cliente e servidor combinam a criptografia."
+          },
+          {
+            "at": 62,
+            "label": "Pedido chega",
+            "tip": "A porta da API confere a chave."
+          },
+          {
+            "at": 95,
+            "label": "Banco responde",
+            "tip": "A consulta dos pedidos termina."
+          },
+          {
+            "at": 120,
+            "label": "Lista na tela",
+            "tip": "O app desenha a lista com o JSON."
+          }
+        ]
+      },
+      "study": {
+        "text": [
+          "Para medir as etapas de um pedido real, o curl aceita a opção -w com variáveis de tempo. Rode o comando duas vezes: na segunda, a consulta de DNS costuma ser mais rápida porque o endereço já está em cache."
+        ],
+        "lang": "bash",
+        "code": "curl -o /dev/null -s -w \"dns: %{time_namelookup}s\\nconexão: %{time_connect}s\\ntls: %{time_appconnect}s\\nprimeiro byte: %{time_starttransfer}s\\ntotal: %{time_total}s\\n\" https://httpbin.org/get"
+      }
+    },
+    {
+      "id": "ecossistema",
+      "archetype": "mapa",
+      "title": "APIs por toda parte",
+      "chapter": "o contexto",
+      "thread": "pedido 42 · e outros",
+      "transition": "cortina",
+      "bg": "rede",
+      "apoio": "Um aplicativo comum conversa com várias APIs: a sua, para os dados do negócio, e as de outras empresas, para pagamento, mapa, mensagens e login.",
+      "hook": "Volta o pedido 42: hora de fechar o caminho.",
+      "notes": "Cada linha do mapa é uma API diferente. Clique nas estações.",
+      "reading": [
+        {
+          "label": "Linha 1",
+          "title": "Sua API",
+          "text": "Pedidos, clientes e produtos do seu negócio."
+        },
+        {
+          "label": "Linha 2",
+          "title": "Pagamento",
+          "text": "Cobra o cartão sem que o app guarde os números."
+        },
+        {
+          "label": "Linha 3",
+          "title": "Mapa",
+          "text": "Mostra o endereço de entrega e calcula a rota."
+        },
+        {
+          "label": "Linha 4",
+          "title": "Mensagens",
+          "text": "Envia o e-mail de confirmação do pedido."
+        },
+        {
+          "label": "Linha 5",
+          "title": "Login",
+          "text": "Permite entrar com uma conta que a pessoa já tem."
+        }
+      ],
+      "data": {
+        "center": {
+          "label": "Seu app",
+          "icon": "app"
+        },
+        "stations": [
+          {
+            "label": "Sua API",
+            "icon": "server",
+            "tone": "accent",
+            "x": 300,
+            "y": 150,
+            "tip": "Pedidos, clientes e produtos."
+          },
+          {
+            "label": "Pagamento",
+            "icon": "card",
+            "tone": "accent-2",
+            "x": 1400,
+            "y": 130,
+            "tip": "Cobra o cartão sem guardar os números."
+          },
+          {
+            "label": "Mapa",
+            "icon": "pin",
+            "tone": "ok",
+            "x": 1500,
+            "y": 470,
+            "tip": "Mostra o endereço de entrega."
+          },
+          {
+            "label": "Mensagens",
+            "icon": "mail",
+            "tone": "warn",
+            "x": 980,
+            "y": 640,
+            "tip": "Envia o e-mail de confirmação."
+          },
+          {
+            "label": "Login",
+            "icon": "key",
+            "tone": "danger",
+            "x": 260,
+            "y": 560,
+            "tip": "Entra com uma conta que já existe."
+          }
+        ]
+      }
+    },
+    {
+      "id": "fim",
+      "archetype": "encerramento",
+      "title": "Sua primeira chamada",
+      "chapter": "encerramento",
+      "thread": "resposta · entregue",
+      "transition": "iris",
+      "bg": "orbita",
+      "apoio": "Para fixar, faça uma chamada a uma API pública de teste, leia o código de status e compare a resposta com o que viu aqui.",
+      "notes": "O pedido 42 completa a volta. Mostre os três próximos passos e indique o material de estudo.",
+      "reading": [
+        {
+          "label": "Passo 1",
+          "title": "Chame",
+          "text": "Rode curl -i https://httpbin.org/get e leia a primeira linha da resposta."
+        },
+        {
+          "label": "Passo 2",
+          "title": "Leia",
+          "text": "Abra o JSON e encontre os campos que uma tela usaria."
+        },
+        {
+          "label": "Passo 3",
+          "title": "Erre de propósito",
+          "text": "Peça https://httpbin.org/status/404 e compare o código de status."
+        }
+      ],
+      "data": {
+        "start": "App",
+        "done": "resposta entregue",
+        "steps": [
+          {
+            "label": "Chame",
+            "tip": "Rode um curl numa API de teste e leia o status."
+          },
+          {
+            "label": "Leia",
+            "tip": "Ache no JSON os campos que a tela usaria."
+          },
+          {
+            "label": "Erre de propósito",
+            "tip": "Peça um recurso que não existe e veja o 404."
+          }
+        ]
+      }
+    }
+  ]
+}

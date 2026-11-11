@@ -1,0 +1,36 @@
+/* Metrô · tokens do contrato comum do pycode-design (não renomeie as variáveis do contrato). */
+:root {
+  --bg: #f3f3ef;
+  --bg-2: #e8e8e2;
+  --surface: #ffffff;
+  --surface-2: #f7f7f4;
+  --text: #111418;
+  --muted: #4d535b;
+  --line: #c9cbc6;
+  --accent: #0b5cad;
+  --accent-2: #d6202a;
+  --accent-ink: #ffffff;
+  --paper: #ffffff;
+  --paper-ink: #111418;
+  --danger: #c41a23;
+  --ok: #00784b;
+  --warn: #9a6700;
+  --font-display: 'Space Grotesk', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --weight-display: 700;
+  --tracking-display: -0.03em;
+  --radius: 6px;
+  --radius-lg: 14px;
+  --shadow: 0 2px 0 rgba(17, 20, 24, .12);
+  --glow: 0 0 0 4px #ffc20e;
+  /* extras do estilo (prefixo do slug) */
+  --metro-line-blue: #0b5cad;
+  --metro-line-red: #d6202a;
+  --metro-line-green: #00965e;
+  --metro-line-yellow: #ffc20e;
+  --metro-line-purple: #7a3e9d;
+  --metro-line-orange: #f07d00;
+  --metro-sign: #111418;
+  --metro-line-width: 10px;
+}

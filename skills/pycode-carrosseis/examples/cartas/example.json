@@ -1,0 +1,7 @@
+{
+  "name": "cartas",
+  "title": "Cartas colecionáveis",
+  "summary": "Lista de ferramentas ou módulos em cartas holográficas desenhadas em código, com comando conferido pelo Python; capa em vídeo com o baralho abrindo em leque.",
+  "default_style": "python-noturno",
+  "fonts_extra": []
+}

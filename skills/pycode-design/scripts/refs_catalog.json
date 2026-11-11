@@ -1,0 +1,49 @@
+{
+  "_aviso": "Acervos externos de estudo. Nada daqui é versionado no pycode-skills: `pycode refs fetch` baixa na sua máquina. Acervos sem licença servem só para estudo local: não copie código nem redistribua.",
+  "refs": [
+    {
+      "id": "fable-5.2",
+      "name": "Fable 5.2 · estudos HTML",
+      "repo": "MiaAI-Lab/Claude-Fable-5.2-HTML-Files",
+      "branch": "main",
+      "license": "sem licença declarada",
+      "redistributable": false,
+      "kind": "html-gallery",
+      "layout": "NNN-slug.html com o prompt em NNN-slug.txt",
+      "about": "Cerca de 80 estudos de interface com objetos físicos simulados (painéis, instrumentos, mapas), cada um com o prompt que o gerou."
+    },
+    {
+      "id": "opus-5.5",
+      "name": "Opus 5.5 · 100 estudos HTML",
+      "repo": "MiaAI-Lab/Claude-Opus-5.5-100-HTML-Files",
+      "branch": "main",
+      "license": "sem licença declarada",
+      "redistributable": false,
+      "kind": "html-gallery",
+      "layout": "NNN-slug.html com o prompt em NNN-slug.txt",
+      "about": "Cem páginas de uma página só, de pôsteres suíços a instrumentos de latão, boas para estudar composição e movimento."
+    },
+    {
+      "id": "fable-5.1",
+      "name": "Fable 5.1 · 100 estudos HTML",
+      "repo": "MiaAI-Lab/Fable-5.1-100-HTML-Files",
+      "branch": "main",
+      "license": "sem licença declarada",
+      "redistributable": false,
+      "kind": "html-gallery",
+      "layout": "NNN-slug.html com o prompt em NNN-slug.txt",
+      "about": "Cem estudos de estilos conhecidos (editorial, brutalista, neumórfico, terminal) com os prompts originais."
+    },
+    {
+      "id": "awesome-design-md",
+      "name": "awesome-design-md",
+      "repo": "VoltAgent/awesome-design-md",
+      "branch": "main",
+      "license": "MIT",
+      "redistributable": true,
+      "kind": "design-md",
+      "layout": "design-md/<marca>/DESIGN.md",
+      "about": "Coleção de arquivos DESIGN.md que descrevem a linguagem visual de produtos conhecidos. Útil para ver como outras pessoas documentam tokens e componentes."
+    }
+  ]
+}

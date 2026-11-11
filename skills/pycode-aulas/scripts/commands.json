@@ -1,0 +1,13 @@
+{
+  "group": "deck",
+  "help": "Aulas e apresentações interativas em HTML (palco 1920×1080, demonstração por cena, material de estudo)",
+  "commands": {
+    "new": {"script": "new_deck.py", "help": "cria um projeto de aula a partir do modelo (estilo, fontes, GSAP e marca)"},
+    "scene": {"script": "scene_deck.py", "help": "lista os arquétipos de cena ou adiciona um ao projeto"},
+    "build": {"script": "build_deck.py", "help": "monta site/ a partir de src/ e confere o contrato do motor"},
+    "qa": {"script": "qa_deck.py", "help": "testa cada cena no navegador (demonstração, clique, teclado, celular, texto)"},
+    "stills": {"script": "stills_deck.py", "help": "gera um PNG 1920×1080 de cada cena no estado final"},
+    "export": {"script": "export_deck.py", "help": "exporta PDF (com camada de texto) e PPTX (imagem por cena e notas)"},
+    "notion": {"script": "notion_deck.py", "help": "gera o material de estudo em Markdown e publica no Notion se houver token"}
+  }
+}

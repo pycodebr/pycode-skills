@@ -1,0 +1,86 @@
+{
+  "id": "tempo",
+  "archetype": "linha-do-tempo",
+  "title": "Cento e vinte milissegundos",
+  "chapter": "a resposta",
+  "thread": "resposta · 120 ms",
+  "transition": "corte",
+  "bg": "ondas",
+  "apoio": "Neste exemplo, o pedido completo leva cerca de 120 milissegundos. A maior parte do tempo vai para a rede e para o banco de dados, não para o código.",
+  "hook": "Esse pedido é um entre muitos: apps usam várias APIs ao mesmo tempo.",
+  "notes": "A câmera desliza pela régua de milissegundos. Os tempos são ilustrativos e variam com a rede.",
+  "reading": [
+    {
+      "label": "0 ms",
+      "title": "Toque no botão",
+      "text": "O app monta o pedido."
+    },
+    {
+      "label": "15 ms",
+      "title": "Nome vira endereço",
+      "text": "O DNS traduz api.exemplo.com num endereço IP."
+    },
+    {
+      "label": "40 ms",
+      "title": "Conexão segura",
+      "text": "Cliente e servidor combinam a criptografia (TLS)."
+    },
+    {
+      "label": "62 ms",
+      "title": "Pedido chega",
+      "text": "A porta da API confere a chave."
+    },
+    {
+      "label": "95 ms",
+      "title": "Banco responde",
+      "text": "A consulta dos pedidos termina."
+    },
+    {
+      "label": "120 ms",
+      "title": "Lista na tela",
+      "text": "O app recebe o JSON e desenha a lista."
+    }
+  ],
+  "data": {
+    "unit": "ms",
+    "events": [
+      {
+        "at": 0,
+        "label": "Toque no botão",
+        "tip": "O app monta o pedido."
+      },
+      {
+        "at": 15,
+        "label": "Nome vira endereço",
+        "tip": "O DNS traduz o domínio num endereço IP."
+      },
+      {
+        "at": 40,
+        "label": "Conexão segura",
+        "tip": "Cliente e servidor combinam a criptografia."
+      },
+      {
+        "at": 62,
+        "label": "Pedido chega",
+        "tip": "A porta da API confere a chave."
+      },
+      {
+        "at": 95,
+        "label": "Banco responde",
+        "tip": "A consulta dos pedidos termina."
+      },
+      {
+        "at": 120,
+        "label": "Lista na tela",
+        "tip": "O app desenha a lista com o JSON."
+      }
+    ]
+  },
+  "study": {
+    "text": [
+      "Para medir as etapas de um pedido real, o curl aceita a opção -w com variáveis de tempo. Rode o comando duas vezes: na segunda, a consulta de DNS costuma ser mais rápida porque o endereço já está em cache."
+    ],
+    "lang": "bash",
+    "code": "curl -o /dev/null -s -w \"dns: %{time_namelookup}s\\nconexão: %{time_connect}s\\ntls: %{time_appconnect}s\\nprimeiro byte: %{time_starttransfer}s\\ntotal: %{time_total}s\\n\" https://httpbin.org/get"
+  }
+}

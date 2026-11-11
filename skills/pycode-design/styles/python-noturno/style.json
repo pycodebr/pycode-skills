@@ -1,0 +1,23 @@
+{
+  "slug": "python-noturno",
+  "name": "Código noturno",
+  "summary": "Azul-marinho profundo com o azul e o amarelo do Python, textura de código ao fundo, numerais gigantes e cartas colecionáveis. Linguagem de feed técnico e de aula de programação.",
+  "mode": "dark",
+  "fonts": [
+    "bricolage-grotesque",
+    "inter",
+    "jetbrains-mono"
+  ],
+  "best_for": [
+    "carousel",
+    "deck",
+    "page"
+  ],
+  "mood": [
+    "técnico",
+    "enérgico",
+    "didático",
+    "comunidade"
+  ],
+  "version": "1.0.0"
+}

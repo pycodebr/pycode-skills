@@ -1,0 +1,17 @@
+.s-__ID__ .ci-svg { position: absolute; inset: 0; width: 1696px; height: 716px; overflow: visible; pointer-events: none; }
+.s-__ID__ .ci-deco path { fill: none; stroke: var(--line); stroke-width: 2; opacity: .55; }
+.s-__ID__ .ci-deco circle { fill: var(--bg-2); stroke: var(--line); stroke-width: 2; opacity: .7; }
+.s-__ID__ .ci-track { fill: none; stroke: var(--accent); stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; opacity: .9; }
+.s-__ID__ .ci-back { stroke: var(--accent-2); stroke-width: 4; stroke-dasharray: 10 12; opacity: .7; }
+.s-__ID__ .returning .ci-back { opacity: 1; stroke-dasharray: none; }
+.s-__ID__ .ci-via { fill: var(--bg); stroke: var(--accent); stroke-width: 4; }
+.s-__ID__ .ci-pk { fill: var(--accent); }
+.s-__ID__ .ci-pk.alt { fill: var(--accent-2); }
+.s-__ID__ .ci-node .disc { width: 132px; height: 132px; font-size: 60px; border-radius: 30px; border-width: 2px; }
+.s-__ID__ .ci-node .name { font-size: 23px; }
+.s-__ID__ .ci-node { gap: 16px; }
+.s-__ID__ .ci-node .name { position: absolute; top: calc(100% + 14px); }
+.s-__ID__ .ci-back-label { position: absolute; left: 0; right: 0; top: 606px; text-align: center; font-size: 20px; color: var(--accent-2); }
+.s-__ID__ .ci-packet { position: absolute; width: 0; height: 0; z-index: 4; opacity: 0; }
+.s-__ID__ .ci-packet i { position: absolute; left: -26px; top: -26px; width: 52px; height: 52px; border-radius: 10px; background: var(--accent-2); transform: rotate(45deg); box-shadow: var(--glow); }
+.s-__ID__ .ci-packet b { position: absolute; left: -30px; width: 60px; top: -14px; text-align: center; font-size: 22px; font-weight: 700; color: var(--accent-ink); }

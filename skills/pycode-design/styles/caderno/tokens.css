@@ -1,0 +1,34 @@
+/* Caderno · tokens do contrato comum do pycode-design (não renomeie as variáveis do contrato). */
+:root {
+  --bg: #f6f5f4;
+  --bg-2: #efedea;
+  --surface: #ffffff;
+  --surface-2: #f9f8f7;
+  --text: #1f1e1c;
+  --muted: #5f5c57;
+  --line: #e3e0db;
+  --accent: #0067c5;
+  --accent-2: #d9730d;
+  --accent-ink: #ffffff;
+  --paper: #ffffff;
+  --paper-ink: #1f1e1c;
+  --danger: #c4332b;
+  --ok: #2f7d4f;
+  --warn: #a35c00;
+  --font-display: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --weight-display: 700;
+  --tracking-display: -0.025em;
+  --radius: 6px;
+  --radius-lg: 12px;
+  --shadow: 0 1px 2px rgba(31, 30, 28, .06), 0 8px 24px rgba(31, 30, 28, .07);
+  --glow: 0 0 0 3px rgba(0, 103, 197, .18);
+  /* extras do estilo (prefixo do slug) */
+  --caderno-sticker-yellow: #fbe9a7;
+  --caderno-sticker-green: #d6efdd;
+  --caderno-sticker-pink: #f9d9e3;
+  --caderno-sticker-blue: #d8e8f8;
+  --caderno-sticker-orange: #fbe0c8;
+  --caderno-highlight: #fff2a8;
+}

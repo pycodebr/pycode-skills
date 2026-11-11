@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Planta técnica · prévia do estilo</title>
+<meta name="description" content="Folha de arquiteto em papel azul com grade milimetrada, traço branco desenhado ao vivo, linhas de cota, carimbos e selo técnico. Para arquitetura de sistemas, permissões, fluxos e qualquer explicação de estrutura.">
+<!-- Abra pela galeria (pycode styles preview): ela copia as fontes para fonts/ ao lado deste arquivo. -->
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="tokens.css">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+/* ---------- chassi comum da prévia: só variáveis do contrato ---------- */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:17px;line-height:1.6;overflow-x:hidden}
+img,svg{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.pv-wrap{width:min(1240px,calc(100% - 40px));margin-inline:auto}
+.pv-section{padding-block:clamp(56px,8vw,112px);position:relative}
+.pv-section + .pv-section{border-top:1px solid var(--line)}
+h1,h2,h3{font-family:var(--font-display);font-weight:var(--weight-display);letter-spacing:var(--tracking-display);line-height:1.05;margin:0;text-wrap:balance}
+p{margin:0;text-wrap:pretty}
+.pv-h2{font-size:clamp(30px,4.2vw,54px);max-width:18ch}
+.pv-intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px 48px;align-items:end;margin-bottom:clamp(32px,5vw,56px)}
+.pv-intro p{color:var(--muted);max-width:56ch}
+.pv-top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 0;font-family:var(--font-mono);font-size:14px;color:var(--muted)}
+.pv-top b{color:var(--text);font-weight:600}
+.pv-top nav{display:flex;gap:18px;flex-wrap:wrap}
+.pv-top nav a{text-decoration:none;color:var(--muted)}
+.pv-top nav a:hover{color:var(--text)}
+/* paleta */
+.pv-palette{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,190px),1fr));gap:14px}
+@media (max-width:600px){.pv-palette{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.pv-chip{grid-template-rows:56px auto}.pv-chip div{padding:10px}.pv-chip code{font-size:12px;word-break:break-all}.pv-chip span{font-size:13px}}
+.pv-chip{display:grid;grid-template-rows:84px auto;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--surface)}
+.pv-chip i{display:block;border-bottom:1px solid var(--line)}
+.pv-chip div{padding:12px 14px 14px;display:grid;gap:2px}
+.pv-chip code{font-family:var(--font-mono);font-size:13px;color:var(--text)}
+.pv-chip span{font-size:14px;line-height:1.45;color:var(--muted)}
+/* tipografia */
+.pv-type{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:clamp(24px,4vw,56px)}
+.pv-type-display{font-family:var(--font-display);font-weight:var(--weight-display);letter-spacing:var(--tracking-display);font-size:clamp(46px,7.4vw,112px);line-height:.98}
+.pv-type-scale{display:grid;gap:14px;align-content:start}
+.pv-type-scale div{display:grid;grid-template-columns:120px minmax(0,1fr);gap:12px;align-items:baseline;border-top:1px solid var(--line);padding-top:10px}
+.pv-type-scale code{font-family:var(--font-mono);font-size:13px;color:var(--muted)}
+.pv-type-body{margin-top:26px;max-width:58ch;color:var(--muted)}
+.pv-type-mono{margin-top:18px;font-family:var(--font-mono);font-size:15px;color:var(--text)}
+/* objetos */
+.pv-objects{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:clamp(16px,2vw,28px)}
+.pv-objects > figure{margin:0;grid-column:span 2;display:grid;grid-template-rows:auto 1fr;gap:14px;min-width:0}
+.pv-objects > figure.wide{grid-column:span 3}
+.pv-objects > figure.full{grid-column:1 / -1}
+.pv-stage{position:relative;min-height:340px;padding:28px;border-radius:var(--radius-lg);overflow:hidden;display:grid;place-items:center;isolation:isolate}
+.pv-objects figcaption{font-size:15px;line-height:1.5;color:var(--muted)}
+.pv-objects figcaption b{display:block;color:var(--text);font-family:var(--font-display);font-weight:var(--weight-display);letter-spacing:var(--tracking-display);font-size:19px;margin-bottom:2px}
+/* formatos */
+.pv-formats{display:grid;grid-template-columns:minmax(0,1.85fr) minmax(0,1fr);gap:clamp(20px,3vw,36px);align-items:start}
+.pv-formats > [data-format="page"]{grid-column:1 / -1}
+.pv-format-label{font-family:var(--font-mono);font-size:13px;color:var(--muted);margin:0 0 10px}
+[data-format="deck"]{aspect-ratio:16/9;container-type:inline-size;position:relative;overflow:hidden;border-radius:var(--radius)}
+[data-format="carousel"]{aspect-ratio:4/5;container-type:inline-size;position:relative;overflow:hidden;border-radius:var(--radius)}
+.pv-foot{padding:40px 0 56px;color:var(--muted);font-size:14px;font-family:var(--font-mono)}
+/* movimento: entradas só quando há JS; loops só rodam com a cena visível */
+html.js [data-scene]:not([data-entered]) .rise{opacity:0;transform:translateY(18px)}
+.rise{transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1);transition-delay:calc(var(--i,0) * 70ms)}
+html.js .loop,html.js .loop::before,html.js .loop::after{animation-play-state:paused !important}
+html.js [data-scene][data-motion="on"] .loop,html.js [data-scene][data-motion="on"] .loop::before,html.js [data-scene][data-motion="on"] .loop::after{animation-play-state:running !important}
+html.js body[data-background="true"] .loop,html.js body[data-background="true"] .loop::before,html.js body[data-background="true"] .loop::after{animation-play-state:paused !important}
+@media (max-width:900px){
+  .pv-intro,.pv-type,.pv-formats{grid-template-columns:minmax(0,1fr)}
+  .pv-objects{grid-template-columns:minmax(0,1fr)}
+  .pv-objects > figure,.pv-objects > figure.wide{grid-column:1 / -1}
+}
+@media (max-width:600px){.pv-top nav{display:none}body{font-size:16px}}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none !important;transition:none !important;scroll-behavior:auto !important}
+  html.js [data-scene]:not([data-entered]) .rise{opacity:1;transform:none}
+}
+
+/* ---------- Planta técnica: superfícies, objetos e movimento do estilo ---------- */
+.pv-planta-azul{background-color:var(--bg);background-image:linear-gradient(var(--planta-azul-grid-major) 1px,transparent 1px),linear-gradient(90deg,var(--planta-azul-grid-major) 1px,transparent 1px),linear-gradient(var(--planta-azul-grid-minor) 1px,transparent 1px),linear-gradient(90deg,var(--planta-azul-grid-minor) 1px,transparent 1px);background-size:120px 120px,120px 120px,var(--planta-azul-grid) var(--planta-azul-grid),var(--planta-azul-grid) var(--planta-azul-grid)}
+.pv-planta-azul .pv-section + .pv-section{border-top:1px dashed var(--line)}
+.pa-sheet{position:relative;border:2px solid var(--planta-azul-ink);outline:1px solid var(--planta-azul-ink);outline-offset:6px;margin:6px;padding:clamp(20px,4vw,48px);background:rgba(8,31,66,.55)}
+.pa-hero .pv-wrap{display:block}
+.pa-hero-in{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(20px,4vw,56px);align-items:center}
+.pa-hero h1{font-size:clamp(36px,4.6vw,66px);line-height:1.02}
+.pa-hero h1 mark{background:var(--accent);color:var(--accent-ink);padding:0 .12em}
+.pa-hero p.lead{margin-top:18px;color:var(--muted);max-width:44ch;font-size:18px}
+.pa-note{font:500 13px var(--font-mono);color:var(--muted);margin-top:22px;display:flex;flex-wrap:wrap;gap:8px 18px}
+.pa-note span::before{content:"";display:inline-block;width:14px;height:0;border-top:2px solid currentColor;vertical-align:middle;margin-right:6px}
+.pa-note .ok{color:var(--ok)}.pa-note .no{color:var(--danger)}.pa-note .ok::before{border-top-style:dashed}
+.pa-btn{display:inline-flex;align-items:center;gap:10px;min-height:50px;padding:0 22px;margin-top:26px;background:var(--accent);color:var(--accent-ink);text-decoration:none;font:600 15px var(--font-display);border-radius:var(--radius)}
+.pa-plan{width:100%;height:auto;overflow:visible}
+.pa-plan text{font-family:var(--font-mono)}
+.pa-draw{stroke-dasharray:1;stroke-dashoffset:0;transition:stroke-dashoffset 1.8s cubic-bezier(.6,0,.3,1);transition-delay:calc(var(--d,0) * .25s)}
+html.js [data-scene]:not([data-entered]) .pa-draw{stroke-dashoffset:1}
+.pa-fade{transition:opacity .6s ease;transition-delay:calc(var(--d,0) * .25s + .6s)}
+html.js [data-scene]:not([data-entered]) .pa-fade{opacity:0}
+.pa-flow{stroke-dasharray:6 6;animation:pa-flow 1.2s linear infinite}
+@keyframes pa-flow{to{stroke-dashoffset:-12}}
+.pa-stamp{transform-box:fill-box;transform-origin:50% 50%;transition:transform .5s cubic-bezier(.3,1.6,.5,1),opacity .3s ease;transition-delay:2.2s}
+html.js [data-scene]:not([data-entered]) .pa-stamp{transform:scale(1.6) rotate(-8deg);opacity:0}
+/* selo técnico */
+.pa-title{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border:1.5px solid var(--planta-azul-ink);font:500 12px var(--font-mono);color:var(--text);background:var(--bg-2);min-width:0}
+.pa-title div{padding:8px 10px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);display:grid;gap:2px}
+.pa-title div:nth-child(2n){border-right:0}
+.pa-title small{font-size:10.5px;color:var(--muted);letter-spacing:.08em}
+.pa-title .wide{grid-column:1 / -1;font:600 15px var(--font-display)}
+.pa-hero .pa-title{width:min(100%,340px);margin:28px 0 0 auto}
+.pa-stage{background:rgba(8,31,66,.75);border:1.5px solid var(--planta-azul-ink);border-radius:0}
+/* cota */
+.pa-dim{width:88%;display:grid;gap:14px;justify-items:center}
+.pa-dim svg{width:100%;overflow:visible}
+.pa-grow{transform-box:fill-box;transform-origin:50% 50%;transition:transform 1.2s cubic-bezier(.6,0,.3,1)}
+html.js [data-scene]:not([data-entered]) .pa-grow{transform:scaleX(0)}
+/* lupa */
+.pa-loupe{position:relative;width:220px;height:220px;border-radius:50%;border:3px solid var(--planta-azul-ink);overflow:hidden;background:var(--bg-2);box-shadow:0 0 0 8px rgba(232,243,255,.08)}
+.pa-loupe svg{position:absolute;left:0;top:0;width:440px;height:440px;animation:pa-scan 10s ease-in-out infinite alternate}
+@keyframes pa-scan{0%{transform:translate(-40px,-30px)}50%{transform:translate(-200px,-60px)}100%{transform:translate(-150px,-200px)}}
+.pa-handle{position:absolute;width:90px;height:16px;background:var(--planta-azul-ink);border-radius:8px;transform:rotate(45deg);right:calc(50% - 170px);bottom:calc(50% - 150px)}
+/* legenda */
+.pa-legend{list-style:none;margin:0;padding:0;display:grid;gap:14px;font-size:15px;width:min(100%,300px)}
+.pa-legend li{display:grid;grid-template-columns:56px 1fr;gap:12px;align-items:center}
+/* página */
+.pa-page{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(20px,4vw,48px);align-items:center}
+.pa-page h3{font-size:clamp(26px,3vw,40px)}
+.pa-page p{color:var(--muted);margin-top:12px}
+.pa-rooms{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:10px}
+.pa-rooms li{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center;border-bottom:1px dashed var(--line);padding-bottom:8px}
+.pa-rooms b{font:600 13px var(--font-mono);color:var(--accent)}
+.pa-rooms em{font:500 12px var(--font-mono);font-style:normal}
+/* deck */
+.pa-deck{position:absolute;inset:0;background-color:var(--bg);background-image:linear-gradient(var(--planta-azul-grid-minor) 1px,transparent 1px),linear-gradient(90deg,var(--planta-azul-grid-minor) 1px,transparent 1px);background-size:2cqw 2cqw;padding:3cqw}
+.pa-deck .frame{position:absolute;inset:2.4cqw;border:2px solid var(--planta-azul-ink);display:grid;grid-template-columns:.85fr 1.15fr;gap:3cqw;align-items:center;padding:3.4cqw}
+.pa-deck h3{font-size:4cqw}
+.pa-deck p{font-size:1.55cqw;color:var(--muted);margin-top:1.4cqw}
+.pa-deck .pa-title{position:absolute;right:0;bottom:0;width:30%;font-size:1cqw}
+.pa-deck .pa-title div{padding:.6cqw .8cqw}
+.pa-deck .pa-title small{font-size:.85cqw}
+.pa-deck .pa-title .wide{font-size:1.25cqw}
+/* carrossel */
+.pa-car{position:absolute;inset:0;background-color:var(--bg);background-image:linear-gradient(var(--planta-azul-grid-minor) 1px,transparent 1px),linear-gradient(90deg,var(--planta-azul-grid-minor) 1px,transparent 1px);background-size:4cqw 4cqw;padding:6cqw;display:grid;grid-template-rows:auto 1fr auto}
+.pa-car .frame{position:absolute;inset:3cqw;border:2px solid var(--planta-azul-ink);pointer-events:none}
+.pa-car h3{position:relative;font-size:8cqw;line-height:1.02;padding:2cqw}
+.pa-car h3 mark{background:var(--accent);color:var(--accent-ink);padding:0 .1em}
+.pa-car svg{width:100%;align-self:center}
+.pa-car footer{position:relative;display:flex;justify-content:space-between;font:500 3.2cqw var(--font-mono);color:var(--muted);padding:0 2cqw 1cqw}
+@media (max-width:900px){
+  .pa-hero-in,.pa-page{grid-template-columns:minmax(0,1fr)}
+}
+</style>
+</head>
+<body class="pv pv-planta-azul">
+<div class="pv-wrap pv-top"><span><b>Planta técnica</b> · planta-azul · dark</span>
+<nav aria-label="Seções da prévia"><a href="#paleta">Paleta</a><a href="#tipografia">Tipografia</a><a href="#objetos">Objetos</a><a href="#formatos">Formatos</a></nav></div>
+<main>
+<section class="pv-section pa-hero" data-scene>
+  <div class="pv-wrap">
+    <div class="pa-sheet">
+      <div class="pa-hero-in">
+        <div>
+          <h1 class="rise">Quem entra em cada sala da sua <mark>API</mark></h1>
+          <p class="lead rise" style="--i:1">A planta mostra o sistema como um prédio: cada módulo é uma sala, cada permissão é uma porta e cada crachá diz até onde a pessoa pode ir.</p>
+          <p class="pa-note rise" style="--i:2"><span class="ok">liberado</span><span class="no">trancado</span><span>parede existente</span></p>
+          <a class="pa-btn rise" style="--i:3" href="#objetos">Ver a planta completa</a>
+        </div>
+        <svg class="pa-plan" viewBox="0 0 560 420" role="img" aria-label="Planta baixa com quatro salas: portaria, rotas, banco e fila. Caminho liberado da portaria até as rotas e acesso trancado ao banco." data-object="planta desenhada ao vivo">
+          <g fill="none" stroke="#e8f3ff" stroke-width="3" stroke-linecap="square">
+            <path class="pa-draw" pathLength="1" style="--d:0" d="M30 40 H530 V380 H30 Z"/>
+            <path class="pa-draw" pathLength="1" style="--d:1" d="M200 40 V170 M200 230 V380"/>
+            <path class="pa-draw" pathLength="1" style="--d:2" d="M200 220 H380 M440 220 H530"/>
+            <path class="pa-draw" pathLength="1" style="--d:3" d="M380 40 V120 M380 170 V220"/>
+          </g>
+          <g fill="none" stroke="#bfe0ff" stroke-width="1.5">
+            <path class="pa-draw" pathLength="1" style="--d:4" d="M200 170 A60 60 0 0 1 260 230"/>
+            <path class="pa-draw" pathLength="1" style="--d:4" d="M380 120 A50 50 0 0 1 430 170"/>
+            <path class="pa-draw" pathLength="1" style="--d:5" d="M380 220 A60 60 0 0 0 440 280"/>
+          </g>
+          <g class="pa-fade" style="--d:4" font-size="13" fill="#e8f3ff">
+            <text x="60" y="80" style="font-weight:600">PORTARIA</text><text x="60" y="98" fill="#bcd3f0" font-size="11">autenticação</text>
+            <text x="230" y="80" style="font-weight:600">ROTAS</text><text x="230" y="98" fill="#bcd3f0" font-size="11">/cursos /aulas</text>
+            <text x="410" y="80" style="font-weight:600">FILA</text><text x="410" y="98" fill="#bcd3f0" font-size="11">e-mails</text>
+            <text x="230" y="270" style="font-weight:600">BANCO</text><text x="230" y="288" fill="#bcd3f0" font-size="11">dados de alunos</text>
+          </g>
+          <path class="pa-flow loop pa-fade" style="--d:6" d="M110 330 V200 H290 V150" fill="none" stroke="#7dffb0" stroke-width="2.5"/>
+          <g class="pa-fade" style="--d:6"><rect x="330" y="300" width="34" height="28" rx="3" fill="none" stroke="#ff6b7d" stroke-width="2.5"/><path d="M337 300 v-8 a10 10 0 0 1 20 0 v8" fill="none" stroke="#ff6b7d" stroke-width="2.5"/></g>
+          <g class="pa-fade" style="--d:5"><rect x="84" y="330" width="52" height="30" rx="4" fill="#ffd84d"/><text x="110" y="350" text-anchor="middle" font-size="11" fill="#1c1700" style="font-weight:600">aluno</text></g>
+          <g class="pa-fade" style="--d:7" stroke="#bcd3f0" fill="#bcd3f0" font-size="11">
+            <path d="M30 406 H530" stroke-width="1"/><path d="M30 400 v12 M530 400 v12" stroke-width="1"/>
+            <text x="280" y="402" text-anchor="middle" stroke="none">4 módulos · 1 entrada</text>
+          </g>
+          <g class="pa-stamp"><rect x="392" y="300" width="128" height="58" rx="4" fill="none" stroke="#edc580" stroke-width="2.5" transform="rotate(-8 456 329)"/><text x="456" y="326" text-anchor="middle" font-size="12" fill="#edc580" transform="rotate(-8 456 329)" style="font-weight:700">ESTUDO</text><text x="456" y="343" text-anchor="middle" font-size="12" fill="#edc580" transform="rotate(-8 456 329)" style="font-weight:700">PRELIMINAR</text></g>
+        </svg>
+      </div>
+      <div class="pa-title rise" style="--i:4" aria-label="Selo técnico da folha"><div class="wide"><small>projeto</small>API de cursos</div><div><small>desenho</small>Sua Marca</div><div><small>escala</small>sem escala</div><div><small>revisão</small>B</div><div><small>folha</small>01 / 04</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="pv-section" id="paleta" data-scene>
+  <div class="pv-wrap">
+    <div class="pv-intro"><h2 class="pv-h2 rise">Papel azul, traço branco e três sinais</h2><p class="rise" style="--i:1">A planta é monocromática: azul e traço claro. Só três cores carregam significado: amarelo para o que está sendo explicado agora, verde para acesso liberado e vermelho para trancado. O dourado fica com carimbos.</p></div>
+    <div class="pv-palette rise" style="--i:2">
+<div class="pv-chip"><i style="background:var(--bg)"></i><div><code>--bg · #0b2a57</code><span>papel azul de planta, com grade milimetrada</span></div></div>
+<div class="pv-chip"><i style="background:var(--bg-2)"></i><div><code>--bg-2 · #081f42</code><span>azul mais fundo das margens e do selo</span></div></div>
+<div class="pv-chip"><i style="background:var(--surface)"></i><div><code>--surface · #103568</code><span>salas preenchidas e painéis</span></div></div>
+<div class="pv-chip"><i style="background:var(--surface-2)"></i><div><code>--surface-2 · #16427d</code><span>salas em destaque e hover</span></div></div>
+<div class="pv-chip"><i style="background:var(--text)"></i><div><code>--text · #eef6ff</code><span>traço branco-azulado e texto principal</span></div></div>
+<div class="pv-chip"><i style="background:var(--muted)"></i><div><code>--muted · #bcd3f0</code><span>cotas, notas técnicas e legendas</span></div></div>
+<div class="pv-chip"><i style="background:var(--line)"></i><div><code>--line · #4f7fbf</code><span>grade maior e traço secundário</span></div></div>
+<div class="pv-chip"><i style="background:var(--accent)"></i><div><code>--accent · #ffd84d</code><span>amarelo de marca-texto para o que está sendo explicado</span></div></div>
+<div class="pv-chip"><i style="background:var(--accent-2)"></i><div><code>--accent-2 · #7dffb0</code><span>verde de acesso liberado</span></div></div>
+<div class="pv-chip"><i style="background:var(--accent-ink)"></i><div><code>--accent-ink · #1c1700</code><span>tinta escura sobre o amarelo</span></div></div>
+<div class="pv-chip"><i style="background:var(--paper)"></i><div><code>--paper · #e8f3ff</code><span>papel claro de carimbo e de ficha</span></div></div>
+<div class="pv-chip"><i style="background:var(--paper-ink)"></i><div><code>--paper-ink · #0b2a57</code><span>tinta azul sobre o papel claro</span></div></div>
+<div class="pv-chip"><i style="background:var(--danger)"></i><div><code>--danger · #ff6b7d</code><span>vermelho de acesso trancado</span></div></div>
+<div class="pv-chip"><i style="background:var(--ok)"></i><div><code>--ok · #7dffb0</code><span>verde de liberado</span></div></div>
+<div class="pv-chip"><i style="background:var(--warn)"></i><div><code>--warn · #edc580</code><span>dourado de carimbo</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="pv-section" id="tipografia" data-scene>
+  <div class="pv-wrap pv-type">
+<div>
+      <p class="pv-type-display rise">Letra de prancheta</p>
+      <p class="pv-type-body rise" style="--i:1">Space Grotesk em peso 600 para títulos, com cara de letreiro técnico. Geist no corpo. JetBrains Mono em rótulos de sala, cotas e selo, quase sempre em caixa alta pequena com espaçamento de 0,08em.</p>
+      <p class="pv-type-mono rise" style="--i:2">PORTARIA · autenticação · 4 módulos</p>
+    </div>
+    <div class="pv-type-scale rise" style="--i:2">
+      <div><code>h1 · 66 / 600</code><span style="font:600 clamp(28px,3.2vw,42px)/1 var(--font-display);letter-spacing:-.02em">Planta</span></div>
+      <div><code>h3 · 26 / 600</code><span style="font:600 26px/1.1 var(--font-display)">Sala do banco</span></div>
+      <div><code>corpo · 17 / 1,6</code><span>Explicação em frase completa.</span></div>
+      <div><code>rótulo · mono 12</code><span style="font:600 12px var(--font-mono);letter-spacing:.08em">ROTAS · /CURSOS</span></div>
+      <div><code>cota · mono 11</code><span style="font:500 12px var(--font-mono);color:var(--muted)">4 módulos · 1 entrada</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="pv-section" id="objetos" data-scene>
+  <div class="pv-wrap">
+    <div class="pv-intro"><h2 class="pv-h2 rise">Ferramentas de prancheta</h2><p class="rise" style="--i:1">Tudo é desenhado ao vivo, como se a explicação estivesse sendo traçada na hora. Cada sala é um módulo, cada porta é uma permissão e as cotas medem o que importa.</p></div>
+    <div class="pv-objects">
+<figure class="wide">
+        <div class="pv-stage pa-stage" data-object="linha de cota">
+          <div class="pa-dim">
+            <svg viewBox="0 0 400 90" role="img" aria-label="Linha de cota medindo 200 milissegundos entre pedido e resposta">
+              <g stroke="#e8f3ff" stroke-width="1.5" fill="#e8f3ff">
+                <path d="M20 20 v60 M380 20 v60"/>
+                <g class="pa-grow"><path d="M20 50 H380"/><path d="M20 50 l12 -6 v12 z M380 50 l-12 -6 v12 z" stroke="none"/></g>
+              </g>
+              <rect x="150" y="38" width="100" height="24" fill="#0b2a57"/>
+              <text x="200" y="55" text-anchor="middle" style="font:600 14px var(--font-mono);fill:#ffd84d">200 ms</text>
+              <text x="20" y="14" style="font:500 11px var(--font-mono);fill:#bcd3f0">pedido</text><text x="380" y="14" text-anchor="end" style="font:500 11px var(--font-mono);fill:#bcd3f0">resposta</text>
+            </svg>
+          </div>
+        </div>
+        <figcaption><b>Linha de cota</b>Mede o que importa (tempo, tamanho, quantidade). Cresce do centro para as pontas e o valor fica num recorte no meio da linha.</figcaption>
+      </figure>
+      <figure class="wide">
+        <div class="pv-stage pa-stage" data-object="selo técnico">
+          <div class="pa-title" style="width:min(100%,360px)"><div class="wide"><small>projeto</small>Fluxo de pagamento</div><div><small>desenho</small>Sua Marca</div><div><small>verificação</small>equipe de API</div><div><small>escala</small>sem escala</div><div><small>data</small>revisão C</div><div><small>folha</small>02 / 04</div><div><small>status</small>em estudo</div></div>
+        </div>
+        <figcaption><b>Selo técnico</b>A ficha do canto da folha: projeto, autor, revisão e número da folha. Dá contexto sem precisar de título extra.</figcaption>
+      </figure>
+      <figure>
+        <div class="pv-stage pa-stage" data-object="carimbo">
+          <svg viewBox="0 0 240 160" width="240" role="img" aria-label="Carimbo dourado com a palavra aprovado">
+            <g class="pa-stamp" style="transition-delay:.3s"><g transform="rotate(-10 120 80)"><rect x="30" y="40" width="180" height="80" rx="6" fill="none" stroke="#edc580" stroke-width="4"/><rect x="38" y="48" width="164" height="64" rx="3" fill="none" stroke="#edc580" stroke-width="1.5"/><text x="120" y="88" text-anchor="middle" style="font:700 24px var(--font-display);letter-spacing:.12em;fill:#edc580">APROVADO</text><text x="120" y="106" text-anchor="middle" style="font:500 10px var(--font-mono);fill:#edc580">revisão B</text></g></g>
+          </svg>
+        </div>
+        <figcaption><b>Carimbo</b>Chega com escala e um pequeno giro, como se batesse no papel. Um por folha.</figcaption>
+      </figure>
+      <figure>
+        <div class="pv-stage pa-stage" data-object="lupa de detalhe">
+          <div class="pa-loupe" aria-hidden="true">
+            <svg viewBox="0 0 440 440" class="loop"><defs><pattern id="paG" width="22" height="22" patternUnits="userSpaceOnUse"><path d="M22 0H0V22" fill="none" stroke="#e8f3ff" stroke-opacity=".15"/></pattern></defs><rect width="440" height="440" fill="url(#paG)"/><path d="M40 60 H400 V400 H40 Z M200 60 V250 M200 250 H400" fill="none" stroke="#e8f3ff" stroke-width="5"/><path d="M200 250 A80 80 0 0 1 280 330" fill="none" stroke="#bfe0ff" stroke-width="2.5"/><text x="240" y="160" style="font:600 24px var(--font-mono);fill:#ffd84d">token</text><text x="70" y="330" style="font:600 22px var(--font-mono);fill:#7dffb0">liberado</text></svg>
+          </div>
+          <div class="pa-handle" aria-hidden="true"></div>
+        </div>
+        <figcaption><b>Lupa de detalhe</b>Amplia um trecho da planta e passeia devagar. Serve para o slide que entra no detalhe sem perder o todo.</figcaption>
+      </figure>
+      <figure>
+        <div class="pv-stage pa-stage" data-object="legenda de símbolos">
+          <ul class="pa-legend">
+            <li><svg width="56" height="10" aria-hidden="true"><path d="M0 5h56" stroke="#e8f3ff" stroke-width="3"/></svg><span>parede: limite do módulo</span></li>
+            <li><svg width="56" height="30" aria-hidden="true"><path d="M8 28 A22 22 0 0 1 30 6" fill="none" stroke="#bfe0ff" stroke-width="1.5"/><path d="M8 28 H30" stroke="#e8f3ff" stroke-width="3"/></svg><span>porta: uma permissão</span></li>
+            <li><svg width="56" height="10" aria-hidden="true"><path d="M0 5h56" stroke="#7dffb0" stroke-width="2.5" stroke-dasharray="6 6"/></svg><span>caminho liberado</span></li>
+            <li><svg width="56" height="30" aria-hidden="true"><rect x="18" y="12" width="20" height="16" rx="2" fill="none" stroke="#ff6b7d" stroke-width="2"/><path d="M22 12v-4a6 6 0 0 1 12 0v4" fill="none" stroke="#ff6b7d" stroke-width="2"/></svg><span>sala trancada</span></li>
+          </ul>
+        </div>
+        <figcaption><b>Legenda de símbolos</b>Quatro sinais e nada mais. A legenda vive no canto da folha e não muda de uma página para outra.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="pv-section" id="formatos" data-scene>
+  <div class="pv-wrap">
+    <div class="pv-intro"><h2 class="pv-h2 rise">O mesmo estilo em página, deck e carrossel</h2><p class="rise" style="--i:1">Um trecho de página, um slide 16:9 e um slide de carrossel 4:5, todos com as mesmas variáveis do contrato.</p></div>
+    <div class="pv-formats">
+      <div data-format="page">
+<p class="pv-format-label">Trecho de página</p>
+        <div class="pa-sheet pa-page">
+          <div>
+            <h3>Cada perfil vê só as salas de que precisa</h3>
+            <p>A equipe de conteúdo cria e revisa aulas. O financeiro fica com duas pessoas. O resto do prédio continua fechado para quem não tem o crachá certo.</p>
+            <ul class="pa-rooms"><li><b>01</b><span>Aulas e materiais</span><em style="color:var(--ok)">liberado</em></li><li><b>02</b><span>Relatórios de uso</span><em style="color:var(--ok)">liberado</em></li><li><b>03</b><span>Pagamentos</span><em style="color:var(--danger)">trancado</em></li></ul>
+          </div>
+          <svg viewBox="0 0 420 260" role="img" aria-label="Planta com três salas e um crachá na porta de entrada">
+            <g fill="none" stroke="#e8f3ff" stroke-width="3"><path d="M20 20H400V240H20Z M160 20V240 M280 20V150 M280 190V240"/></g>
+            <path d="M160 120 A40 40 0 0 1 200 160" fill="none" stroke="#bfe0ff" stroke-width="1.5"/>
+            <path class="pa-flow loop" d="M60 220 V140 H220 V80" fill="none" stroke="#7dffb0" stroke-width="2.5"/>
+            <g fill="#e8f3ff" style="font:600 12px var(--font-mono)"><text x="36" y="46">AULAS</text><text x="176" y="46">RELATÓRIOS</text><text x="296" y="46">PAGAMENTOS</text></g>
+            <g><rect x="324" y="90" width="30" height="24" rx="3" fill="none" stroke="#ff6b7d" stroke-width="2.5"/><path d="M330 90v-7a9 9 0 0 1 18 0v7" fill="none" stroke="#ff6b7d" stroke-width="2.5"/></g>
+          </svg>
+        </div>
+      </div>
+      <div><p class="pv-format-label">Slide de aula · 16:9</p><div data-format="deck">
+<div class="pa-deck">
+          <div class="frame">
+            <div><h3>O banco fica atrás de duas portas</h3><p>Nenhuma rota pública conversa com o banco direto. Tudo passa pela portaria e pelas rotas autenticadas.</p></div>
+            <svg viewBox="0 0 420 260" role="img" aria-label="Planta com portaria, rotas e banco em sequência">
+              <g fill="none" stroke="#e8f3ff" stroke-width="3"><path d="M10 20H410V240H10Z M140 20V110 M140 150V240 M280 20V110 M280 150V240"/></g>
+              <g fill="none" stroke="#bfe0ff" stroke-width="1.5"><path d="M140 110 A40 40 0 0 1 180 150"/><path d="M280 110 A40 40 0 0 1 320 150"/></g>
+              <path class="pa-flow loop" d="M40 200 H350" fill="none" stroke="#7dffb0" stroke-width="2.5"/>
+              <g fill="#e8f3ff" style="font:600 13px var(--font-mono)"><text x="28" y="50">PORTARIA</text><text x="160" y="50">ROTAS</text><text x="300" y="50">BANCO</text></g>
+            </svg>
+            <div class="pa-title"><div class="wide"><small>projeto</small>API de cursos</div><div><small>folha</small>03 / 04</div><div><small>revisão</small>B</div></div>
+          </div>
+        </div>
+      </div></div>
+      <div><p class="pv-format-label">Slide de carrossel · 4:5</p><div data-format="carousel">
+<div class="pa-car">
+          <div class="frame" aria-hidden="true"></div>
+          <h3>A <mark>portaria</mark> confere o crachá antes de tudo</h3>
+          <svg viewBox="0 0 400 300" role="img" aria-label="Sala da portaria com uma porta e um crachá">
+            <g fill="none" stroke="#e8f3ff" stroke-width="3"><path d="M40 30H360V270H40Z M200 30V140 M200 190V270"/></g>
+            <path d="M200 140 A50 50 0 0 1 250 190" fill="none" stroke="#bfe0ff" stroke-width="1.5"/>
+            <rect x="88" y="190" width="70" height="40" rx="5" fill="#ffd84d"/><text x="123" y="215" text-anchor="middle" style="font:700 14px var(--font-mono);fill:#1c1700">aluno</text>
+            <path class="pa-flow loop" d="M158 210 H300 V90" fill="none" stroke="#7dffb0" stroke-width="3"/>
+            <g stroke="#bcd3f0" fill="#bcd3f0"><path d="M40 288H360" stroke-width="1"/><text x="200" y="284" text-anchor="middle" stroke="none" style="font:500 12px var(--font-mono)">1 entrada</text></g>
+          </svg>
+          <footer><span>@suamarca</span><span>2 / 8</span></footer>
+        </div>
+      </div></div>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="pv-wrap pv-foot">Prévia do estilo planta-azul · pycode-design · tokens em tokens.css, regras em DESIGN.md. Conteúdo fictício de exemplo.</footer>
+<script>
+/* Movimento: liga cada cena só quando visível, pausa com a aba oculta e respeita movimento reduzido. */
+(() => {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const scenes = document.querySelectorAll('[data-scene]');
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      e.target.dataset.motion = e.isIntersecting && !reduce.matches ? 'on' : 'off';
+      if (e.isIntersecting) e.target.dataset.entered = 'true';
+    }
+  }, { threshold: 0.12 });
+  scenes.forEach((s) => io.observe(s));
+  document.addEventListener('visibilitychange', () => {
+    document.body.dataset.background = document.hidden ? 'true' : 'false';
+  });
+})();
+
+
+</script>
+</body>
+</html>

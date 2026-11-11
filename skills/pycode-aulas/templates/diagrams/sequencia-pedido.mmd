@@ -1,0 +1,14 @@
+%% Sequência de mensagens entre sistemas. No Whimsical, converta para flowchart antes de colar
+%% (sequenceDiagram entra como texto solto); no Notion e no SVG funciona como está.
+sequenceDiagram
+    participant App
+    participant API as Porta da API
+    participant Srv as Servidor
+    participant DB as Banco
+    App->>API: GET /clientes/42/pedidos
+    API->>API: confere a chave e o limite
+    API->>Srv: pedido autorizado
+    Srv->>DB: busca os pedidos
+    DB-->>Srv: 7, 9 e 12
+    Srv-->>API: JSON com a lista
+    API-->>App: 200 OK

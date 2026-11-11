@@ -1,0 +1,46 @@
+{
+  "id": "fim",
+  "archetype": "encerramento",
+  "title": "Sua primeira chamada",
+  "chapter": "encerramento",
+  "thread": "resposta · entregue",
+  "transition": "iris",
+  "bg": "orbita",
+  "apoio": "Para fixar, faça uma chamada a uma API pública de teste, leia o código de status e compare a resposta com o que viu aqui.",
+  "notes": "O pedido 42 completa a volta. Mostre os três próximos passos e indique o material de estudo.",
+  "reading": [
+    {
+      "label": "Passo 1",
+      "title": "Chame",
+      "text": "Rode curl -i https://httpbin.org/get e leia a primeira linha da resposta."
+    },
+    {
+      "label": "Passo 2",
+      "title": "Leia",
+      "text": "Abra o JSON e encontre os campos que uma tela usaria."
+    },
+    {
+      "label": "Passo 3",
+      "title": "Erre de propósito",
+      "text": "Peça https://httpbin.org/status/404 e compare o código de status."
+    }
+  ],
+  "data": {
+    "start": "App",
+    "done": "resposta entregue",
+    "steps": [
+      {
+        "label": "Chame",
+        "tip": "Rode um curl numa API de teste e leia o status."
+      },
+      {
+        "label": "Leia",
+        "tip": "Ache no JSON os campos que a tela usaria."
+      },
+      {
+        "label": "Erre de propósito",
+        "tip": "Peça um recurso que não existe e veja o 404."
+      }
+    ]
+  }
+}

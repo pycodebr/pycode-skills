@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Imagem de compartilhamento</title>
+<!-- Renderizado pelo `pycode page new` em 1200x630 para gerar img/og.jpg. Edite e rode `pycode page og`. -->
+<link rel="stylesheet" href="css/fonts.css">
+<link rel="stylesheet" href="css/tokens.css">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    position: relative; display: grid; grid-template-columns: 1.15fr .85fr; align-items: center; gap: 48px;
+    padding: 64px 72px; color: var(--text); font-family: var(--font-body);
+    background:
+      radial-gradient(ellipse at 82% 50%, color-mix(in srgb, var(--accent-2) 16%, transparent), transparent 60%),
+      repeating-linear-gradient(90deg, color-mix(in srgb, var(--line) 30%, transparent) 0 1px, transparent 1px 60px),
+      repeating-linear-gradient(0deg, color-mix(in srgb, var(--line) 30%, transparent) 0 1px, transparent 1px 60px),
+      var(--bg);
+  }
+  .brand { display: flex; align-items: center; gap: 14px; font-size: 26px; font-weight: 600; }
+  .brand i { width: 34px; height: 34px; border-radius: 50%; border: 3px solid var(--accent-2); position: relative; }
+  .brand i::after { content: ""; position: absolute; width: 12px; height: 12px; border-radius: 50%; background: var(--accent); right: -6px; top: -4px; }
+  h1 {
+    margin: 34px 0 0; font-family: var(--font-display); font-weight: var(--weight-display, 500);
+    letter-spacing: var(--tracking-display, -0.02em); font-size: 64px; line-height: 1.04;
+  }
+  p { margin: 26px 0 0; font: 22px/1.4 var(--font-mono); color: var(--muted); }
+  .object { position: relative; height: 470px; }
+  .card { position: absolute; border-radius: var(--radius-lg); box-shadow: var(--shadow); }
+  .client { left: 0; top: 0; width: 360px; padding: 20px 22px; background: var(--paper); color: var(--paper-ink); font: 17px/1.5 var(--font-mono); }
+  .client b { display: block; height: 14px; margin-top: 16px; border-radius: 7px; background: color-mix(in srgb, var(--paper-ink) 18%, transparent); }
+  .client b:nth-of-type(2) { width: 78%; } .client b:nth-of-type(3) { width: 56%; }
+  .server { right: 0; bottom: 0; width: 330px; padding: 24px; border: 2px solid var(--line); background: var(--surface); font: 600 20px/1.4 var(--font-mono); }
+  .server span { display: block; margin-top: 10px; font-weight: 400; font-size: 17px; color: var(--muted); }
+  .lane { position: absolute; left: 150px; top: 168px; width: 2px; height: 150px; border-left: 2px dashed var(--accent-2); }
+  .lane.back { left: 250px; top: 168px; }
+  .packet { position: absolute; padding: 8px 16px; border-radius: 99px; font: 17px/1.2 var(--font-mono); white-space: nowrap; }
+  .out { left: 92px; top: 214px; background: var(--accent); color: var(--accent-ink); }
+  .ret { left: 196px; top: 262px; background: var(--surface-2); border: 2px solid var(--accent-2); }
+</style>
+</head>
+<body>
+  <div>
+    <div class="brand"><i></i>{{BRAND}}</div>
+    <h1>{{TITLE}}</h1>
+    <p>{{SITE_LABEL}}</p>
+  </div>
+  <div class="object" aria-hidden="true">
+    <div class="card client">exemplo.com/livros<b></b><b></b><b></b></div>
+    <div class="lane"></div><div class="lane back"></div>
+    <span class="packet out">GET /livros</span>
+    <span class="packet ret">200 OK</span>
+    <div class="card server">api.exemplo/v1<span>← 200 OK · 38 ms</span></div>
+  </div>
+</body>
+</html>

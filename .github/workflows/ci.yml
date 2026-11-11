@@ -1,0 +1,33 @@
+name: ci
+on: [push, pull_request]
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - name: Sintaxe dos scripts de shell
+        run: bash -n install.sh && bash -n scripts/setup.sh && bash -n bin/pycode && bash -n tests/smoke.sh
+      - name: Formato das skills, comandos e estilos
+        run: pip install -q pyyaml && python tests/check_skills.py
+      - name: Guarda de publicação
+        run: python tests/leak_guard.py
+      - name: Texto PT-BR da documentação
+        run: python tools/cli.py text README.md AGENTS.md CONTRIBUTING.md THIRD_PARTY.md skills/*/SKILL.md skills/*/references/*.md
+  install:
+    needs: check
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - name: Instalação completa (como um aluno faria)
+        run: bash install.sh --agent all
+      - name: Conferência
+        run: ~/.pycode-skills/bin/pycode doctor
+      - name: Cria, monta e testa um artefato de cada skill
+        run: bash tests/smoke.sh

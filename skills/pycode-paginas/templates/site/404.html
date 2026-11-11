@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="{{LANG}}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Página não encontrada · {{BRAND}}</title>
+  <meta name="theme-color" content="{{THEME_COLOR}}">
+  <meta name="robots" content="noindex">
+  <meta name="color-scheme" content="{{COLOR_SCHEME}}">
+  <link rel="icon" href="img/favicon.svg" type="image/svg+xml">
+{{PRELOAD}}
+  <script>document.documentElement.classList.add('js')</script>
+  <!-- pycode:critical (o build troca estes três links por um <style id="critical-css"> incorporado) -->
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/critical.css">
+  <!-- /pycode:critical -->
+  <link rel="stylesheet" href="css/styles.css" data-defer>
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+
+  <header class="site-header" id="topo">
+    <div class="wrap header-row">
+      <a class="brand" href="index.html" aria-label="{{BRAND}}, página inicial">{{BRAND_MARK}}<span>{{BRAND}}</span></a>
+      <nav class="site-nav" aria-label="Navegação principal">
+        <ul class="nav-links">
+          <li><a href="index.html">Início</a></li>
+          <li><a href="oficinas.html">Oficinas</a></li>
+          <li><a href="index.html#caminho">O caminho</a></li>
+        </ul>
+        <details class="menu">
+          <summary><span>Menu</span><i aria-hidden="true"></i></summary>
+          <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="oficinas.html">Oficinas</a></li>
+            <li><a href="index.html#caminho">O caminho</a></li>
+            <li><a href="index.html#inscricao">Guardar um lugar</a></li>
+          </ul>
+        </details>
+      </nav>
+      <a class="button button-small" href="index.html#inscricao">Guardar um lugar</a>
+    </div>
+  </header>
+
+
+  <main id="conteudo" tabindex="-1">
+    <section class="not-found" aria-labelledby="nf-title">
+      <div class="wrap nf-grid">
+        <div class="nf-card" aria-hidden="true">
+          <p class="nf-line"><span>→</span> GET <span class="nf-path">/caminho-pedido</span></p>
+          <p class="nf-status">404</p>
+          <p class="nf-line"><span>←</span> Not Found · 0 bytes</p>
+        </div>
+        <div>
+          <h1 id="nf-title">Esta página não existe ou mudou de endereço</h1>
+          <p class="lead">O servidor recebeu o pedido, procurou e não encontrou nada neste caminho. Os links abaixo levam para as partes principais do site.</p>
+          <div class="actions">
+            <a class="button" href="index.html">Ir para o início</a>
+            <a class="button button-ghost" href="oficinas.html">Ver as oficinas</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    /* Mostra o caminho pedido no cartão (melhoria progressiva; sem JS fica o exemplo). */
+    document.querySelector('.nf-path').textContent = location.pathname.slice(0, 40);
+  </script>
+  <footer class="site-footer">
+    <div class="wrap footer-row">
+      <p><strong>{{BRAND}}</strong> · <a href="{{SITE}}">{{SITE_LABEL}}</a></p>
+      <p>© {{YEAR}} {{BRAND}}. Página estática, sem framework, com fontes servidas pelo próprio site.</p>
+      <a class="to-top" href="#topo">Voltar ao topo</a>
+    </div>
+  </footer>
+</body>
+</html>

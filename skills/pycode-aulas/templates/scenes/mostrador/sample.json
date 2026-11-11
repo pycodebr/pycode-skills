@@ -1,0 +1,72 @@
+{
+  "id": "status",
+  "archetype": "mostrador",
+  "title": "A resposta tem número",
+  "chapter": "a resposta",
+  "thread": "resposta · 200",
+  "transition": "iris",
+  "bg": "orbita",
+  "apoio": "Todo retorno de uma API começa com um código de status. Ele resume o que aconteceu antes mesmo de alguém ler os dados.",
+  "hook": "Quanto tempo tudo isso levou? Bem menos que um piscar de olhos.",
+  "notes": "Clique em cada faixa do mostrador: o número gira e a agulha aponta para a família.",
+  "reading": [
+    {
+      "label": "2xx",
+      "title": "200 · Deu certo",
+      "text": "Os dados pedidos vieram no corpo da resposta."
+    },
+    {
+      "label": "3xx",
+      "title": "301 · Mudou de lugar",
+      "text": "O recurso tem um endereço novo, informado na resposta."
+    },
+    {
+      "label": "4xx",
+      "title": "404 · Não encontrado",
+      "text": "O pedido chegou, mas o recurso não existe. Erros 4xx são do lado de quem pede."
+    },
+    {
+      "label": "5xx",
+      "title": "500 · Erro no servidor",
+      "text": "O problema foi do lado de quem responde."
+    }
+  ],
+  "data": {
+    "items": [
+      {
+        "value": 200,
+        "family": "2xx",
+        "label": "Deu certo",
+        "tone": "ok",
+        "tip": "Os dados pedidos vieram no corpo."
+      },
+      {
+        "value": 301,
+        "family": "3xx",
+        "label": "Mudou de lugar",
+        "tone": "accent-2",
+        "tip": "O recurso tem um endereço novo."
+      },
+      {
+        "value": 404,
+        "family": "4xx",
+        "label": "Não encontrado",
+        "tone": "warn",
+        "tip": "Não existe pedido com esse número."
+      },
+      {
+        "value": 500,
+        "family": "5xx",
+        "label": "Erro no servidor",
+        "tone": "danger",
+        "tip": "A falha foi de quem responde."
+      }
+    ]
+  },
+  "study": {
+    "text": [
+      "O primeiro dígito indica a família: 1xx informa que o pedido segue em andamento, 2xx indica sucesso, 3xx pede um redirecionamento, 4xx aponta um problema no pedido e 5xx aponta uma falha de quem responde.",
+      "Dois códigos parecidos costumam confundir: 401 indica que falta uma identificação válida, enquanto 403 indica que quem pediu foi identificado, mas não tem permissão para aquele recurso."
+    ]
+  }
+}

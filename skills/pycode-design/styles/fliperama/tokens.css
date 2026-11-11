@@ -1,0 +1,34 @@
+/* Fliperama · tokens do contrato comum do pycode-design (não renomeie as variáveis do contrato). */
+:root {
+  --bg: #0b0b1a;
+  --bg-2: #121230;
+  --surface: #1a2bb0;
+  --surface-2: #24249a;
+  --text: #ffffff;
+  --muted: #c9cdf2;
+  --line: #ffffff;
+  --accent: #ffd84d;
+  --accent-2: #5ef2c2;
+  --accent-ink: #000000;
+  --paper: #fff8e7;
+  --paper-ink: #141433;
+  --danger: #ff5c7a;
+  --ok: #5ef2c2;
+  --warn: #ffa64d;
+  --font-display: 'Press Start 2P', ui-monospace, monospace;
+  --font-body: 'VT323', ui-monospace, monospace;
+  --font-mono: 'VT323', ui-monospace, monospace;
+  --weight-display: 400;
+  --tracking-display: 0.02em;
+  --radius: 0px;
+  --radius-lg: 0px;
+  --shadow: 6px 6px 0 #000000;
+  --glow: 0 0 0 4px #000000, 0 0 0 8px #ffffff;
+  /* extras do estilo (prefixo do slug) */
+  --fliperama-pixel: 4px;
+  --fliperama-hp: #ff5c7a;
+  --fliperama-xp: #5ef2c2;
+  --fliperama-mp: #6ab7ff;
+  --fliperama-window: #1a2bb0;
+  --fliperama-font-score: 'Jersey 10', Impact, sans-serif;
+}

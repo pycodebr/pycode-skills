@@ -1,0 +1,7 @@
+{
+  "name": "niveis",
+  "title": "Níveis",
+  "summary": "Escada de maturidade isométrica desenhada em código, com o degrau atual aceso, numeral gigante, medidor de cinco segmentos e o artefato de cada nível; capa em vídeo com os degraus acendendo.",
+  "default_style": "orbital",
+  "fonts_extra": []
+}

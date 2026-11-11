@@ -1,0 +1,32 @@
+/* Revista · tokens do contrato comum do pycode-design (não renomeie as variáveis do contrato). */
+:root {
+  --bg: #f4efe6;
+  --bg-2: #ece5d8;
+  --surface: #fbf8f2;
+  --surface-2: #efe8dc;
+  --text: #1a1714;
+  --muted: #5c544a;
+  --line: #cfc4b2;
+  --accent: #b23a1c;
+  --accent-2: #1f4d45;
+  --accent-ink: #ffffff;
+  --paper: #fffdf8;
+  --paper-ink: #1a1714;
+  --danger: #a3271a;
+  --ok: #2f6b3b;
+  --warn: #8a5a00;
+  --font-display: 'Instrument Serif', Georgia, 'Times New Roman', serif;
+  --font-body: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-mono: 'Geist Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --weight-display: 400;
+  --tracking-display: -0.02em;
+  --radius: 0px;
+  --radius-lg: 2px;
+  --shadow: 0 1px 0 #cfc4b2;
+  --glow: 0 0 0 1px #1a1714;
+  /* extras do estilo (prefixo do slug) */
+  --revista-rule: #1a1714;
+  --revista-rule-thin: #cfc4b2;
+  --revista-column: 34ch;
+  --revista-dropcap-lines: 4;
+}

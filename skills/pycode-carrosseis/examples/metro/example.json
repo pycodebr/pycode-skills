@@ -1,0 +1,7 @@
+{
+  "name": "metro",
+  "title": "Mapa do metrô",
+  "summary": "Trilha ou ordem de etapas como linha de metrô: faixa do mapa no topo, placa de estação, objeto de cada etapa e a linha correndo de um slide para o outro; capa em vídeo com o trem chegando.",
+  "default_style": "metro",
+  "fonts_extra": []
+}

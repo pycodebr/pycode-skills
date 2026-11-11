@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Papel e colagem · prévia do estilo</title>
+<meta name="description" content="Mesa de recortes em papel kraft: pedaços rasgados, fita adesiva, carimbos, etiquetas, polaroides e letras recortadas, com anotações à mão. Para conteúdo de bastidores, listas, comparações e posts de comunidade.">
+<!-- Abra pela galeria (pycode styles preview): ela copia as fontes para fonts/ ao lado deste arquivo. -->
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="tokens.css">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+/* ---------- chassi comum da prévia: só variáveis do contrato ---------- */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:17px;line-height:1.6;overflow-x:hidden}
+img,svg{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.pv-wrap{width:min(1240px,calc(100% - 40px));margin-inline:auto}
+.pv-section{padding-block:clamp(56px,8vw,112px);position:relative}
+.pv-section + .pv-section{border-top:1px solid var(--line)}
+h1,h2,h3{font-family:var(--font-display);font-weight:var(--weight-display);letter-spacing:var(--tracking-display);line-height:1.05;margin:0;text-wrap:balance}
+p{margin:0;text-wrap:pretty}
+.pv-h2{font-size:clamp(30px,4.2vw,54px);max-width:18ch}
+.pv-intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px 48px;align-items:end;margin-bottom:clamp(32px,5vw,56px)}
+.pv-intro p{color:var(--muted);max-width:56ch}
+.pv-top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 0;font-family:var(--font-mono);font-size:14px;color:var(--muted)}
+.pv-top b{color:var(--text);font-weight:600}
+.pv-top nav{display:flex;gap:18px;flex-wrap:wrap}
+.pv-top nav a{text-decoration:none;color:var(--muted)}
+.pv-top nav a:hover{color:var(--text)}
+/* paleta */
+.pv-palette{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,190px),1fr));gap:14px}
+@media (max-width:600px){.pv-palette{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.pv-chip{grid-template-rows:56px auto}.pv-chip div{padding:10px}.pv-chip code{font-size:12px;word-break:break-all}.pv-chip span{font-size:13px}}
+.pv-chip{display:grid;grid-template-rows:84px auto;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--surface)}
+.pv-chip i{display:block;border-bottom:1px solid var(--line)}
+.pv-chip div{padding:12px 14px 14px;display:grid;gap:2px}
+.pv-chip code{font-family:var(--font-mono);font-size:13px;color:var(--text)}
+.pv-chip span{font-size:14px;line-height:1.45;color:var(--muted)}
+/* tipografia */
+.pv-type{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:clamp(24px,4vw,56px)}
+.pv-type-display{font-family:var(--font-display);font-weight:var(--weight-display);letter-spacing:var(--tracking-display);font-size:clamp(46px,7.4vw,112px);line-height:.98}
+.pv-type-scale{display:grid;gap:14px;align-content:start}
+.pv-type-scale div{display:grid;grid-template-columns:120px minmax(0,1fr);gap:12px;align-items:baseline;border-top:1px solid var(--line);padding-top:10px}
+.pv-type-scale code{font-family:var(--font-mono);font-size:13px;color:var(--muted)}
+.pv-type-body{margin-top:26px;max-width:58ch;color:var(--muted)}
+.pv-type-mono{margin-top:18px;font-family:var(--font-mono);font-size:15px;color:var(--text)}
+/* objetos */
+.pv-objects{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:clamp(16px,2vw,28px)}
+.pv-objects > figure{margin:0;grid-column:span 2;display:grid;grid-template-rows:auto 1fr;gap:14px;min-width:0}
+.pv-objects > figure.wide{grid-column:span 3}
+.pv-objects > figure.full{grid-column:1 / -1}
+.pv-stage{position:relative;min-height:340px;padding:28px;border-radius:var(--radius-lg);overflow:hidden;display:grid;place-items:center;isolation:isolate}
+.pv-objects figcaption{font-size:15px;line-height:1.5;color:var(--muted)}
+.pv-objects figcaption b{display:block;color:var(--text);font-family:var(--font-display);font-weight:var(--weight-display);letter-spacing:var(--tracking-display);font-size:19px;margin-bottom:2px}
+/* formatos */
+.pv-formats{display:grid;grid-template-columns:minmax(0,1.85fr) minmax(0,1fr);gap:clamp(20px,3vw,36px);align-items:start}
+.pv-formats > [data-format="page"]{grid-column:1 / -1}
+.pv-format-label{font-family:var(--font-mono);font-size:13px;color:var(--muted);margin:0 0 10px}
+[data-format="deck"]{aspect-ratio:16/9;container-type:inline-size;position:relative;overflow:hidden;border-radius:var(--radius)}
+[data-format="carousel"]{aspect-ratio:4/5;container-type:inline-size;position:relative;overflow:hidden;border-radius:var(--radius)}
+.pv-foot{padding:40px 0 56px;color:var(--muted);font-size:14px;font-family:var(--font-mono)}
+/* movimento: entradas só quando há JS; loops só rodam com a cena visível */
+html.js [data-scene]:not([data-entered]) .rise{opacity:0;transform:translateY(18px)}
+.rise{transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1);transition-delay:calc(var(--i,0) * 70ms)}
+html.js .loop,html.js .loop::before,html.js .loop::after{animation-play-state:paused !important}
+html.js [data-scene][data-motion="on"] .loop,html.js [data-scene][data-motion="on"] .loop::before,html.js [data-scene][data-motion="on"] .loop::after{animation-play-state:running !important}
+html.js body[data-background="true"] .loop,html.js body[data-background="true"] .loop::before,html.js body[data-background="true"] .loop::after{animation-play-state:paused !important}
+@media (max-width:900px){
+  .pv-intro,.pv-type,.pv-formats{grid-template-columns:minmax(0,1fr)}
+  .pv-objects{grid-template-columns:minmax(0,1fr)}
+  .pv-objects > figure,.pv-objects > figure.wide{grid-column:1 / -1}
+}
+@media (max-width:600px){.pv-top nav{display:none}body{font-size:16px}}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none !important;transition:none !important;scroll-behavior:auto !important}
+  html.js [data-scene]:not([data-entered]) .rise{opacity:1;transform:none}
+}
+
+/* ---------- Papel e colagem: superfícies, objetos e movimento do estilo ---------- */
+.pv-colagem{background-color:var(--bg);background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 .4 0 0 0 0 .3 0 0 0 0 .2 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E")}
+.pv-colagem .pv-section + .pv-section{border-top:2px dashed var(--line)}
+.pv-colagem .pv-h2{font-size:clamp(40px,5vw,70px);line-height:.95;text-transform:uppercase}
+.pv-colagem .pv-objects figcaption b{font-size:22px;text-transform:uppercase}
+.pv-colagem .pv-chip{border-radius:2px;box-shadow:var(--shadow)}
+.cg-hand{font-family:var(--colagem-font-hand);font-weight:700}
+.cg-hero{padding-top:clamp(24px,4vw,56px);overflow:hidden}
+.cg-board{position:relative;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:clamp(24px,4vw,56px);align-items:center}
+.cg-ransom{display:flex;flex-wrap:wrap;gap:4px 2px;margin:0 0 6px;font:400 clamp(36px,5.4vw,82px)/1 var(--font-display)}
+.cg-ransom span{display:inline-block;padding:.04em .1em .02em;box-shadow:0 2px 3px rgba(33,26,20,.25);transform:rotate(var(--r,0deg))}
+.cg-hero h1{font-size:clamp(34px,4.4vw,64px);line-height:1;text-transform:uppercase}
+.cg-note{position:relative;margin-top:26px;padding:26px 26px 30px;background:var(--surface);max-width:470px;transform:rotate(-1.2deg);box-shadow:var(--shadow);clip-path:polygon(0.0% 0.43%,4.55% 2.71%,9.09% 2.44%,13.64% 0.82%,18.18% 1.59%,22.73% 1.44%,27.27% 2.09%,31.82% 2.52%,36.36% 0.3%,40.91% 0.09%,45.45% 2.67%,50.0% 1.38%,54.55% 2.44%,59.09% 0.01%,63.64% 1.43%,68.18% 2.31%,72.73% 0.73%,77.27% 3.02%,81.82% 2.88%,86.36% 0.1%,90.91% 0.08%,95.45% 1.73%,100.0% 3.01%,100.0% 98.78%,95.45% 99.31%,90.91% 98.65%,86.36% 99.91%,81.82% 99.29%,77.27% 98.6%,72.73% 98.41%,68.18% 99.25%,63.64% 99.26%,59.09% 99.3%,54.55% 98.53%,50.0% 99.07%,45.45% 99.93%,40.91% 97.32%,36.36% 98.22%,31.82% 97.94%,27.27% 99.41%,22.73% 96.82%,18.18% 97.25%,13.64% 99.61%,9.09% 98.94%,4.55% 97.69%,0.0% 97.72%);font-size:17px}
+.cg-note p{max-width:42ch}
+.cg-tape{position:absolute;width:110px;height:30px;background:var(--colagem-tape);box-shadow:0 1px 2px rgba(0,0,0,.12);transform:rotate(var(--r,-6deg));z-index:3}
+.cg-btn{display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 24px;margin-top:20px;background:var(--accent);color:var(--accent-ink);text-decoration:none;font:400 22px/1 var(--font-display);letter-spacing:.03em;text-transform:uppercase;box-shadow:3px 3px 0 var(--text);transform:rotate(-1deg)}
+.cg-pile{position:relative;min-height:520px}
+.cg-pol{position:absolute;background:var(--paper);padding:14px 14px 52px;box-shadow:var(--shadow);width:min(300px,76%)}
+.cg-pol .img{aspect-ratio:1;background:var(--colagem-cobalt);overflow:hidden}
+.cg-pol p{position:absolute;left:16px;bottom:10px;font:700 26px/1 var(--colagem-font-hand);color:var(--text)}
+.cg-postit{position:absolute;width:190px;aspect-ratio:1;background:var(--colagem-mustard);padding:18px;box-shadow:0 12px 18px rgba(33,26,20,.25);font:700 25px/1.05 var(--colagem-font-hand);color:var(--text)}
+.cg-stamp{position:absolute;width:150px;height:150px}
+.cg-stamp svg{width:100%;height:100%}
+.cg-tag{position:absolute;transform-origin:50% 0;animation:cg-sway 4.5s ease-in-out infinite}
+@keyframes cg-sway{0%,100%{transform:rotate(-5deg)}50%{transform:rotate(5deg)}}
+.cg-tag .lbl{display:block;background:var(--surface);padding:10px 16px 10px 26px;font:600 14px var(--font-mono);clip-path:polygon(16% 0,100% 0,100% 100%,16% 100%,0 50%);box-shadow:var(--shadow)}
+.cg-drop{transition:transform .7s cubic-bezier(.3,1.4,.5,1),opacity .4s ease;transition-delay:calc(var(--i,0) * 120ms)}
+html.js [data-scene]:not([data-entered]) .cg-drop{opacity:0;transform:translateY(-40px) rotate(-8deg) scale(1.06)}
+.cg-arrow{position:absolute;pointer-events:none}
+/* rotulador */
+.cg-label{display:inline-block;background:#141414;color:#f4f4f4;font:600 18px var(--font-mono);letter-spacing:.18em;text-transform:uppercase;padding:10px 16px;border-radius:3px;box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 3px 6px rgba(0,0,0,.25);text-shadow:0 1px 0 #000,0 -1px 0 rgba(255,255,255,.35)}
+.cg-stage{background:var(--bg-2);border-radius:var(--radius-lg);box-shadow:inset 0 0 0 1px var(--line)}
+.cg-torn{background:var(--surface);padding:28px 26px;width:min(100%,320px);box-shadow:var(--shadow);transform:rotate(1.5deg);clip-path:polygon(0.0% 1.46%,6.25% 0.68%,12.5% 2.93%,18.75% 0.33%,25.0% 2.41%,31.25% 1.65%,37.5% 0.26%,43.75% 2.28%,50.0% 0.17%,56.25% 1.95%,62.5% 0.31%,68.75% 0.41%,75.0% 1.91%,81.25% 3.72%,87.5% 0.56%,93.75% 1.0%,100.0% 2.82%,100.0% 95.74%,93.75% 97.4%,87.5% 98.21%,81.25% 95.61%,75.0% 99.79%,68.75% 96.14%,62.5% 98.7%,56.25% 99.35%,50.0% 99.47%,43.75% 98.61%,37.5% 96.33%,31.25% 99.19%,25.0% 97.38%,18.75% 97.12%,12.5% 98.32%,6.25% 97.54%,0.0% 99.72%);font-size:16px}
+.cg-torn b{display:block;font:400 30px/1 var(--font-display);text-transform:uppercase;margin-bottom:8px}
+/* página */
+.cg-page{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(20px,4vw,56px);align-items:center;padding:clamp(20px,3vw,40px)}
+.cg-page h3{font-size:clamp(32px,3.6vw,52px);line-height:.98;text-transform:uppercase}
+.cg-page p{margin-top:12px}
+.cg-list{list-style:none;padding:0;margin:16px 0 0;display:grid;gap:10px}
+.cg-list li{display:flex;gap:12px;align-items:baseline}
+.cg-list li b{font:700 26px/1 var(--colagem-font-hand);color:var(--accent)}
+/* deck */
+.cg-deck{position:absolute;inset:0;background:var(--bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 .4 0 0 0 0 .3 0 0 0 0 .2 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");padding:4cqw 5cqw;display:grid;grid-template-columns:1.15fr .85fr;gap:3cqw;align-items:center}
+.cg-deck .cg-ransom{font-size:6cqw;gap:.4cqw .2cqw}
+.cg-deck .paper{background:var(--surface);padding:2.6cqw;transform:rotate(-1deg);box-shadow:var(--shadow);clip-path:polygon(0% 0%,100% 0%,100.0% 98.89%,96.15% 98.94%,92.31% 97.98%,88.46% 98.75%,84.62% 98.46%,80.77% 98.8%,76.92% 98.41%,73.08% 98.9%,69.23% 99.33%,65.38% 97.61%,61.54% 97.61%,57.69% 97.98%,53.85% 98.3%,50.0% 99.24%,46.15% 99.45%,42.31% 99.31%,38.46% 99.83%,34.62% 98.16%,30.77% 99.04%,26.92% 97.97%,23.08% 99.07%,19.23% 97.7%,15.38% 97.97%,11.54% 100.0%,7.69% 99.5%,3.85% 97.82%,0.0% 98.87%);font-size:1.6cqw}
+.cg-deck .cg-pol{position:relative;width:100%;padding:1.4cqw 1.4cqw 5cqw;transform:rotate(3deg)}
+.cg-deck .cg-pol p{font-size:2.6cqw;left:1.6cqw;bottom:1.2cqw}
+/* carrossel */
+.cg-car{position:absolute;inset:0;background:var(--bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 .4 0 0 0 0 .3 0 0 0 0 .2 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");padding:7cqw;display:grid;grid-template-rows:auto 1fr auto}
+.cg-car .cg-ransom{font-size:12cqw;gap:.8cqw .4cqw}
+.cg-car .cg-postit{position:relative;width:62cqw;justify-self:end;align-self:center;font-size:6.4cqw;padding:5cqw;transform:rotate(3deg)}
+.cg-car footer{display:flex;justify-content:space-between;font:700 5.4cqw var(--colagem-font-hand)}
+@media (max-width:900px){
+  .cg-board,.cg-page{grid-template-columns:minmax(0,1fr)}
+  .cg-pile{min-height:560px}
+  .cg-pile .cg-postit{top:auto;bottom:120px;right:0;width:170px;font-size:22px}
+  .cg-pile .cg-arrow{display:none}
+  .cg-pile .cg-hand{left:auto !important;right:4%;bottom:2% !important}
+  .cg-pile .cg-stamp{width:120px;height:120px;bottom:60px}
+}
+</style>
+</head>
+<body class="pv pv-colagem">
+<div class="pv-wrap pv-top"><span><b>Papel e colagem</b> · colagem · light</span>
+<nav aria-label="Seções da prévia"><a href="#paleta">Paleta</a><a href="#tipografia">Tipografia</a><a href="#objetos">Objetos</a><a href="#formatos">Formatos</a></nav></div>
+<main>
+<section class="pv-section cg-hero" data-scene>
+  <div class="pv-wrap cg-board">
+    <div>
+      <p class="cg-ransom rise" aria-label="Bastidores" data-object="letras recortadas"><span style="--r:-4deg;background:var(--colagem-tomato);color:#fff">B</span><span style="--r:3deg;background:var(--surface)">A</span><span style="--r:-2deg;background:#141414;color:#fff">S</span><span style="--r:5deg;background:var(--colagem-mustard)">T</span><span style="--r:-3deg;background:var(--colagem-cobalt);color:#fff">I</span><span style="--r:2deg;background:var(--surface)">D</span><span style="--r:-5deg;background:var(--colagem-tomato);color:#fff">O</span><span style="--r:4deg;background:var(--surface-2)">R</span><span style="--r:-2deg;background:#141414;color:#fff">E</span><span style="--r:3deg;background:var(--colagem-mustard)">S</span></p>
+      <h1 class="rise" style="--i:1">de um projeto em Python, do rascunho ao ar</h1>
+      <div class="cg-note rise" style="--i:2" data-object="papel rasgado">
+        <p>Um diário visual das decisões que não aparecem no código final: o que foi tentado, o que deu errado e por que a terceira versão ficou.</p>
+        <a class="cg-btn" href="#objetos">Abrir o caderno</a>
+      </div>
+    </div>
+    <div class="cg-pile" data-clip>
+      <figure class="cg-pol cg-drop" style="--rot:4deg;rotate:4deg;left:6%;top:4%;--i:1" data-object="polaroide">
+        <div class="img"><svg viewBox="0 0 200 200" width="100%" height="100%" aria-label="Desenho de uma mesa com notebook e caneca" role="img"><rect width="200" height="200" fill="#2c47c4"/><rect x="0" y="140" width="200" height="60" fill="#c9a77a"/><rect x="40" y="78" width="96" height="62" rx="4" fill="#fbf7ef"/><rect x="48" y="86" width="80" height="44" fill="#211a14"/><path d="M56 98h30M56 108h50M56 118h22" stroke="#e9b21a" stroke-width="4"/><path d="M30 140h120" stroke="#fbf7ef" stroke-width="6"/><rect x="152" y="112" width="24" height="28" rx="3" fill="#d23f22"/><circle cx="160" cy="44" r="18" fill="#e9b21a"/></svg></div>
+        <p>versão 3, finalmente</p>
+      </figure>
+      <span class="cg-tape" style="left:28%;top:1%;--r:-8deg" aria-hidden="true"></span>
+      <div class="cg-postit cg-drop" style="--rot:-5deg;rotate:-5deg;right:2%;top:46%;--i:3" data-object="bloco adesivo">testar antes de subir<br><span style="color:var(--colagem-tomato)">e anotar o porquê</span></div>
+      <div class="cg-stamp cg-drop" style="--rot:-12deg;rotate:-12deg;left:0;bottom:2%;--i:4" data-object="carimbo">
+        <svg viewBox="0 0 150 150" role="img" aria-label="Carimbo circular: revisado em grupo"><defs><path id="cgCirc" d="M75 75 m-52 0 a52 52 0 1 1 104 0 a52 52 0 1 1 -104 0"/></defs><circle cx="75" cy="75" r="68" fill="none" stroke="#d23f22" stroke-width="4"/><circle cx="75" cy="75" r="38" fill="none" stroke="#d23f22" stroke-width="2"/><text style="font:600 13px var(--font-mono);letter-spacing:.2em;fill:#d23f22"><textPath href="#cgCirc">REVISADO EM GRUPO · REVISADO EM GRUPO ·</textPath></text><text x="75" y="83" text-anchor="middle" style="font:400 26px var(--font-display);fill:#d23f22">OK</text></svg>
+      </div>
+      <div class="cg-tag loop" style="right:16%;top:0" aria-hidden="true"><svg width="2" height="40"><path d="M1 0v40" stroke="#211a14"/></svg><span class="lbl">v0.3.0</span></div>
+      <svg class="cg-arrow" viewBox="0 0 160 90" width="160" style="left:44%;bottom:12%" aria-hidden="true"><path d="M10 20 C60 0, 120 20, 140 70 M126 58 L140 72 L146 52" fill="none" stroke="#2c47c4" stroke-width="3" stroke-linecap="round"/></svg>
+      <p class="cg-hand" style="position:absolute;left:36%;bottom:4%;font-size:26px;color:var(--colagem-cobalt);transform:rotate(-4deg)">aqui quebrou tudo</p>
+    </div>
+  </div>
+</section>
+
+<section class="pv-section" id="paleta" data-scene>
+  <div class="pv-wrap">
+    <div class="pv-intro"><h2 class="pv-h2 rise">Kraft, tomate, cobalto e mostarda</h2><p class="rise" style="--i:1">O fundo é papel pardo. Os recortes usam três cores chapadas (tomate, cobalto e mostarda) além do branco e do preto. A mão do autor aparece em anotações com caneta, sempre curtas.</p></div>
+    <div class="pv-palette rise" style="--i:2">
+<div class="pv-chip"><i style="background:var(--bg)"></i><div><code>--bg · #ece2d0</code><span>papel kraft da mesa de recortes</span></div></div>
+<div class="pv-chip"><i style="background:var(--bg-2)"></i><div><code>--bg-2 · #e2d5bd</code><span>papelão mais escuro das bordas</span></div></div>
+<div class="pv-chip"><i style="background:var(--surface)"></i><div><code>--surface · #fbf7ef</code><span>papel branco de recorte e de nota</span></div></div>
+<div class="pv-chip"><i style="background:var(--surface-2)"></i><div><code>--surface-2 · #f3ead9</code><span>papel creme de segundo plano</span></div></div>
+<div class="pv-chip"><i style="background:var(--text)"></i><div><code>--text · #211a14</code><span>tinta preta de caneta e de impressão</span></div></div>
+<div class="pv-chip"><i style="background:var(--muted)"></i><div><code>--muted · #5a4c3e</code><span>anotações secundárias a lápis</span></div></div>
+<div class="pv-chip"><i style="background:var(--line)"></i><div><code>--line · #c2ae8e</code><span>vincos e bordas de papel</span></div></div>
+<div class="pv-chip"><i style="background:var(--accent)"></i><div><code>--accent · #d23f22</code><span>vermelho tomate de recorte e de carimbo</span></div></div>
+<div class="pv-chip"><i style="background:var(--accent-2)"></i><div><code>--accent-2 · #2c47c4</code><span>azul cobalto de recorte e de caneta</span></div></div>
+<div class="pv-chip"><i style="background:var(--accent-ink)"></i><div><code>--accent-ink · #ffffff</code><span>branco sobre o vermelho</span></div></div>
+<div class="pv-chip"><i style="background:var(--paper)"></i><div><code>--paper · #fbf7ef</code><span>papel branco de polaroide e de etiqueta</span></div></div>
+<div class="pv-chip"><i style="background:var(--paper-ink)"></i><div><code>--paper-ink · #211a14</code><span>tinta sobre o papel</span></div></div>
+<div class="pv-chip"><i style="background:var(--danger)"></i><div><code>--danger · #b3261e</code><span>erro</span></div></div>
+<div class="pv-chip"><i style="background:var(--ok)"></i><div><code>--ok · #2f6e3e</code><span>confirmação</span></div></div>
+<div class="pv-chip"><i style="background:var(--warn)"></i><div><code>--warn · #8a5a00</code><span>amarelo mostarda de atenção</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="pv-section" id="tipografia" data-scene>
+  <div class="pv-wrap pv-type">
+<div>
+      <p class="pv-type-display rise" style="text-transform:uppercase">Cartaz recortado</p>
+      <p class="pv-type-body rise" style="--i:1">Anton em caixa alta para títulos e letras recortadas, como manchete de cartaz. Bricolage Grotesque no texto, mais humana que uma sans técnica. Caveat em anotações curtas à mão, nunca em parágrafos. Geist Mono para etiquetas de rotulador.</p>
+      <p class="pv-type-mono rise cg-hand" style="--i:2;font-size:30px;color:var(--colagem-cobalt)">anotação à mão, curta</p>
+    </div>
+    <div class="pv-type-scale rise" style="--i:2">
+      <div><code>manchete · Anton</code><span style="font:400 clamp(36px,4vw,56px)/1 var(--font-display);text-transform:uppercase">Recorte</span></div>
+      <div><code>corpo · 17 / 1,6</code><span>Texto em Bricolage Grotesque.</span></div>
+      <div><code>mão · Caveat 26</code><span class="cg-hand" style="font-size:26px;color:var(--accent)">deu certo!</span></div>
+      <div><code>etiqueta · mono</code><span class="cg-label" style="font-size:13px;padding:6px 10px">v0.3.0</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="pv-section" id="objetos" data-scene>
+  <div class="pv-wrap">
+    <div class="pv-intro"><h2 class="pv-h2 rise">Recortes sobre a mesa</h2><p class="rise" style="--i:1">Cada peça parece colada à mão: tem sombra curta, uma leve rotação e às vezes uma fita segurando. Nada fica perfeitamente alinhado, mas tudo continua fácil de ler.</p></div>
+    <div class="pv-objects">
+<figure class="wide">
+        <div class="pv-stage cg-stage" data-object="papel rasgado com fita">
+          <div style="position:relative"><span class="cg-tape" style="left:38%;top:-12px;--r:4deg" aria-hidden="true"></span><div class="cg-torn"><b>O que mudou</b>Trocamos o arquivo único por três módulos e os testes passaram a rodar em dois segundos.</div></div>
+        </div>
+        <figcaption><b>Papel rasgado e fita</b>Bordas irregulares com clip-path e uma fita translúcida segurando. Bom para resumos e notas de versão.</figcaption>
+      </figure>
+      <figure class="wide">
+        <div class="pv-stage cg-stage" data-object="etiqueta de rotulador">
+          <div style="display:grid;gap:14px;justify-items:center"><span class="cg-label" style="transform:rotate(-2deg)">rotas.py</span><span class="cg-label" style="transform:rotate(1.5deg);background:var(--colagem-tomato)">não mexer</span><span class="cg-label" style="transform:rotate(-1deg);background:var(--colagem-cobalt)">testes ok</span></div>
+        </div>
+        <figcaption><b>Etiqueta de rotulador</b>Fita preta com letras em relevo. Dá nome a arquivos, versões e estados.</figcaption>
+      </figure>
+      <figure>
+        <div class="pv-stage cg-stage" data-object="anotação com seta">
+          <div style="position:relative;width:260px;height:200px"><span class="cg-label" style="position:absolute;left:0;bottom:16px">main.py</span><svg viewBox="0 0 160 110" width="160" style="position:absolute;right:10px;top:40px" aria-hidden="true"><path d="M140 10 C120 70, 70 90, 20 96 M34 84 L18 96 L36 106" fill="none" stroke="#2c47c4" stroke-width="3" stroke-linecap="round"/></svg><p class="cg-hand" style="position:absolute;right:0;top:0;font-size:28px;color:var(--colagem-cobalt);transform:rotate(3deg)">começa aqui</p></div>
+        </div>
+        <figcaption><b>Anotação com seta</b>Caneta azul, três palavras no máximo e uma seta curva apontando o detalhe.</figcaption>
+      </figure>
+      <figure>
+        <div class="pv-stage cg-stage" data-object="etiqueta pendurada">
+          <div class="cg-tag loop" style="position:relative" aria-hidden="true"><svg width="2" height="60"><path d="M1 0v60" stroke="#211a14"/></svg><span class="lbl" style="font-size:18px">em revisão</span></div>
+        </div>
+        <figcaption><b>Etiqueta pendurada</b>Balança devagar (rotação de 5° em 4,5 s). Único movimento contínuo do estilo.</figcaption>
+      </figure>
+      <figure>
+        <div class="pv-stage cg-stage" data-object="letras recortadas pequenas">
+          <p class="cg-ransom" style="font-size:52px" aria-label="Deploy"><span style="--r:-4deg;background:var(--colagem-cobalt);color:#fff">D</span><span style="--r:3deg;background:var(--surface)">E</span><span style="--r:-2deg;background:var(--colagem-mustard)">P</span><span style="--r:4deg;background:#141414;color:#fff">L</span><span style="--r:-3deg;background:var(--colagem-tomato);color:#fff">O</span><span style="--r:2deg;background:var(--surface)">Y</span></p>
+        </div>
+        <figcaption><b>Letras recortadas</b>Uma palavra por slide, no máximo. Cada letra tem papel e rotação próprios, com aria-label com a palavra inteira.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="pv-section" id="formatos" data-scene>
+  <div class="pv-wrap">
+    <div class="pv-intro"><h2 class="pv-h2 rise">O mesmo estilo em página, deck e carrossel</h2><p class="rise" style="--i:1">Um trecho de página, um slide 16:9 e um slide de carrossel 4:5, todos com as mesmas variáveis do contrato.</p></div>
+    <div class="pv-formats">
+      <div data-format="page">
+<p class="pv-format-label">Trecho de página</p>
+        <div class="cg-page">
+          <span class="cg-tape" style="left:46%;top:-6px;--r:3deg" aria-hidden="true"></span>
+          <div><h3>Três decisões que mudaram o projeto</h3><p>Nenhuma delas aparece no código final, mas todas explicam por que ele ficou assim.</p><a class="cg-btn" href="#paleta">Ler o diário completo</a></div>
+          <div class="cg-torn" style="width:100%;max-width:440px"><ul class="cg-list"><li><b>1</b><span>Separar as rotas em módulos antes de crescer.</span></li><li><b>2</b><span>Escrever o teste do bug antes de corrigir.</span></li><li><b>3</b><span>Guardar as decisões num arquivo de notas.</span></li></ul></div>
+        </div>
+      </div>
+      <div><p class="pv-format-label">Slide de aula · 16:9</p><div data-format="deck">
+<div class="cg-deck">
+          <div><p class="cg-ransom" aria-label="Versão 3"><span style="--r:-3deg;background:var(--colagem-tomato);color:#fff">V</span><span style="--r:2deg;background:var(--surface)">E</span><span style="--r:-2deg;background:#141414;color:#fff">R</span><span style="--r:3deg;background:var(--colagem-mustard)">S</span><span style="--r:-4deg;background:var(--surface)">Ã</span><span style="--r:2deg;background:var(--colagem-cobalt);color:#fff">O</span>&nbsp;<span style="--r:-3deg;background:var(--surface)">3</span></p><div class="paper">A terceira tentativa ficou porque cada parte do código passou a ter um lugar só.</div></div>
+          <figure class="cg-pol" style="margin:0"><div class="img" style="background:var(--colagem-tomato)"></div><p>antes e depois</p></figure>
+        </div>
+      </div></div>
+      <div><p class="pv-format-label">Slide de carrossel · 4:5</p><div data-format="carousel">
+<div class="cg-car">
+          <p class="cg-ransom" aria-label="Erros"><span style="--r:-4deg;background:var(--colagem-tomato);color:#fff">E</span><span style="--r:3deg;background:var(--surface)">R</span><span style="--r:-2deg;background:#141414;color:#fff">R</span><span style="--r:4deg;background:var(--colagem-mustard)">O</span><span style="--r:-3deg;background:var(--colagem-cobalt);color:#fff">S</span></p>
+          <div class="cg-postit">que eu cometi no primeiro projeto e como evitar</div>
+          <footer><span>@suamarca</span><span>1 / 7</span></footer>
+        </div>
+      </div></div>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="pv-wrap pv-foot">Prévia do estilo colagem · pycode-design · tokens em tokens.css, regras em DESIGN.md. Conteúdo fictício de exemplo.</footer>
+<script>
+/* Movimento: liga cada cena só quando visível, pausa com a aba oculta e respeita movimento reduzido. */
+(() => {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const scenes = document.querySelectorAll('[data-scene]');
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      e.target.dataset.motion = e.isIntersecting && !reduce.matches ? 'on' : 'off';
+      if (e.isIntersecting) e.target.dataset.entered = 'true';
+    }
+  }, { threshold: 0.12 });
+  scenes.forEach((s) => io.observe(s));
+  document.addEventListener('visibilitychange', () => {
+    document.body.dataset.background = document.hidden ? 'true' : 'false';
+  });
+})();
+
+
+</script>
+</body>
+</html>

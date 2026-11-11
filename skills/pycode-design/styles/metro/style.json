@@ -1,0 +1,23 @@
+{
+  "slug": "metro",
+  "name": "Metrô",
+  "summary": "Sinalização de metrô: azulejo claro, placas em faixas coloridas, diagrama de linhas com estações, setas de direção e numeração de plataforma. Para trilhas, roteiros, ordem de etapas e mapas de conteúdo.",
+  "mode": "light",
+  "fonts": [
+    "space-grotesk",
+    "inter",
+    "geist-mono"
+  ],
+  "best_for": [
+    "page",
+    "carousel",
+    "deck"
+  ],
+  "mood": [
+    "claro",
+    "orientador",
+    "urbano",
+    "objetivo"
+  ],
+  "version": "1.0.0"
+}

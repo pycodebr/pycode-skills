@@ -1,0 +1,64 @@
+{
+  "id": "capa",
+  "archetype": "capa",
+  "title": "Como funciona uma API",
+  "chapter": "abertura",
+  "thread": "pedido 42 · no app",
+  "transition": "corte",
+  "bg": "orbita",
+  "apoio": "Uma aula curta sobre o caminho de um pedido entre um aplicativo e um servidor: o que viaja, quem responde e quanto tempo isso leva.",
+  "hook": "Antes do mecanismo, uma conversa entre dois programas.",
+  "notes": "Abra com a pergunta que o aplicativo faz todos os dias: quais pedidos este cliente fez? Clique nos satélites para mostrar quem usa a API.",
+  "reading": [
+    {
+      "label": "API",
+      "title": "A porta no centro",
+      "text": "A API é o ponto de encontro: todos os sistemas pedem por ela, e ela decide como responder."
+    },
+    {
+      "label": "Quem pede",
+      "title": "App, site e parceiros",
+      "text": "O aplicativo, o site e outras empresas fazem pedidos pelo mesmo caminho, com as mesmas regras."
+    },
+    {
+      "label": "Quem responde",
+      "title": "Servidor e banco de dados",
+      "text": "O servidor recebe o pedido, aplica as regras e busca os dados no banco."
+    }
+  ],
+  "data": {
+    "subtitle": "O caminho de um pedido entre o seu app e o servidor.",
+    "byline": "aula de exemplo do pycode-aulas",
+    "core": {
+      "label": "API",
+      "icon": "gate"
+    },
+    "satellites": [
+      {
+        "label": "App",
+        "icon": "app",
+        "tip": "Pede os dados quando você toca num botão."
+      },
+      {
+        "label": "Site",
+        "icon": "site",
+        "tip": "Usa a mesma porta que o aplicativo."
+      },
+      {
+        "label": "Servidor",
+        "icon": "server",
+        "tip": "Recebe o pedido e decide o que fazer."
+      },
+      {
+        "label": "Banco",
+        "icon": "database",
+        "tip": "Guarda clientes, produtos e pedidos."
+      },
+      {
+        "label": "Parceiro",
+        "icon": "card",
+        "tip": "Outra empresa que consulta o mesmo serviço."
+      }
+    ]
+  }
+}

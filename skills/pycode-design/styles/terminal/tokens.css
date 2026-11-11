@@ -1,0 +1,36 @@
+/* Terminal · tokens do contrato comum do pycode-design (não renomeie as variáveis do contrato). */
+:root {
+  --bg: #1e1e1e;
+  --bg-2: #181818;
+  --surface: #252526;
+  --surface-2: #2d2d30;
+  --text: #e4e4e4;
+  --muted: #a8a8a8;
+  --line: #3c3c3c;
+  --accent: #4fc1ff;
+  --accent-2: #dcdcaa;
+  --accent-ink: #001a2b;
+  --paper: #d4d4d4;
+  --paper-ink: #1e1e1e;
+  --danger: #f48771;
+  --ok: #89d185;
+  --warn: #cca700;
+  --font-display: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --font-body: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --weight-display: 700;
+  --tracking-display: -0.02em;
+  --radius: 4px;
+  --radius-lg: 8px;
+  --shadow: 0 12px 32px rgba(0, 0, 0, .5);
+  --glow: 0 0 0 1px #007acc;
+  /* extras do estilo (prefixo do slug) */
+  --terminal-keyword: #569cd6;
+  --terminal-string: #ce9178;
+  --terminal-function: #dcdcaa;
+  --terminal-comment: #6a9955;
+  --terminal-type: #4ec9b0;
+  --terminal-number: #b5cea8;
+  --terminal-statusbar: #007acc;
+  --terminal-selection: #264f78;
+}

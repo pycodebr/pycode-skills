@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Código noturno · prévia do estilo</title>
+<meta name="description" content="Azul-marinho profundo com o azul e o amarelo do Python, textura de código ao fundo, numerais gigantes e cartas colecionáveis. Linguagem de feed técnico e de aula de programação.">
+<!-- Abra pela galeria (pycode styles preview): ela copia as fontes para fonts/ ao lado deste arquivo. -->
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="tokens.css">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+/* ---------- chassi comum da prévia: só variáveis do contrato ---------- */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:17px;line-height:1.6;overflow-x:hidden}
+img,svg{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.pv-wrap{width:min(1240px,calc(100% - 40px));margin-inline:auto}
+.pv-section{padding-block:clamp(56px,8vw,112px);position:relative}
+.pv-section + .pv-section{border-top:1px solid var(--line)}
+h1,h2,h3{font-family:var(--font-display);font-weight:var(--weight-display);letter-spacing:var(--tracking-display);line-height:1.05;margin:0;text-wrap:balance}
+p{margin:0;text-wrap:pretty}
+.pv-h2{font-size:clamp(30px,4.2vw,54px);max-width:18ch}
+.pv-intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px 48px;align-items:end;margin-bottom:clamp(32px,5vw,56px)}
+.pv-intro p{color:var(--muted);max-width:56ch}
+.pv-top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 0;font-family:var(--font-mono);font-size:14px;color:var(--muted)}
+.pv-top b{color:var(--text);font-weight:600}
+.pv-top nav{display:flex;gap:18px;flex-wrap:wrap}
+.pv-top nav a{text-decoration:none;color:var(--muted)}
+.pv-top nav a:hover{color:var(--text)}
+/* paleta */
+.pv-palette{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,190px),1fr));gap:14px}
+@media (max-width:600px){.pv-palette{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.pv-chip{grid-template-rows:56px auto}.pv-chip div{padding:10px}.pv-chip code{font-size:12px;word-break:break-all}.pv-chip span{font-size:13px}}
+.pv-chip{display:grid;grid-template-rows:84px auto;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--surface)}
+.pv-chip i{display:block;border-bottom:1px solid var(--line)}
+.pv-chip div{padding:12px 14px 14px;display:grid;gap:2px}
+.pv-chip code{font-family:var(--font-mono);font-size:13px;color:var(--text)}
+.pv-chip span{font-size:14px;line-height:1.45;color:var(--muted)}
+/* tipografia */
+.pv-type{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:clamp(24px,4vw,56px)}
+.pv-type-display{font-family:var(--font-display);font-weight:var(--weight-display);letter-spacing:var(--tracking-display);font-size:clamp(46px,7.4vw,112px);line-height:.98}
+.pv-type-scale{display:grid;gap:14px;align-content:start}
+.pv-type-scale div{display:grid;grid-template-columns:120px minmax(0,1fr);gap:12px;align-items:baseline;border-top:1px solid var(--line);padding-top:10px}
+.pv-type-scale code{font-family:var(--font-mono);font-size:13px;color:var(--muted)}
+.pv-type-body{margin-top:26px;max-width:58ch;color:var(--muted)}
+.pv-type-mono{margin-top:18px;font-family:var(--font-mono);font-size:15px;color:var(--text)}
+/* objetos */
+.pv-objects{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:clamp(16px,2vw,28px)}
+.pv-objects > figure{margin:0;grid-column:span 2;display:grid;grid-template-rows:auto 1fr;gap:14px;min-width:0}
+.pv-objects > figure.wide{grid-column:span 3}
+.pv-objects > figure.full{grid-column:1 / -1}
+.pv-stage{position:relative;min-height:340px;padding:28px;border-radius:var(--radius-lg);overflow:hidden;display:grid;place-items:center;isolation:isolate}
+.pv-objects figcaption{font-size:15px;line-height:1.5;color:var(--muted)}
+.pv-objects figcaption b{display:block;color:var(--text);font-family:var(--font-display);font-weight:var(--weight-display);letter-spacing:var(--tracking-display);font-size:19px;margin-bottom:2px}
+/* formatos */
+.pv-formats{display:grid;grid-template-columns:minmax(0,1.85fr) minmax(0,1fr);gap:clamp(20px,3vw,36px);align-items:start}
+.pv-formats > [data-format="page"]{grid-column:1 / -1}
+.pv-format-label{font-family:var(--font-mono);font-size:13px;color:var(--muted);margin:0 0 10px}
+[data-format="deck"]{aspect-ratio:16/9;container-type:inline-size;position:relative;overflow:hidden;border-radius:var(--radius)}
+[data-format="carousel"]{aspect-ratio:4/5;container-type:inline-size;position:relative;overflow:hidden;border-radius:var(--radius)}
+.pv-foot{padding:40px 0 56px;color:var(--muted);font-size:14px;font-family:var(--font-mono)}
+/* movimento: entradas só quando há JS; loops só rodam com a cena visível */
+html.js [data-scene]:not([data-entered]) .rise{opacity:0;transform:translateY(18px)}
+.rise{transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1);transition-delay:calc(var(--i,0) * 70ms)}
+html.js .loop,html.js .loop::before,html.js .loop::after{animation-play-state:paused !important}
+html.js [data-scene][data-motion="on"] .loop,html.js [data-scene][data-motion="on"] .loop::before,html.js [data-scene][data-motion="on"] .loop::after{animation-play-state:running !important}
+html.js body[data-background="true"] .loop,html.js body[data-background="true"] .loop::before,html.js body[data-background="true"] .loop::after{animation-play-state:paused !important}
+@media (max-width:900px){
+  .pv-intro,.pv-type,.pv-formats{grid-template-columns:minmax(0,1fr)}
+  .pv-objects{grid-template-columns:minmax(0,1fr)}
+  .pv-objects > figure,.pv-objects > figure.wide{grid-column:1 / -1}
+}
+@media (max-width:600px){.pv-top nav{display:none}body{font-size:16px}}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none !important;transition:none !important;scroll-behavior:auto !important}
+  html.js [data-scene]:not([data-entered]) .rise{opacity:1;transform:none}
+}
+
+/* ---------- Código noturno: superfícies, objetos e movimento do estilo ---------- */
+.pv-python-noturno{background:var(--bg)}
+.pn-grid{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(rgba(90,160,230,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(90,160,230,.05) 1px,transparent 1px);background-size:var(--python-noturno-grid) var(--python-noturno-grid)}
+.pn-code{position:absolute;inset:0;overflow:hidden;pointer-events:none;opacity:var(--python-noturno-code-opacity);color:var(--python-noturno-python-blue-light);font:500 13px/1.8 var(--font-mono);white-space:pre}
+.pn-code div{animation:pn-drift 80s linear infinite}
+@keyframes pn-drift{to{transform:translateY(-50%)}}
+.pn-glow{position:absolute;width:720px;height:520px;border-radius:50%;background:radial-gradient(closest-side,rgba(55,118,171,.32),transparent);pointer-events:none}
+.pn-hero{overflow:hidden;padding-top:clamp(32px,5vw,72px)}
+.pn-hero-in{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,64px);align-items:center}
+.pn-num{font:800 clamp(120px,17vw,230px)/.8 var(--font-display);letter-spacing:-.06em;color:var(--accent);margin:0 0 8px}
+.pn-num span{color:transparent;-webkit-text-stroke:2px var(--accent)}
+.pn-hero h1{font-size:clamp(40px,5.2vw,74px);line-height:.98}
+.pn-hero h1 mark{background:none;color:var(--accent)}
+.pn-hero p.lead{margin-top:20px;color:var(--muted);font-size:19px;max-width:44ch}
+.pn-btn{display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 24px;border-radius:999px;background:var(--accent);color:var(--accent-ink);font:700 16px/1 var(--font-body);text-decoration:none;margin-top:30px}
+.pn-btn.ghost{background:transparent;color:var(--text);border:1px solid var(--line);margin-left:10px}
+/* cartas colecionáveis */
+.pn-fan{position:relative;height:clamp(380px,36vw,500px)}
+.pn-card{position:absolute;left:50%;top:50%;width:clamp(200px,17vw,250px);aspect-ratio:5/7;margin:0;border-radius:18px;padding:16px;display:grid;grid-template-rows:auto 1fr auto auto;gap:10px;color:var(--text);background:linear-gradient(160deg,var(--surface-2),var(--surface) 60%);border:1px solid var(--line);box-shadow:var(--shadow);overflow:hidden;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+.pn-card.c1{transform:translate(-50%,-50%) translate(-62%,6%) rotate(-12deg)}
+.pn-card.c3{transform:translate(-50%,-50%) translate(62%,6%) rotate(12deg)}
+.pn-card.c2{transform:translate(-50%,-50%) translateY(-4%);z-index:2;background:linear-gradient(150deg,#fff3b0,var(--accent) 45%,#e0a800);color:var(--accent-ink);border-color:#fff6c8}
+.pn-card::after{content:"";position:absolute;inset:-30%;background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.55) 50%,transparent 60%);transform:translateX(-60%);animation:pn-holo 5.5s ease-in-out infinite;pointer-events:none;mix-blend-mode:soft-light}
+@keyframes pn-holo{0%,55%{transform:translateX(-60%)}85%,100%{transform:translateX(60%)}}
+.pn-card header{display:flex;justify-content:space-between;font:600 12px var(--font-mono);opacity:.85}
+.pn-card .glyph{display:grid;place-items:center;border-radius:12px;background:rgba(10,14,26,.35);min-height:0}
+.pn-card.c2 .glyph{background:rgba(27,21,0,.12)}
+.pn-card strong{font:800 24px/1 var(--font-display);letter-spacing:-.03em}
+.pn-card p{font-size:13px;line-height:1.35}
+.pn-card code{display:block;font:500 11.5px/1.4 var(--font-mono);padding:8px;border-radius:8px;background:rgba(10,14,26,.55);color:#e6f0ff;white-space:pre;overflow:hidden}
+.pn-card.c2 code{background:var(--accent-ink);color:var(--accent)}
+.pn-fan:hover .pn-card.c1{transform:translate(-50%,-50%) translate(-72%,4%) rotate(-16deg)}
+.pn-fan:hover .pn-card.c3{transform:translate(-50%,-50%) translate(72%,4%) rotate(16deg)}
+/* estágio */
+.pn-stage{background:radial-gradient(ellipse at 50% 120%,rgba(55,118,171,.35),transparent 60%),var(--bg-2);border:1px solid var(--line)}
+/* medidor */
+.pn-meter{display:flex;align-items:flex-end;gap:22px}
+.pn-meter ol{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.pn-meter li{width:44px;height:26px;border-radius:6px;background:var(--surface-2);position:relative;overflow:hidden}
+.pn-meter li::after{content:"";position:absolute;inset:0;background:var(--accent);opacity:0;animation:pn-seg 5s steps(1) infinite;animation-delay:calc(var(--s) * .45s)}
+.pn-meter li.lit::after{opacity:1;animation:none}
+@keyframes pn-seg{0%,8%{opacity:0}10%,80%{opacity:1}82%,100%{opacity:0}}
+.pn-level{font:800 120px/.8 var(--font-display);color:var(--accent);letter-spacing:-.06em}
+.pn-level small{display:block;font:600 14px var(--font-mono);color:var(--muted);letter-spacing:0;margin-top:12px}
+/* terminal */
+.pn-term{width:min(100%,420px);border-radius:12px;background:#060a14;border:1px solid var(--line);overflow:hidden;font:500 14px/1.7 var(--font-mono)}
+.pn-term header{padding:8px 14px;background:var(--surface);color:var(--muted);font-size:12px;border-bottom:1px solid var(--line)}
+.pn-term pre{margin:0;padding:14px 16px;font:inherit;white-space:pre-wrap}
+.pn-type{position:relative;display:inline-block}
+.pn-type::after{content:"";position:absolute;inset:-2px -4px;background:#060a14;transform-origin:100% 50%;transform:scaleX(0);animation:pn-typing 6s steps(14) infinite}
+@keyframes pn-typing{0%{transform:scaleX(1)}30%,100%{transform:scaleX(0)}}
+.pn-out{display:block;opacity:0;animation:pn-out 6s steps(1) infinite}
+.pn-out.o2{animation-delay:.25s}.pn-out.o3{animation-delay:.5s}
+@keyframes pn-out{0%,34%{opacity:0}35%,96%{opacity:1}97%,100%{opacity:0}}
+.k{color:#c792ea}.s{color:var(--accent)}.f{color:var(--accent-2)}.c{color:var(--muted)}.ok{color:var(--ok)}
+/* contador */
+.pn-counter{display:grid;gap:18px;justify-items:center}
+.pn-dots{display:flex;gap:8px}
+.pn-dots i{width:34px;height:6px;border-radius:3px;background:var(--surface-2)}
+.pn-dots i.on{background:var(--accent)}
+.pn-counter b{font:800 64px/1 var(--font-display);letter-spacing:-.04em}
+.pn-counter b span{color:var(--muted);font-weight:500}
+/* página */
+.pn-page{position:relative;overflow:hidden;border-radius:var(--radius-lg);border:1px solid var(--line);background:var(--bg-2);padding:clamp(24px,4vw,52px);display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(20px,4vw,48px);align-items:start}
+.pn-page .pn-step{font:800 clamp(80px,10vw,140px)/.8 var(--font-display);color:var(--accent);letter-spacing:-.06em}
+.pn-page h3{font-size:clamp(28px,3.2vw,42px)}
+.pn-page p{color:var(--muted);margin-top:12px;max-width:60ch}
+.pn-page pre{margin:18px 0 0;padding:18px;border-radius:12px;background:#060a14;border:1px solid var(--line);font:500 15px/1.7 var(--font-mono);white-space:pre-wrap;overflow-wrap:anywhere;max-width:100%}
+/* deck */
+.pn-deck{position:absolute;inset:0;background:var(--bg);padding:5.5cqw 6cqw;display:grid;grid-template-columns:1fr 1fr;gap:4cqw;align-items:center;border:1px solid var(--line)}
+.pn-deck .pn-code{font-size:1cqw}
+.pn-deck h3{font-size:4.6cqw;position:relative}
+.pn-deck h3 code{font-family:var(--font-mono);color:var(--accent);font-weight:600}
+.pn-deck p{position:relative;font-size:1.6cqw;color:var(--muted);margin-top:1.6cqw}
+.pn-deck pre{position:relative;margin:0;padding:2.2cqw;border-radius:1.2cqw;background:#060a14;border:1px solid var(--line);font:500 1.55cqw/1.7 var(--font-mono)}
+.pn-deck .count{position:absolute;right:3cqw;bottom:2.4cqw;font:600 1.3cqw var(--font-mono);color:var(--muted)}
+/* carrossel */
+.pn-car{position:absolute;inset:0;background:var(--bg);padding:7cqw;display:grid;grid-template-rows:auto auto 1fr auto;border:1px solid var(--line)}
+.pn-car .pn-code{font-size:2.2cqw}
+.pn-car .big{position:relative;font:800 34cqw/.78 var(--font-display);color:var(--accent);letter-spacing:-.06em}
+.pn-car h3{position:relative;font-size:8.6cqw;line-height:.98;margin-top:2cqw}
+.pn-car .pn-dots{position:relative;align-self:end}
+.pn-car .pn-dots i{width:7cqw;height:1.2cqw}
+.pn-car footer{position:relative;display:flex;justify-content:space-between;font:600 3.4cqw var(--font-mono);color:var(--muted);margin-top:3cqw}
+.pn-car .mini{position:absolute;right:6cqw;top:8cqw;width:34cqw;aspect-ratio:5/7;border-radius:3cqw;background:linear-gradient(150deg,#fff3b0,var(--accent) 45%,#e0a800);transform:rotate(9deg);box-shadow:var(--shadow);display:grid;place-items:center}
+@media (max-width:900px){
+  .pn-hero-in{grid-template-columns:minmax(0,1fr)}
+  .pn-fan{height:400px}
+  .pn-card{width:190px}
+  .pn-card.c1{transform:translate(-50%,-50%) translate(-48%,8%) rotate(-10deg)}
+  .pn-card.c3{transform:translate(-50%,-50%) translate(48%,8%) rotate(10deg)}
+  .pn-page{grid-template-columns:minmax(0,1fr)}
+  .pn-btn.ghost{margin-left:0}
+}
+</style>
+</head>
+<body class="pv pv-python-noturno">
+<div class="pv-wrap pv-top"><span><b>Código noturno</b> · python-noturno · dark</span>
+<nav aria-label="Seções da prévia"><a href="#paleta">Paleta</a><a href="#tipografia">Tipografia</a><a href="#objetos">Objetos</a><a href="#formatos">Formatos</a></nav></div>
+<main>
+<section class="pv-section pn-hero" data-scene data-clip>
+  <div class="pn-grid" aria-hidden="true"></div>
+  <div class="pn-code" aria-hidden="true"><div class="loop">with open("dados.txt", encoding="utf-8") as arquivo:
+    texto_lido = arquivo.read()
+
+for linha in open("notas.csv"):
+    nome, nota = linha.strip().split(",")
+    print(f"{nome}: {nota}")
+
+from pathlib import Path
+texto = Path("leia-me.md").read_text()
+linhas = texto.splitlines()
+
+def contar_palavras(caminho):
+    with open(caminho) as f:
+        return sum(len(l.split()) for l in f)
+
+import json
+dados = json.loads(Path("config.json").read_text())
+print(dados.get("nome", "sem nome"))
+with open("dados.txt", encoding="utf-8") as arquivo:
+    texto_lido = arquivo.read()
+
+for linha in open("notas.csv"):
+    nome, nota = linha.strip().split(",")
+    print(f"{nome}: {nota}")
+
+from pathlib import Path
+texto = Path("leia-me.md").read_text()
+linhas = texto.splitlines()
+
+def contar_palavras(caminho):
+    with open(caminho) as f:
+        return sum(len(l.split()) for l in f)
+
+import json
+dados = json.loads(Path("config.json").read_text())
+print(dados.get("nome", "sem nome"))</div></div>
+  <div class="pn-glow" style="right:-160px;top:-120px" aria-hidden="true"></div>
+  <div class="pv-wrap pn-hero-in">
+    <div>
+      <p class="pn-num rise" aria-hidden="true">0<span>3</span></p>
+      <h1 class="rise" style="--i:1">Três jeitos de ler um arquivo em <mark>Python</mark></h1>
+      <p class="lead rise" style="--i:2">Do <code>open()</code> clássico ao <code>pathlib</code>, com o momento certo de usar cada um e o erro que aparece quando o arquivo não existe.</p>
+      <div class="rise" style="--i:3"><a class="pn-btn" href="#objetos">Ver os três jeitos</a><a class="pn-btn ghost" href="#formatos">Ver o carrossel</a></div>
+    </div>
+    <div class="pn-fan rise" style="--i:2" data-object="cartas colecionáveis">
+      <figure class="pn-card c1"><header><span>01 / 03</span><span>básico</span></header>
+        <div class="glyph"><svg width="64" height="64" viewBox="0 0 64 64" aria-hidden="true"><path d="M16 6h22l12 12v40H16z" fill="none" stroke="#5aa0e6" stroke-width="3"/><path d="M38 6v12h12" fill="none" stroke="#5aa0e6" stroke-width="3"/><path d="M23 32h20M23 40h20M23 48h12" stroke="#a9b8d0" stroke-width="3"/></svg></div>
+        <strong>open()</strong><code>f = open("a.txt")</code></figure>
+      <figure class="pn-card c2 loop"><header><span>02 / 03</span><span>recomendado</span></header>
+        <div class="glyph"><svg width="72" height="72" viewBox="0 0 64 64" aria-hidden="true"><rect x="8" y="10" width="48" height="44" rx="6" fill="none" stroke="#1b1500" stroke-width="3"/><path d="M8 22h48" stroke="#1b1500" stroke-width="3"/><path d="M20 34l8 7 16-14" fill="none" stroke="#1b1500" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <strong>with open()</strong><code>with open("a.txt") as f:</code></figure>
+      <figure class="pn-card c3"><header><span>03 / 03</span><span>moderno</span></header>
+        <div class="glyph"><svg width="64" height="64" viewBox="0 0 64 64" aria-hidden="true"><circle cx="14" cy="32" r="6" fill="#ffd43b"/><circle cx="50" cy="16" r="6" fill="#5aa0e6"/><circle cx="50" cy="48" r="6" fill="#5aa0e6"/><path d="M20 32h12l12-16M32 32l12 16" fill="none" stroke="#a9b8d0" stroke-width="3"/></svg></div>
+        <strong>pathlib</strong><code>Path("a.txt").read_text()</code></figure>
+    </div>
+  </div>
+</section>
+
+<section class="pv-section" id="paleta" data-scene>
+  <div class="pv-wrap">
+    <div class="pv-intro"><h2 class="pv-h2 rise">Azul e amarelo do Python sobre a noite</h2><p class="rise" style="--i:1">O amarelo é o protagonista: numerais, palavra-chave do título e a carta principal. O azul organiza o resto. A textura de código fica atrás de tudo, quase invisível, para lembrar o assunto sem disputar com a leitura.</p></div>
+    <div class="pv-palette rise" style="--i:2">
+<div class="pv-chip"><i style="background:var(--bg)"></i><div><code>--bg · #0a0e1a</code><span>azul-marinho profundo do feed e dos slides</span></div></div>
+<div class="pv-chip"><i style="background:var(--bg-2)"></i><div><code>--bg-2 · #0d1628</code><span>faixas alternadas e fundo de slides de código</span></div></div>
+<div class="pv-chip"><i style="background:var(--surface)"></i><div><code>--surface · #121d36</code><span>janelas de código, cartas e painéis</span></div></div>
+<div class="pv-chip"><i style="background:var(--surface-2)"></i><div><code>--surface-2 · #1a2a4d</code><span>cabeçalhos de janela e estados ativos</span></div></div>
+<div class="pv-chip"><i style="background:var(--text)"></i><div><code>--text · #f8fafc</code><span>texto principal, quase branco</span></div></div>
+<div class="pv-chip"><i style="background:var(--muted)"></i><div><code>--muted · #a9b8d0</code><span>texto secundário e comentários</span></div></div>
+<div class="pv-chip"><i style="background:var(--line)"></i><div><code>--line · #2a3d66</code><span>bordas e grade de 60 px</span></div></div>
+<div class="pv-chip"><i style="background:var(--accent)"></i><div><code>--accent · #ffd43b</code><span>amarelo do Python para numerais, destaque e ação</span></div></div>
+<div class="pv-chip"><i style="background:var(--accent-2)"></i><div><code>--accent-2 · #5aa0e6</code><span>azul do Python para links, foco e rede</span></div></div>
+<div class="pv-chip"><i style="background:var(--accent-ink)"></i><div><code>--accent-ink · #1b1500</code><span>tinta escura sobre o amarelo</span></div></div>
+<div class="pv-chip"><i style="background:var(--paper)"></i><div><code>--paper · #eef3fb</code><span>cartões claros de definição</span></div></div>
+<div class="pv-chip"><i style="background:var(--paper-ink)"></i><div><code>--paper-ink · #0d1a33</code><span>tinta sobre o cartão claro</span></div></div>
+<div class="pv-chip"><i style="background:var(--danger)"></i><div><code>--danger · #ff6b6b</code><span>erro de execução</span></div></div>
+<div class="pv-chip"><i style="background:var(--ok)"></i><div><code>--ok · #4ade80</code><span>teste que passou</span></div></div>
+<div class="pv-chip"><i style="background:var(--warn)"></i><div><code>--warn · #fbbf24</code><span>aviso de terminal</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="pv-section" id="tipografia" data-scene>
+  <div class="pv-wrap pv-type">
+<div>
+      <p class="pv-type-display rise">Grosso, curto, legível</p>
+      <p class="pv-type-body rise" style="--i:1">Bricolage Grotesque em peso 800 para títulos e numerais, com espaço negativo leve. Inter no corpo e JetBrains Mono para código e contadores. No feed, títulos têm no máximo três linhas e o numeral pode ocupar um terço do slide.</p>
+      <p class="pv-type-mono rise" style="--i:2">print(f"{nome}: {nota}")  # JetBrains Mono</p>
+    </div>
+    <div class="pv-type-scale rise" style="--i:2">
+      <div><code>numeral · 800</code><span style="font:800 64px/1 var(--font-display);color:var(--accent);letter-spacing:-.06em">03</span></div>
+      <div><code>h1 · 74 / 800</code><span style="font:800 clamp(28px,3.4vw,42px)/1 var(--font-display);letter-spacing:-.035em">Título do post</span></div>
+      <div><code>h3 · 24 / 800</code><span style="font:800 24px/1.1 var(--font-display)">Nome da carta</span></div>
+      <div><code>corpo · 17 / 1,6</code><span>Frase que explica o termo técnico.</span></div>
+      <div><code>código · mono 15</code><span style="font:500 15px var(--font-mono);color:var(--accent-2)">Path.read_text()</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="pv-section" id="objetos" data-scene>
+  <div class="pv-wrap">
+    <div class="pv-intro"><h2 class="pv-h2 rise">Cartas, numerais e código vivo</h2><p class="rise" style="--i:1">O estilo nasceu no feed: cada post tem um conceito forte, um objeto herói por slide e um contador discreto. Os objetos abaixo cobrem listas, níveis e passo a passo.</p></div>
+    <div class="pv-objects">
+<figure class="wide">
+        <div class="pv-stage pn-stage" data-object="medidor de níveis">
+          <div class="pn-meter">
+            <ol aria-hidden="true"><li class="loop" style="--s:4"></li><li class="loop" style="--s:3"></li><li class="lit"></li><li class="lit"></li><li class="lit"></li></ol>
+            <p class="pn-level">3<small>nível 3 de 5 · você automatiza</small></p>
+          </div>
+        </div>
+        <figcaption><b>Medidor de níveis</b>Cinco segmentos que acendem em degraus. Serve para escadas de maturidade e diagnósticos: a pessoa se localiza e vê os níveis acima.</figcaption>
+      </figure>
+      <figure class="wide">
+        <div class="pv-stage pn-stage" data-object="terminal com saída">
+          <div class="pn-term"><header>terminal · ler.py</header><pre><span class="c">$</span> <span class="pn-type loop">python ler.py</span>
+<span class="pn-out o1 loop">lendo dados.txt</span><span class="pn-out o2 loop">142 linhas, 1.893 palavras</span><span class="pn-out o3 loop"><span class="ok">pronto</span> em 0,02 s</span></pre></div>
+        </div>
+        <figcaption><b>Terminal com saída real</b>O comando aparece tecla por tecla (máscara em degraus com transform) e a saída surge linha a linha. Comandos e saídas são conferidos letra por letra.</figcaption>
+      </figure>
+      <figure>
+        <div class="pv-stage pn-stage" data-object="numeral gigante">
+          <p class="pn-num" style="margin:0" aria-hidden="true">0<span>7</span></p>
+        </div>
+        <figcaption><b>Numeral gigante</b>Amarelo, com um dígito vazado. Abre listas e slides de etapa sem precisar de ícone.</figcaption>
+      </figure>
+      <figure>
+        <div class="pv-stage pn-stage" data-object="contador do carrossel">
+          <div class="pn-counter"><b>4 <span>/ 7</span></b><div class="pn-dots" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div></div>
+        </div>
+        <figcaption><b>Contador N/T</b>Âncora discreta da marca em todo slide: posição atual e total, sempre no mesmo canto.</figcaption>
+      </figure>
+      <figure>
+        <div class="pv-stage pn-stage" data-object="textura de código" data-clip>
+          <div class="pn-code" style="opacity:.35;padding:18px" aria-hidden="true"><div class="loop">for linha in open("notas.csv"):
+    nome, nota = linha.split(",")
+    print(nome, nota)
+texto = Path("leia-me.md").read_text()
+dados = json.loads(texto)
+for linha in open("notas.csv"):
+    nome, nota = linha.split(",")
+    print(nome, nota)
+texto = Path("leia-me.md").read_text()
+dados = json.loads(texto)
+for linha in open("notas.csv"):
+    nome, nota = linha.split(",")
+    print(nome, nota)</div></div>
+        </div>
+        <figcaption><b>Textura de código</b>Código real do assunto, a 6% de opacidade, descendo devagar (80 s). Neste quadro ela aparece ampliada.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="pv-section" id="formatos" data-scene>
+  <div class="pv-wrap">
+    <div class="pv-intro"><h2 class="pv-h2 rise">O mesmo estilo em página, deck e carrossel</h2><p class="rise" style="--i:1">Um trecho de página, um slide 16:9 e um slide de carrossel 4:5, todos com as mesmas variáveis do contrato.</p></div>
+    <div class="pv-formats">
+      <div data-format="page">
+<p class="pv-format-label">Trecho de página</p>
+        <div class="pn-page">
+          <div class="pn-code" aria-hidden="true"><div>with open("dados.txt") as arquivo:
+    texto_lido = arquivo.read()
+for linha in open("notas.csv"):
+    print(linha)</div></div>
+          <p class="pn-step" aria-hidden="true">2</p>
+          <div style="position:relative">
+            <h3>Use <code style="font-family:var(--font-mono);color:var(--accent)">with</code> e esqueça o <code style="font-family:var(--font-mono)">close()</code></h3>
+            <p>O bloco <code>with</code> fecha o arquivo mesmo quando acontece um erro no meio da leitura. É o jeito que você vai encontrar em quase todo código de produção.</p>
+            <pre><span class="k">with</span> <span class="f">open</span>(<span class="s">"dados.txt"</span>, encoding=<span class="s">"utf-8"</span>) <span class="k">as</span> arquivo:
+    conteudo = arquivo.<span class="f">read</span>()</pre>
+          </div>
+        </div>
+      </div>
+      <div><p class="pv-format-label">Slide de aula · 16:9</p><div data-format="deck">
+<div class="pn-deck">
+          <div class="pn-code" aria-hidden="true"><div>with open("dados.txt") as arquivo:
+    texto_lido = arquivo.read()
+for linha in open("notas.csv"):
+    print(linha)
+from pathlib import Path
+texto = Path("leia-me.md").read_text()</div></div>
+          <div><h3><code>with</code> fecha o arquivo por você</h3><p>Mesmo quando a leitura quebra no meio, o arquivo é fechado ao sair do bloco.</p></div>
+          <pre><span class="k">with</span> <span class="f">open</span>(<span class="s">"dados.txt"</span>) <span class="k">as</span> f:
+    texto = f.<span class="f">read</span>()
+<span class="c"># aqui o arquivo já está fechado</span>
+<span class="f">print</span>(f.closed)  <span class="c"># True</span></pre>
+          <span class="count">02 / 03</span>
+        </div>
+      </div></div>
+      <div><p class="pv-format-label">Slide de carrossel · 4:5</p><div data-format="carousel">
+<div class="pn-car">
+          <div class="pn-code" aria-hidden="true"><div>with open("dados.txt") as arquivo:
+    texto_lido = arquivo.read()
+for linha in open("notas.csv"):
+    print(linha)
+texto = Path("leia-me.md").read_text()</div></div>
+          <p class="big" aria-hidden="true">3</p>
+          <h3>jeitos de ler um arquivo em Python</h3>
+          <div class="pn-dots" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <footer><span>@suamarca</span><span>1 / 7</span></footer>
+          <div class="mini" aria-hidden="true"><svg width="60%" viewBox="0 0 64 64"><rect x="8" y="10" width="48" height="44" rx="6" fill="none" stroke="#1b1500" stroke-width="3"/><path d="M8 22h48" stroke="#1b1500" stroke-width="3"/><path d="M20 34l8 7 16-14" fill="none" stroke="#1b1500" stroke-width="4" stroke-linecap="round"/></svg></div>
+        </div>
+      </div></div>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="pv-wrap pv-foot">Prévia do estilo python-noturno · pycode-design · tokens em tokens.css, regras em DESIGN.md. Conteúdo fictício de exemplo.</footer>
+<script>
+/* Movimento: liga cada cena só quando visível, pausa com a aba oculta e respeita movimento reduzido. */
+(() => {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const scenes = document.querySelectorAll('[data-scene]');
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      e.target.dataset.motion = e.isIntersecting && !reduce.matches ? 'on' : 'off';
+      if (e.isIntersecting) e.target.dataset.entered = 'true';
+    }
+  }, { threshold: 0.12 });
+  scenes.forEach((s) => io.observe(s));
+  document.addEventListener('visibilitychange', () => {
+    document.body.dataset.background = document.hidden ? 'true' : 'false';
+  });
+})();
+
+
+</script>
+</body>
+</html>

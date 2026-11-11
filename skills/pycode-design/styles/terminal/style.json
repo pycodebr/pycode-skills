@@ -1,0 +1,21 @@
+{
+  "slug": "terminal",
+  "name": "Terminal",
+  "summary": "Editor de código escuro e neutro com abas, explorador, terminal com cursor, sublinhado de erro, barra de status e diffs. Tudo acontece nos espaços nativos da ferramenta. Para tutoriais, live coding e documentação técnica.",
+  "mode": "dark",
+  "fonts": [
+    "jetbrains-mono"
+  ],
+  "best_for": [
+    "deck",
+    "page",
+    "carousel"
+  ],
+  "mood": [
+    "técnico",
+    "direto",
+    "hacker",
+    "preciso"
+  ],
+  "version": "1.0.0"
+}

@@ -1,0 +1,14 @@
+%% Camadas de um sistema, de cima para baixo, com uma decisão no meio.
+flowchart TB
+    P([Pedido chega]):::borda --> R[Rota]:::camada
+    R --> A{Chave válida?}:::regra
+    A -- não --> E[401: acesso negado]:::erro
+    A -- sim --> N[Regras do negócio]:::camada
+    N --> D[(Banco de dados)]:::dado
+    D --> J[Resposta em JSON]:::dado
+    J --> S([200 OK]):::borda
+    classDef borda fill:#1f2937,color:#ffffff,stroke:#1f2937
+    classDef camada fill:#dbeafe,stroke:#2563eb,color:#1e3a8a
+    classDef regra fill:#ede9fe,stroke:#7c3aed,color:#4c1d95
+    classDef dado fill:#cffafe,stroke:#0891b2,color:#164e63
+    classDef erro fill:#fee2e2,stroke:#dc2626,color:#7f1d1d

@@ -1,0 +1,23 @@
+{
+  "slug": "revista",
+  "name": "Revista",
+  "summary": "Editorial impresso em papel creme, serifas de revista com itálico expressivo, colunas com fios, capitular, citação em destaque e índice numerado. Para ensaios, newsletters, estudos de caso e aulas de leitura longa.",
+  "mode": "light",
+  "fonts": [
+    "instrument-serif",
+    "fraunces",
+    "geist-mono"
+  ],
+  "best_for": [
+    "page",
+    "carousel",
+    "deck"
+  ],
+  "mood": [
+    "editorial",
+    "sofisticado",
+    "reflexivo",
+    "impresso"
+  ],
+  "version": "1.0.0"
+}

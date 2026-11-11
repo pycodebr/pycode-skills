@@ -1,0 +1,21 @@
+{
+  "slug": "caderno",
+  "name": "Caderno",
+  "summary": "Documento claro de estudo: tela cinza-quente, folhas brancas, tinta quase preta e um único azul de ação, com adesivos coloridos só como decoração. Para painéis, apostilas, guias e material de aula.",
+  "mode": "light",
+  "fonts": [
+    "inter",
+    "jetbrains-mono"
+  ],
+  "best_for": [
+    "page",
+    "deck"
+  ],
+  "mood": [
+    "claro",
+    "organizado",
+    "calmo",
+    "didático"
+  ],
+  "version": "1.0.0"
+}

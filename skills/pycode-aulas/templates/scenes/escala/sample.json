@@ -1,0 +1,82 @@
+{
+  "id": "perto-longe",
+  "archetype": "escala",
+  "title": "Perto e longe",
+  "chapter": "a resposta",
+  "thread": "resposta · na escala",
+  "transition": "corte",
+  "bg": "ondas",
+  "apoio": "Os tempos de acesso variam em várias ordens de grandeza: ler da memória é milhares de vezes mais rápido que atravessar um oceano. Por isso a escala do gráfico é logarítmica.",
+  "hook": "Com essa régua, fica claro onde vale a pena guardar uma cópia.",
+  "notes": "Valores aproximados da tabela de latências divulgada por Jeff Dean e Peter Norvig. Clique nas barras para ver a comparação em segundos.",
+  "reading": [
+    {
+      "label": "100 ns",
+      "title": "Ler da memória",
+      "text": "Se isso durasse um segundo, as outras operações durariam o que aparece abaixo."
+    },
+    {
+      "label": "150 µs",
+      "title": "Ler do SSD",
+      "text": "Equivale a 25 minutos na mesma proporção."
+    },
+    {
+      "label": "0,5 ms",
+      "title": "Ida e volta no mesmo datacenter",
+      "text": "Equivale a cerca de 1 hora e 23 minutos."
+    },
+    {
+      "label": "150 ms",
+      "title": "Pacote entre continentes",
+      "text": "Equivale a mais de 17 dias."
+    }
+  ],
+  "data": {
+    "unit": "escala logarítmica em nanossegundos",
+    "log": true,
+    "ticks": [
+      {
+        "v": 10,
+        "label": "10 ns"
+      },
+      {
+        "v": 1000,
+        "label": "1 µs"
+      },
+      {
+        "v": 1000000,
+        "label": "1 ms"
+      },
+      {
+        "v": 1000000000,
+        "label": "1 s"
+      }
+    ],
+    "items": [
+      {
+        "label": "Memória",
+        "value": 100,
+        "display": "100 ns",
+        "tip": "Se isso fosse 1 segundo, as outras viriam abaixo."
+      },
+      {
+        "label": "SSD",
+        "value": 150000,
+        "display": "150 µs",
+        "tip": "Na mesma proporção: 25 minutos."
+      },
+      {
+        "label": "Mesmo datacenter",
+        "value": 500000,
+        "display": "0,5 ms",
+        "tip": "Na mesma proporção: 1 hora e 23 minutos."
+      },
+      {
+        "label": "Outro continente",
+        "value": 150000000,
+        "display": "150 ms",
+        "tip": "Na mesma proporção: mais de 17 dias."
+      }
+    ]
+  }
+}

@@ -1,0 +1,33 @@
+.s-__ID__ .cm-svg { position: absolute; inset: 0; width: 1696px; height: 716px; overflow: visible; }
+.s-__ID__ .cm-axis { stroke: var(--line); stroke-width: 2; stroke-dasharray: 4 10; }
+.s-__ID__ .cm-slab { transition: transform .45s var(--ease-out); }
+.s-__ID__ .cm-top { fill: var(--surface-2); stroke: color-mix(in srgb, var(--text) 18%, transparent); stroke-width: 1.5; transition: fill .3s; }
+.s-__ID__ .cm-left { fill: var(--surface); transition: fill .3s; }
+.s-__ID__ .cm-right { fill: var(--bg-2); transition: fill .3s; }
+.s-__ID__ .cm-grid { fill: none; stroke: color-mix(in srgb, var(--text) 10%, transparent); stroke-width: 1.5; pointer-events: none; }
+.s-__ID__ .cm-slab.on { transform: translateY(-16px); }
+.s-__ID__ .cm-slab.on .cm-top { fill: var(--accent); }
+.s-__ID__ .cm-slab.on .cm-left { fill: color-mix(in srgb, var(--accent) 70%, var(--bg)); }
+.s-__ID__ .cm-slab.on .cm-right { fill: color-mix(in srgb, var(--accent) 45%, var(--bg)); }
+.s-__ID__ .cm-slab.past .cm-top { fill: color-mix(in srgb, var(--accent) 30%, var(--surface-2)); }
+.s-__ID__ .cm-slab.up .cm-top { fill: color-mix(in srgb, var(--accent-2) 55%, var(--surface-2)); }
+.s-__ID__ .cm-lead { fill: none; stroke: var(--line); stroke-width: 2; }
+.s-__ID__ .cm-lead.on { stroke: var(--accent); stroke-width: 3; }
+.s-__ID__ .cm-label { position: absolute; left: 924px; display: flex; align-items: center; gap: 18px; transform: translateY(-50%); transition: opacity .3s; }
+.s-__ID__ .cm-label b { font-family: var(--font-display); font-weight: var(--weight-display); letter-spacing: var(--tracking-display); font-size: 48px; line-height: 1; color: var(--muted); transition: color .3s; }
+.s-__ID__ .cm-ic { width: 64px; height: 64px; border-radius: 18px; display: grid; place-items: center; font-size: 32px; border: 1.5px solid var(--line); background: var(--surface); color: var(--muted); transition: background-color .3s, color .3s, border-color .3s; }
+.s-__ID__ .cm-label.on b { color: var(--text); }
+.s-__ID__ .cm-label.on .cm-ic { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.s-__ID__ .cm-drop { position: absolute; left: 520px; top: 0; width: 0; height: 0; z-index: 3; opacity: 0; transition: opacity .3s; }
+.s-__ID__ .has-drop .cm-drop { opacity: 1; }
+.s-__ID__ .cm-drop i { position: absolute; left: -26px; top: -26px; width: 52px; height: 52px; border-radius: 10px; background: var(--accent); transform: rotate(45deg); box-shadow: var(--glow); }
+.s-__ID__ .going-up .cm-drop i { background: var(--accent-2); }
+.s-__ID__ .cm-drop b { position: absolute; left: -30px; width: 60px; top: -14px; text-align: center; font-size: 22px; font-weight: 700; color: var(--accent-ink); }
+.s-__ID__ .cm-resp { position: absolute; left: 0; top: 4px; display: flex; align-items: center; gap: 10px; font-size: 20px; color: var(--accent-2); opacity: 0; transition: opacity .3s; }
+.s-__ID__ .going-up .cm-resp { opacity: 1; }
+/* estilos claros: as faces laterais escurecem com a cor do texto para a pilha ter volume */
+body[data-mode="light"] .s-__ID__ .cm-top { fill: var(--surface); stroke: color-mix(in srgb, var(--text) 28%, transparent); }
+body[data-mode="light"] .s-__ID__ .cm-left { fill: color-mix(in srgb, var(--surface) 84%, var(--text)); }
+body[data-mode="light"] .s-__ID__ .cm-right { fill: color-mix(in srgb, var(--surface) 72%, var(--text)); }
+body[data-mode="light"] .s-__ID__ .cm-grid { stroke: color-mix(in srgb, var(--text) 14%, transparent); }
+.s-__ID__ .tip { max-width: 360px; }

@@ -1,0 +1,19 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+node_modules/
+.DS_Store
+.pytest_cache/
+# fontes, sons e vídeos nunca entram no repositório: são baixados na instalação ou gerados no projeto do usuário
+*.woff
+*.woff2
+*.ttf
+*.otf
+*.mp4
+*.mov
+*.webm
+*.wav
+*.mp3
+*.m4a
+*.zip

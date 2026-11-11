@@ -1,0 +1,66 @@
+{
+  "id": "rest-graphql",
+  "archetype": "comparacao",
+  "title": "REST ou GraphQL",
+  "chapter": "escolhas",
+  "thread": "pedido 42 · duas formas",
+  "transition": "corte",
+  "bg": "grade",
+  "apoio": "As duas abordagens resolvem o mesmo problema de jeitos diferentes. A escolha depende de quem consome a API e de quanto controle cada tela precisa ter sobre os dados.",
+  "hook": "A escolha muda o formato, não o caminho do pedido.",
+  "notes": "Clique em cada critério: a balança pende para o lado que se sai melhor nele.",
+  "reading": [
+    {
+      "label": "Critério",
+      "title": "Simplicidade para começar",
+      "text": "REST usa os métodos e endereços do próprio HTTP e funciona com qualquer ferramenta."
+    },
+    {
+      "label": "Critério",
+      "title": "Dados sob medida",
+      "text": "No GraphQL, a tela pede exatamente os campos que vai usar, numa consulta só."
+    },
+    {
+      "label": "Critério",
+      "title": "Cache no caminho",
+      "text": "Respostas REST a pedidos GET aproveitam o cache do HTTP com facilidade."
+    },
+    {
+      "label": "Critério",
+      "title": "Contrato documentado",
+      "text": "Os dois oferecem esquemas e documentação gerada; aqui eles empatam."
+    }
+  ],
+  "data": {
+    "left": {
+      "label": "REST",
+      "icon": "route"
+    },
+    "right": {
+      "label": "GraphQL",
+      "icon": "layers"
+    },
+    "rows": [
+      {
+        "label": "Simplicidade para começar",
+        "winner": "l",
+        "tip": "Usa o próprio HTTP: método e endereço."
+      },
+      {
+        "label": "Dados sob medida",
+        "winner": "r",
+        "tip": "A tela pede só os campos que vai usar."
+      },
+      {
+        "label": "Cache no caminho",
+        "winner": "l",
+        "tip": "Pedidos GET aproveitam o cache do HTTP."
+      },
+      {
+        "label": "Contrato documentado",
+        "winner": "=",
+        "tip": "Os dois têm esquema e documentação."
+      }
+    ]
+  }
+}

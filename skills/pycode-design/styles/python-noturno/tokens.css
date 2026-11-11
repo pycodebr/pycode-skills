@@ -1,0 +1,33 @@
+/* Código noturno · tokens do contrato comum do pycode-design (não renomeie as variáveis do contrato). */
+:root {
+  --bg: #0a0e1a;
+  --bg-2: #0d1628;
+  --surface: #121d36;
+  --surface-2: #1a2a4d;
+  --text: #f8fafc;
+  --muted: #a9b8d0;
+  --line: #2a3d66;
+  --accent: #ffd43b;
+  --accent-2: #5aa0e6;
+  --accent-ink: #1b1500;
+  --paper: #eef3fb;
+  --paper-ink: #0d1a33;
+  --danger: #ff6b6b;
+  --ok: #4ade80;
+  --warn: #fbbf24;
+  --font-display: 'Bricolage Grotesque', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --weight-display: 800;
+  --tracking-display: -0.035em;
+  --radius: 12px;
+  --radius-lg: 22px;
+  --shadow: 0 22px 50px rgba(2, 6, 18, .55);
+  --glow: 0 0 0 1px rgba(90, 160, 230, .22), 0 0 60px rgba(55, 118, 171, .28);
+  /* extras do estilo (prefixo do slug) */
+  --python-noturno-python-blue: #3776ab;
+  --python-noturno-python-blue-light: #5aa0e6;
+  --python-noturno-python-yellow: #ffd43b;
+  --python-noturno-code-opacity: .06;
+  --python-noturno-grid: 60px;
+}

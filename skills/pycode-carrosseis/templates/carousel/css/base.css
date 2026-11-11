@@ -1,0 +1,152 @@
+/*
+ * Base do carrossel (pycode-carrosseis). Usa SOMENTE as variáveis do contrato de estilos
+ * (tokens.css), então funciona com qualquer estilo do pycode-design. Cores derivadas saem de
+ * color-mix() sobre os tokens, nunca de hexadecimal fixo.
+ */
+:root {
+  --slide-w: 1080px;
+  --slide-h: 1350px;
+  --safe: 64px;               /* margem segura: texto nunca sai dela */
+  --rail-width: 10px;         /* espessura do trilho contínuo */
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: var(--bg-2);
+  color: var(--text);
+  font-family: var(--font-body);
+  text-rendering: geometricPrecision;
+}
+
+/* Navegação normal: slides empilhados para revisar no navegador. */
+.carousel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48px;
+  padding: 48px 0;
+}
+
+.slide {
+  position: relative;
+  flex: none;
+  width: var(--slide-w);
+  height: var(--slide-h);
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+}
+
+/* ?only=N: um slide só, colado no canto, para captura em 1080x1350 exatos. */
+html.only, html.only body { width: var(--slide-w); height: var(--slide-h); overflow: hidden; background: var(--bg); }
+html.only .carousel { padding: 0; gap: 0; display: block; }
+html.only .slide:not(.is-only) { display: none; }
+
+/* &capture=1: nada de transição ou animação CSS; o tempo vem só de setT(t). */
+html.capture *, html.capture *::before, html.capture *::after {
+  transition: none !important;
+  animation: none !important;
+  caret-color: transparent;
+}
+
+/* Âncoras de marca: discretas, dentro da margem segura. */
+.anchors {
+  position: absolute;
+  z-index: 40;
+  left: var(--safe);
+  right: var(--safe);
+  top: var(--safe);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font: 600 26px/1 var(--font-body);
+  letter-spacing: .01em;
+  color: var(--muted);
+  pointer-events: none;
+}
+.anchors .brand { display: inline-flex; align-items: center; gap: 12px; color: var(--text); }
+.anchors .brand::before {
+  content: "";
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--accent) 25%, transparent);
+}
+.anchors .counter {
+  padding: 8px 16px;
+  border-radius: 999px;
+  border: 2px solid color-mix(in srgb, var(--muted) 55%, transparent);
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+
+/* Texto: destaque e tipografia de exibição vindos do estilo. */
+.display {
+  font-family: var(--font-display);
+  font-weight: var(--weight-display);
+  letter-spacing: var(--tracking-display);
+  line-height: 1.04;
+  text-wrap: balance;
+}
+.body-text { font-size: 42px; line-height: 1.36; text-wrap: pretty; }
+em.hl { font-style: normal; color: var(--accent); }
+
+/* Trilho contínuo: a saída do slide N tem a mesma altura da entrada do N+1 (rail.in / rail.out). */
+svg.rail {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  overflow: visible;
+  pointer-events: none;
+}
+.rail-line { fill: none; stroke: var(--accent); stroke-width: var(--rail-width); stroke-linecap: round; stroke-linejoin: round; }
+.rail-glow { fill: none; stroke: var(--accent); stroke-width: calc(var(--rail-width) * 3.2); opacity: .18; stroke-linecap: round; }
+.rail-node { fill: var(--bg); stroke: var(--accent); stroke-width: 6; }
+.rail-end { fill: var(--accent); stroke: var(--bg); stroke-width: 8; }
+
+/* Código exato: ligaduras desligadas e quebra só entre tokens (feita pelo carousel.js). */
+.code {
+  display: block;
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: 30px;
+  line-height: 1.5;
+  white-space: pre;
+  font-variant-ligatures: none;
+  font-feature-settings: "liga" 0, "calt" 0;
+  --code-ink: var(--text);    /* sobre papel: --code-ink: var(--paper-ink) e --code-tint: 35% */
+  --code-tint: 55%;           /* quanto da cor de destaque entra na sintaxe */
+  color: var(--code-ink);
+  tab-size: 4;
+}
+.code .ln { display: block; }
+.code .cont {
+  display: inline-block;
+  width: 1.6em;
+  height: .9em;
+  vertical-align: -0.05em;
+  border-left: 3px solid color-mix(in srgb, var(--muted) 70%, transparent);
+  border-bottom: 3px solid color-mix(in srgb, var(--muted) 70%, transparent);
+  transform: scale(.45, .5) translate(-30%, -40%);
+  transform-origin: left bottom;
+}
+/* Cores de sintaxe misturadas com a tinta do código: continuam legíveis em fundo claro ou escuro. */
+.code .pr { color: color-mix(in srgb, var(--accent-2) calc(var(--code-tint) * .6), var(--code-ink)); }
+.code .out { color: color-mix(in srgb, var(--accent-2) var(--code-tint), var(--code-ink)); }
+.code .k { color: color-mix(in srgb, var(--accent) var(--code-tint), var(--code-ink)); }
+.code .s { color: color-mix(in srgb, var(--accent-2) var(--code-tint), var(--code-ink)); }
+.code .n { color: color-mix(in srgb, var(--warn) var(--code-tint), var(--code-ink)); }
+.code .c { color: color-mix(in srgb, var(--muted) var(--code-tint), var(--code-ink)); }
+
+[hidden] { display: none !important; }
+
+@media (prefers-reduced-motion: reduce) {
+  * { scroll-behavior: auto !important; }
+}

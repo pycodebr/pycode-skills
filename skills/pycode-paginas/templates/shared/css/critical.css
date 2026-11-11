@@ -1,0 +1,209 @@
+/* CSS crítico: só o que a primeira dobra usa (base, header, hero e o objeto do hero).
+   Todas as cores, fontes, raios e sombras vêm das variáveis do contrato de estilos (tokens.css).
+   O build minifica este arquivo e o incorpora no HTML; o limite é 15 KB minificado. */
+*, *::before, *::after { box-sizing: border-box; }
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--header-h, 72px) + 12px);
+  background: var(--bg);
+}
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 400 17px/1.65 var(--font-body);
+}
+img, svg { display: block; max-width: 100%; }
+a { color: inherit; }
+h1, h2, h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: var(--weight-display, 500);
+  letter-spacing: var(--tracking-display, -0.02em);
+  line-height: 1.06;
+  overflow-wrap: break-word;
+}
+h1, h2 { text-wrap: balance; }
+p { margin: 0; }
+:focus-visible { outline: 2px solid var(--accent-2); outline-offset: 3px; border-radius: 4px; }
+.wrap { width: min(1200px, 100% - 48px); margin-inline: auto; }
+
+.skip-link {
+  position: absolute; left: 16px; top: -60px; z-index: 100;
+  padding: 10px 16px; border-radius: var(--radius);
+  background: var(--accent); color: var(--accent-ink); font-weight: 600; text-decoration: none;
+}
+.skip-link:focus { top: 12px; }
+
+/* Header fixo no topo; a altura real vai para --header-h (JS) e alinha as âncoras. */
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  background: var(--bg);
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 70%, transparent);
+}
+.header-row { display: flex; align-items: center; gap: 24px; min-height: 72px; }
+.brand { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 600; letter-spacing: -0.01em; }
+.brand svg, .brand img { width: 30px; height: 30px; flex: none; }
+.brand-mark circle { fill: none; stroke: var(--accent-2); stroke-width: 2; }
+.brand-mark .dot { fill: var(--accent); stroke: none; }
+.site-nav { margin-left: auto; }
+.nav-links { display: flex; gap: 28px; margin: 0; padding: 0; list-style: none; font-size: 15px; }
+.nav-links a { color: var(--muted); text-decoration: none; }
+.nav-links a:hover { color: var(--text); }
+.nav-links a[aria-current="page"] { color: var(--text); text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 7px; }
+.menu { display: none; position: relative; }
+.menu summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 10px; min-height: 44px; padding: 0 4px; font-size: 15px; }
+.menu summary::-webkit-details-marker { display: none; }
+.menu summary i { position: relative; width: 18px; height: 2px; background: currentColor; }
+.menu summary i::before { content: ""; position: absolute; left: 0; top: -6px; width: 18px; height: 2px; background: currentColor; }
+.menu ul {
+  position: absolute; right: 0; top: calc(100% + 10px); min-width: 220px; margin: 0; padding: 8px; list-style: none;
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow);
+}
+.menu ul a { display: block; padding: 12px 14px; border-radius: calc(var(--radius) - 2px); text-decoration: none; }
+.menu ul a:hover { background: var(--surface-2); }
+
+.button {
+  position: relative; isolation: isolate; overflow: hidden;
+  display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+  min-height: 52px; padding: 14px 22px; border: 1px solid transparent; border-radius: var(--radius);
+  background: var(--accent); color: var(--accent-ink);
+  font: 600 15px/1.2 var(--font-body); text-decoration: none; cursor: pointer;
+  transition: transform .2s ease, background-color .2s ease;
+}
+.button:hover { transform: translateY(-2px); }
+.button svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.button-ghost { background: transparent; color: var(--text); border-color: var(--line); }
+.button-ghost:hover { background: var(--surface); }
+.button-small { min-height: 42px; padding: 10px 16px; font-size: 14px; }
+
+/* Hero em duas colunas: texto e o objeto da viagem da requisição. */
+.hero {
+  position: relative; overflow: clip;
+  padding: clamp(40px, 6vw, 88px) 0 clamp(56px, 7vw, 104px);
+  background:
+    radial-gradient(ellipse at 78% 40%, color-mix(in srgb, var(--accent-2) 12%, transparent), transparent 58%),
+    linear-gradient(90deg, color-mix(in srgb, var(--line) 26%, transparent) 1px, transparent 1px) 0 0 / 64px 64px,
+    linear-gradient(0deg, color-mix(in srgb, var(--line) 26%, transparent) 1px, transparent 1px) 0 0 / 64px 64px,
+    var(--bg);
+}
+.hero::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(ellipse at 30% 30%, transparent 30%, var(--bg) 82%);
+}
+.hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: minmax(0, 1.04fr) minmax(0, .96fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
+.hero h1 { font-size: clamp(42px, 5.3vw, 78px); max-width: 13ch; }
+.lead { margin-top: 24px; max-width: 54ch; font-size: clamp(17px, 1.35vw, 19px); color: var(--muted); }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+.facts { display: flex; flex-wrap: wrap; gap: 0; margin: 36px 0 0; padding: 0; border-top: 1px solid var(--line); max-width: 560px; }
+.facts div { flex: 1 1 140px; padding: 16px 20px 0 0; }
+.facts dt { font: 12px/1.5 var(--font-mono); color: var(--muted); }
+.facts dd { margin: 4px 0 0; font-size: 16px; }
+
+/* Objeto do hero: navegador (papel) em cima, servidor embaixo e duas vias com pacotes. */
+.trip { margin: 0; }
+.trip-object { position: relative; width: min(100%, 520px); margin-left: auto; padding: 18px 0; }
+.trip-ring { position: absolute; z-index: 0; width: 118%; left: -9%; top: 50%; aspect-ratio: 1; height: auto; translate: 0 -50%; pointer-events: none; }
+.trip-ring circle { fill: none; stroke: color-mix(in srgb, var(--accent-2) 26%, transparent); stroke-width: .6; }
+.trip-ring .ticks { stroke: color-mix(in srgb, var(--accent) 40%, transparent); stroke-width: 1.4; stroke-dasharray: 1 7; }
+.trip-client {
+  position: relative; z-index: 2; width: 84%;
+  padding: 14px 16px 18px; border-radius: var(--radius-lg);
+  background: var(--paper); color: var(--paper-ink); box-shadow: var(--shadow);
+}
+.client-bar { display: flex; align-items: center; gap: 6px; padding-bottom: 12px; border-bottom: 1px solid color-mix(in srgb, var(--paper-ink) 14%, transparent); font: 12px/1.4 var(--font-mono); }
+.client-bar i { width: 9px; height: 9px; border-radius: 50%; background: color-mix(in srgb, var(--paper-ink) 22%, transparent); }
+.client-bar span { margin-left: 8px; padding: 5px 10px; border-radius: 999px; background: color-mix(in srgb, var(--paper-ink) 7%, transparent); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.client-rows { margin: 12px 0 0; padding: 0; list-style: none; }
+.client-rows li { display: grid; grid-template-columns: 28px minmax(0, 1fr) auto; align-items: center; gap: 12px; padding: 8px 0; font-size: 15px; }
+.client-rows li + li { border-top: 1px dashed color-mix(in srgb, var(--paper-ink) 16%, transparent); }
+.client-rows b { width: 28px; height: 36px; border-radius: 3px; background: var(--accent); }
+.client-rows li:nth-child(2) b { background: var(--accent-2); }
+.client-rows li:nth-child(3) b { background: color-mix(in srgb, var(--paper-ink) 70%, var(--paper)); }
+.client-rows em { font: normal 12px/1 var(--font-mono); opacity: .7; }
+.client-glow { position: absolute; inset: 0; border-radius: inherit; box-shadow: inset 0 0 0 2px var(--accent-2); opacity: 0; pointer-events: none; }
+
+.trip-lanes { position: relative; z-index: 1; display: grid; grid-template-columns: 1fr 1fr; width: 70%; height: 148px; margin: 0 auto; }
+.lane { position: relative; display: flex; justify-content: center; }
+.lane::before { content: ""; position: absolute; top: 0; bottom: 0; left: 50%; border-left: 1.5px dashed color-mix(in srgb, var(--accent-2) 55%, transparent); }
+.lane::after { content: ""; position: absolute; left: 50%; translate: -50% 0; border: 6px solid transparent; }
+.lane-out::after { bottom: -2px; border-top-color: var(--accent-2); }
+.lane-back::after { top: -2px; border-bottom-color: var(--accent-2); }
+.lane-label { position: absolute; top: 18px; font: 12px/1 var(--font-mono); color: var(--muted); }
+.lane-out .lane-label { right: calc(50% + 12px); }
+.lane-back .lane-label { left: calc(50% + 12px); top: auto; bottom: 18px; }
+.runner { position: relative; width: 100%; height: 100%; }
+.packet {
+  position: absolute; left: 50%; top: 50%; translate: -50% -50%;
+  padding: 6px 12px; border-radius: 999px; white-space: nowrap;
+  font: 12px/1.3 var(--font-mono); box-shadow: var(--glow);
+}
+.lane-out .packet { background: var(--accent); color: var(--accent-ink); }
+.lane-back .packet { background: var(--surface-2); color: var(--text); border: 1px solid var(--accent-2); }
+
+.trip-server {
+  position: relative; z-index: 2; width: 84%; margin-left: auto;
+  display: grid; grid-template-columns: 104px minmax(0, 1fr); gap: 18px; align-items: center;
+  padding: 18px 20px; border: 1px solid var(--line); border-radius: var(--radius-lg);
+  background: var(--surface); box-shadow: var(--shadow);
+}
+.server-disks { width: 104px; height: auto; aspect-ratio: 120 / 96; }
+.server-disks path, .server-disks ellipse { fill: var(--surface-2); stroke: var(--accent-2); stroke-width: 1.5; }
+.server-disks .disk-glow { fill: var(--accent); stroke: none; opacity: 0; }
+.server-text strong { display: block; font: 600 15px/1.3 var(--font-mono); }
+.server-log { margin: 8px 0 0; padding: 0; list-style: none; font: 12px/1.7 var(--font-mono); color: var(--muted); }
+.server-log span { color: var(--accent); }
+.trip figcaption { max-width: 520px; margin: 18px 0 0 auto; font-size: 14px; color: var(--muted); }
+
+/* Páginas internas (modelo de site): cabeçalho de página e 404. */
+.page-head {
+  padding: clamp(48px, 7vw, 96px) 0 clamp(40px, 5vw, 72px);
+  border-bottom: 1px solid color-mix(in srgb, var(--line) 60%, transparent);
+  background: radial-gradient(ellipse at 85% 0%, color-mix(in srgb, var(--accent) 10%, transparent), transparent 55%), var(--bg);
+}
+.page-head h1 { font-size: clamp(38px, 4.6vw, 66px); max-width: 18ch; }
+.crumbs { margin-bottom: 22px; font: 13px/1.5 var(--font-mono); color: var(--muted); }
+.crumbs a { color: var(--text); }
+.not-found { padding: clamp(56px, 9vw, 128px) 0; }
+.nf-grid { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(32px, 6vw, 88px); align-items: center; }
+.nf-grid h1 { font-size: clamp(36px, 4.2vw, 60px); max-width: 16ch; }
+.nf-card {
+  padding: 28px 30px; border-radius: var(--radius-lg); background: var(--paper); color: var(--paper-ink);
+  box-shadow: var(--shadow); transform: rotate(-2deg); font: 15px/1.6 var(--font-mono);
+}
+.nf-line span { color: color-mix(in srgb, var(--paper-ink) 55%, var(--paper)); }
+.nf-path { overflow-wrap: anywhere; }
+.nf-status { margin: 10px 0; font: var(--weight-display, 500) clamp(96px, 14vw, 180px)/.95 var(--font-display); letter-spacing: var(--tracking-display, -0.02em); }
+
+@media (max-width: 1000px) {
+  .nf-grid { grid-template-columns: minmax(0, 1fr); }
+  .hero-grid { grid-template-columns: minmax(0, 1fr); }
+  .trip-object { margin-inline: auto; }
+  .trip figcaption { margin-inline: auto; }
+}
+@media (max-width: 860px) {
+  .nav-links { display: none; }
+  .menu { display: block; }
+}
+@media (max-width: 760px) {
+  .wrap { width: calc(100% - 40px); }
+  .header-row { min-height: 64px; gap: 12px; }
+  .header-row .button-small { display: none; }
+  .hero h1 { font-size: clamp(38px, 10.4vw, 56px); }
+  .actions .button { flex: 1 1 100%; }
+  /* Celular: sem grade, sem véu e sem sombras grandes (pintura mais barata); cor e forma ficam. */
+  .hero { background: radial-gradient(ellipse at 70% 72%, color-mix(in srgb, var(--accent-2) 12%, transparent), transparent 60%), var(--bg); }
+  .hero::after { display: none; }
+  .trip-ring { display: none; }
+  .trip-client, .trip-server { width: 92%; box-shadow: none; }
+  .packet { box-shadow: none; }
+  .trip-lanes { height: 120px; width: 76%; }
+  .trip-server { grid-template-columns: 76px minmax(0, 1fr); gap: 14px; padding: 16px; }
+  .server-disks { width: 76px; }
+}
+@media (max-width: 360px) {
+  .wrap { width: calc(100% - 32px); }
+  .client-rows li { font-size: 14px; gap: 10px; }
+  .packet { padding: 5px 9px; }
+}

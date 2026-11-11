@@ -1,0 +1,33 @@
+/* Orbital · tokens do contrato comum do pycode-design (não renomeie as variáveis do contrato). */
+:root {
+  --bg: #03090e;
+  --bg-2: #071722;
+  --surface: #0e283a;
+  --surface-2: #153b50;
+  --text: #f3f9fc;
+  --muted: #b9cbd6;
+  --line: #2a576f;
+  --accent: #edc580;
+  --accent-2: #7dd3fc;
+  --accent-ink: #302515;
+  --paper: #f2f5ef;
+  --paper-ink: #102836;
+  --danger: #ff7a70;
+  --ok: #7be0a6;
+  --warn: #f9e6bd;
+  --font-display: 'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-body: 'Geist', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'Geist Mono', ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --weight-display: 400;
+  --tracking-display: -0.05em;
+  --radius: 9px;
+  --radius-lg: 20px;
+  --shadow: 0 24px 60px rgba(0, 0, 0, .45);
+  --glow: 0 0 0 1px rgba(125, 211, 252, .18), 0 0 48px rgba(125, 211, 252, .16);
+  /* extras do estilo (prefixo do slug) */
+  --orbital-gold-light: #f9e6bd;
+  --orbital-gold-surface: #edcf93;
+  --orbital-gold-gradient: linear-gradient(135deg, #faf0d7, #edcf93 85%, #d3b370);
+  --orbital-paper-gradient: linear-gradient(140deg, #f6f5eb, #d2e2e4);
+  --orbital-grid: 58px;
+}

@@ -1,0 +1,192 @@
+{
+  "meta": {
+    "title": "A viagem de uma requisição",
+    "slug": "metro-requisicao",
+    "lang": "pt-BR",
+    "concept": "mapa do metrô: cada etapa é uma estação, com a faixa do mapa no topo e a linha correndo de um slide para o outro"
+  },
+  "brand": {
+    "name": "Sua Marca",
+    "handle": "@suamarca"
+  },
+  "rules": {
+    "cover_words": 20,
+    "slide_words": 35
+  },
+  "stations": [
+    "Endereço",
+    "DNS",
+    "Servidor",
+    "Banco",
+    "Resposta"
+  ],
+  "ui": {
+    "station": "ESTAÇÃO",
+    "ticket": "IDA",
+    "rack": "requisição recebida na porta 443",
+    "stamp": "200"
+  },
+  "slides": [
+    {
+      "layout": "cover",
+      "title": "A viagem de uma *requisição*, do endereço que você digita até a página aberta",
+      "video": {
+        "seconds": 5,
+        "still": 5
+      },
+      "rail": {
+        "start": [
+          150,
+          1105
+        ],
+        "out": 1105
+      },
+      "keywords": [
+        "requisição",
+        "HTTP"
+      ]
+    },
+    {
+      "layout": "map",
+      "body": "Toda vez que você abre um site, a *requisição* faz a mesma viagem de cinco estações e volta com a página pronta pro navegador.",
+      "rail": {
+        "in": 1105,
+        "out": 1105
+      },
+      "keywords": [
+        "navegador"
+      ]
+    },
+    {
+      "layout": "station",
+      "station": 1,
+      "body": "Na primeira estação, o navegador quebra o endereço em partes: o protocolo, o *domínio*, que é o nome do site, e o *caminho*, que diz qual página você quer.",
+      "code": {
+        "lines": [
+          ">>> from urllib.parse import urlsplit",
+          ">>> urlsplit(\"https://exemplo.com/cursos/42\").path",
+          "'/cursos/42'"
+        ],
+        "run": "doctest"
+      },
+      "labels": {
+        "url_scheme": "https://",
+        "url_domain": "exemplo.com",
+        "url_path": "/cursos/42",
+        "scheme": "protocolo",
+        "domain": "domínio",
+        "path": "caminho"
+      },
+      "rail": {
+        "in": 1105,
+        "out": 1105
+      },
+      "keywords": [
+        "URL",
+        "domínio",
+        "urlsplit"
+      ]
+    },
+    {
+      "layout": "station",
+      "station": 2,
+      "body": "O *DNS* funciona como a lista telefônica da internet: recebe o domínio e devolve o *IP*, o número do computador onde o site está. O IP do painel é de exemplo.",
+      "labels": {
+        "col_from": "DOMÍNIO",
+        "col_to": "IP",
+        "domain": "exemplo.com",
+        "ip": "203.0.113.10"
+      },
+      "rail": {
+        "in": 1105,
+        "out": 1105
+      },
+      "keywords": [
+        "DNS",
+        "IP"
+      ]
+    },
+    {
+      "layout": "station",
+      "station": 3,
+      "body": "O *servidor* recebe a requisição com um verbo, como GET para ler, e o caminho pedido, e entrega tudo pro código que sabe responder aquela rota.",
+      "code": {
+        "lines": [
+          "GET /cursos/42 HTTP/1.1"
+        ],
+        "check": "literal"
+      },
+      "rail": {
+        "in": 1105,
+        "out": 1105
+      },
+      "keywords": [
+        "servidor",
+        "GET",
+        "rota"
+      ]
+    },
+    {
+      "layout": "station",
+      "station": 4,
+      "body": "Quando a página depende de dados, o código consulta o *banco de dados*, busca só o registro pedido e monta a resposta com ele.",
+      "code": {
+        "lines": [
+          "SELECT nome FROM cursos",
+          "WHERE id = 42;"
+        ],
+        "check": "literal"
+      },
+      "labels": {
+        "result": "Como funciona uma API"
+      },
+      "rail": {
+        "in": 1105,
+        "out": 1105
+      },
+      "keywords": [
+        "banco de dados",
+        "SQL"
+      ]
+    },
+    {
+      "layout": "station",
+      "station": 5,
+      "body": "O servidor devolve um *código de status*, 200 quando deu certo, e o conteúdo, muitas vezes em JSON, que o navegador usa pra desenhar a página.",
+      "code": {
+        "lines": [
+          "HTTP/1.1 200 OK",
+          "{\"id\": 42, \"nome\": \"Como funciona uma API\"}"
+        ],
+        "check": "literal"
+      },
+      "rail": {
+        "in": 1105,
+        "out": 1105
+      },
+      "keywords": [
+        "status 200",
+        "JSON"
+      ]
+    },
+    {
+      "layout": "cta",
+      "title": "Fim da linha: a página abriu, e a viagem inteira costuma levar menos de um segundo.",
+      "cta": "Salva o mapa pra consultar quando for estudar a sua primeira API.",
+      "labels": {
+        "end_kicker": "TERMINAL",
+        "end": "FIM DA LINHA"
+      },
+      "rail": {
+        "in": 1105,
+        "end": [
+          985,
+          1105
+        ]
+      },
+      "keywords": [
+        "API"
+      ]
+    }
+  ]
+}

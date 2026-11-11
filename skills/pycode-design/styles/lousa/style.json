@@ -1,0 +1,23 @@
+{
+  "slug": "lousa",
+  "name": "Lousa de giz",
+  "summary": "Ardósia verde com marcas de apagador, moldura de madeira e giz em quatro cores fixas, com diagramas que se desenham enquanto a explicação avança. Para aulas conceituais, comparações e passo a passo.",
+  "mode": "dark",
+  "fonts": [
+    "caveat",
+    "inter",
+    "geist-mono"
+  ],
+  "best_for": [
+    "deck",
+    "carousel",
+    "page"
+  ],
+  "mood": [
+    "didático",
+    "acolhedor",
+    "artesanal",
+    "sala de aula"
+  ],
+  "version": "1.0.0"
+}

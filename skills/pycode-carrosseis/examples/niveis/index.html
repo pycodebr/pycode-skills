@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=1080">
+  <title>Níveis</title>
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/scene.css">
+</head>
+<body>
+  <!-- Exemplo "níveis": escada isométrica (SVG), numeral gigante (canvas) e medidor de cinco segmentos. -->
+  <main class="carousel"></main>
+
+  <template id="slide-common">
+    <div class="sky" aria-hidden="true"></div>
+    <div class="grain" aria-hidden="true"></div>
+    <svg class="stairs" viewBox="0 0 1080 760" aria-hidden="true"></svg>
+    <div class="anchors"><span class="brand" data-anchor="brand"></span><span class="counter" data-anchor="counter"></span></div>
+    <div class="meter" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+  </template>
+
+  <template data-layout="cover">
+    <section class="slide layout-cover">
+      <h1 class="display cover-title" data-field="title"></h1>
+    </section>
+  </template>
+
+  <template data-layout="level">
+    <section class="slide layout-level">
+      <div class="artifact"></div>
+      <canvas class="numeral" width="320" height="440" aria-hidden="true"></canvas>
+      <div class="col">
+        <div class="tag"></div>
+        <h2 class="display lvl-title" data-field="title"></h2>
+        <p class="lvl-body" data-field="body"></p>
+      </div>
+    </section>
+  </template>
+
+  <template data-layout="cta">
+    <section class="slide layout-cta">
+      <h2 class="display cta-title" data-field="title"></h2>
+      <p class="cta" data-field="cta"></p>
+    </section>
+  </template>
+
+  <script src="js/slides-data.js"></script>
+  <script src="js/carousel.js"></script>
+  <script src="js/scene.js"></script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+/* pycode-aulas · peças comuns às cenas. Só variáveis do contrato de estilos.
+   Cada cena tem o próprio arquivo em src/scenes/<id>.css, com seletores começando por .s-<id>. */
+
+#deck { --a1: var(--accent); --a2: var(--accent-2); }
+/* cena com a cor de destaque trocada: data-accent="2" */
+.slide[data-accent="2"] { --accent: var(--a2); --accent-2: var(--a1); }
+
+/* ícone de traço (K.icon) */
+.ic { width: 1em; height: 1em; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+
+/* objeto genérico: pastilha com ícone e rótulo curto */
+.node { position: absolute; display: flex; flex-direction: column; align-items: center; gap: 12px; transform: translate(-50%, -50%); }
+.node .disc {
+  width: 112px; height: 112px; border-radius: 32px; display: grid; place-items: center; font-size: 52px;
+  background: var(--surface); border: 1.5px solid var(--line); color: var(--text); box-shadow: var(--shadow);
+  transition: border-color .3s, background-color .3s, color .3s, transform .4s var(--ease-out);
+}
+.node .name { font-family: var(--font-mono); font-size: 21px; color: var(--muted); white-space: nowrap; transition: color .3s; }
+.node.on .disc { border-color: var(--accent); background: var(--accent); color: var(--accent-ink); transform: scale(1.08); box-shadow: var(--glow), var(--shadow); }
+.node.on .name { color: var(--text); }
+.node.done .disc { border-color: var(--accent); }
+
+/* etiqueta pequena (rótulo de até três palavras) */
+.chip { display: inline-flex; align-items: center; gap: 8px; padding: 6px 14px; border-radius: 999px; font-family: var(--font-mono); font-size: 18px; border: 1px solid var(--line); color: var(--muted); background: var(--surface); white-space: nowrap; }
+.chip.on { color: var(--accent-ink); background: var(--accent); border-color: var(--accent); }
+
+/* traços de SVG */
+.trace { fill: none; stroke: var(--line); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.trace.hot { stroke: var(--accent); }
+.dot-packet { fill: var(--accent); }
+.dot-packet.alt { fill: var(--accent-2); }
+
+/* papel claro (objetos de papel sobre o fundo do estilo) */
+.paper { background: var(--paper); color: var(--paper-ink); border-radius: var(--radius-lg); box-shadow: var(--shadow); }

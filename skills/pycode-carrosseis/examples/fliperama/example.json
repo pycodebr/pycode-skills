@@ -1,0 +1,7 @@
+{
+  "name": "fliperama",
+  "title": "Fliperama",
+  "summary": "Quiz em pixel art desenhado em canvas: gabinete de fliperama na capa em vídeo, uma fase por slide com código executado de verdade, placar com o veredito no slide seguinte e tela de continue no fim.",
+  "default_style": "fliperama",
+  "fonts_extra": ["press-start-2p", "vt323"]
+}

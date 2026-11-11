@@ -1,0 +1,55 @@
+{
+  "meta": {
+    "title": "Três pegadinhas de Python",
+    "slug": "fliperama-quiz",
+    "lang": "pt-BR",
+    "concept": "fliperama: quiz em pixel art desenhado em canvas, uma fase por slide e o veredito no slide seguinte"
+  },
+  "brand": {"name": "Sua Marca", "handle": "@suamarca"},
+  "rules": {"cover_words": 20, "slide_words": 35},
+  "ui": {"start": "PRESS START", "phase": "FASE", "score": "HIGH SCORE", "continue": "CONTINUE?", "coin": "INSERT COIN"},
+  "slides": [
+    {
+      "layout": "cover",
+      "title": "Três pegadinhas de Python: quantas você acerta sem rodar o código?",
+      "video": {"seconds": 5, "still": 0},
+      "keywords": ["quiz", "Python"]
+    },
+    {
+      "layout": "phase",
+      "phase": 1,
+      "body": "Quiz de Python, fase 1 de 3: o que aparece na tela quando você soma duas strings que têm números dentro?",
+      "code": {"lines": ["print(\"10\" + \"5\")"], "run": "python", "expect": "105"},
+      "quiz": {"options": ["15", "105", "erro", "10 5"], "answer": "B"},
+      "keywords": ["string", "concatenação"]
+    },
+    {
+      "layout": "phase",
+      "phase": 2,
+      "body": "Fase 2: o método sort coloca a lista em ordem. O que o print mostra nesta linha?",
+      "code": {"lines": ["nums = [3, 1, 2]", "print(nums.sort())"], "run": "python", "expect": "None"},
+      "quiz": {"options": ["[1, 2, 3]", "[3, 1, 2]", "None", "erro"], "answer": "C"},
+      "keywords": ["sort", "None"]
+    },
+    {
+      "layout": "phase",
+      "phase": 3,
+      "body": "Fase 3: arredondando um número que termina em ,5. Qual é a saída?",
+      "code": {"lines": ["print(round(2.5))"], "run": "python", "expect": "2"},
+      "quiz": {"options": ["2", "3", "2.0", "erro"], "answer": "A"},
+      "keywords": ["round"]
+    },
+    {
+      "layout": "score",
+      "body": "As respostas são B, C e A. O + junta textos, o sort muda a lista e devolve None, e o round leva o ,5 pro número par mais próximo.",
+      "labels": {"rows": [["1", "B", "105"], ["2", "C", "None"], ["3", "A", "2"]]},
+      "keywords": ["sort", "round", "None"]
+    },
+    {
+      "layout": "continue",
+      "title": "Acertou as três? Então você já lê Python do jeito que o interpretador lê.",
+      "cta": "Manda este quiz pra quem estuda Python com você e compara os placares.",
+      "keywords": ["interpretador"]
+    }
+  ]
+}

@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Terminal · prévia do estilo</title>
+<meta name="description" content="Editor de código escuro e neutro com abas, explorador, terminal com cursor, sublinhado de erro, barra de status e diffs. Tudo acontece nos espaços nativos da ferramenta. Para tutoriais, live coding e documentação técnica.">
+<!-- Abra pela galeria (pycode styles preview): ela copia as fontes para fonts/ ao lado deste arquivo. -->
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="tokens.css">
+<script>document.documentElement.classList.add('js')</script>
+<style>
+/* ---------- chassi comum da prévia: só variáveis do contrato ---------- */
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:var(--font-body);font-size:17px;line-height:1.6;overflow-x:hidden}
+img,svg{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.pv-wrap{width:min(1240px,calc(100% - 40px));margin-inline:auto}
+.pv-section{padding-block:clamp(56px,8vw,112px);position:relative}
+.pv-section + .pv-section{border-top:1px solid var(--line)}
+h1,h2,h3{font-family:var(--font-display);font-weight:var(--weight-display);letter-spacing:var(--tracking-display);line-height:1.05;margin:0;text-wrap:balance}
+p{margin:0;text-wrap:pretty}
+.pv-h2{font-size:clamp(30px,4.2vw,54px);max-width:18ch}
+.pv-intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px 48px;align-items:end;margin-bottom:clamp(32px,5vw,56px)}
+.pv-intro p{color:var(--muted);max-width:56ch}
+.pv-top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 0;font-family:var(--font-mono);font-size:14px;color:var(--muted)}
+.pv-top b{color:var(--text);font-weight:600}
+.pv-top nav{display:flex;gap:18px;flex-wrap:wrap}
+.pv-top nav a{text-decoration:none;color:var(--muted)}
+.pv-top nav a:hover{color:var(--text)}
+/* paleta */
+.pv-palette{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,190px),1fr));gap:14px}
+@media (max-width:600px){.pv-palette{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.pv-chip{grid-template-rows:56px auto}.pv-chip div{padding:10px}.pv-chip code{font-size:12px;word-break:break-all}.pv-chip span{font-size:13px}}
+.pv-chip{display:grid;grid-template-rows:84px auto;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;background:var(--surface)}
+.pv-chip i{display:block;border-bottom:1px solid var(--line)}
+.pv-chip div{padding:12px 14px 14px;display:grid;gap:2px}
+.pv-chip code{font-family:var(--font-mono);font-size:13px;color:var(--text)}
+.pv-chip span{font-size:14px;line-height:1.45;color:var(--muted)}
+/* tipografia */
+.pv-type{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:clamp(24px,4vw,56px)}
+.pv-type-display{font-family:var(--font-display);font-weight:var(--weight-display);letter-spacing:var(--tracking-display);font-size:clamp(46px,7.4vw,112px);line-height:.98}
+.pv-type-scale{display:grid;gap:14px;align-content:start}
+.pv-type-scale div{display:grid;grid-template-columns:120px minmax(0,1fr);gap:12px;align-items:baseline;border-top:1px solid var(--line);padding-top:10px}
+.pv-type-scale code{font-family:var(--font-mono);font-size:13px;color:var(--muted)}
+.pv-type-body{margin-top:26px;max-width:58ch;color:var(--muted)}
+.pv-type-mono{margin-top:18px;font-family:var(--font-mono);font-size:15px;color:var(--text)}
+/* objetos */
+.pv-objects{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:clamp(16px,2vw,28px)}
+.pv-objects > figure{margin:0;grid-column:span 2;display:grid;grid-template-rows:auto 1fr;gap:14px;min-width:0}
+.pv-objects > figure.wide{grid-column:span 3}
+.pv-objects > figure.full{grid-column:1 / -1}
+.pv-stage{position:relative;min-height:340px;padding:28px;border-radius:var(--radius-lg);overflow:hidden;display:grid;place-items:center;isolation:isolate}
+.pv-objects figcaption{font-size:15px;line-height:1.5;color:var(--muted)}
+.pv-objects figcaption b{display:block;color:var(--text);font-family:var(--font-display);font-weight:var(--weight-display);letter-spacing:var(--tracking-display);font-size:19px;margin-bottom:2px}
+/* formatos */
+.pv-formats{display:grid;grid-template-columns:minmax(0,1.85fr) minmax(0,1fr);gap:clamp(20px,3vw,36px);align-items:start}
+.pv-formats > [data-format="page"]{grid-column:1 / -1}
+.pv-format-label{font-family:var(--font-mono);font-size:13px;color:var(--muted);margin:0 0 10px}
+[data-format="deck"]{aspect-ratio:16/9;container-type:inline-size;position:relative;overflow:hidden;border-radius:var(--radius)}
+[data-format="carousel"]{aspect-ratio:4/5;container-type:inline-size;position:relative;overflow:hidden;border-radius:var(--radius)}
+.pv-foot{padding:40px 0 56px;color:var(--muted);font-size:14px;font-family:var(--font-mono)}
+/* movimento: entradas só quando há JS; loops só rodam com a cena visível */
+html.js [data-scene]:not([data-entered]) .rise{opacity:0;transform:translateY(18px)}
+.rise{transition:opacity .8s cubic-bezier(.2,.7,.2,1),transform .8s cubic-bezier(.2,.7,.2,1);transition-delay:calc(var(--i,0) * 70ms)}
+html.js .loop,html.js .loop::before,html.js .loop::after{animation-play-state:paused !important}
+html.js [data-scene][data-motion="on"] .loop,html.js [data-scene][data-motion="on"] .loop::before,html.js [data-scene][data-motion="on"] .loop::after{animation-play-state:running !important}
+html.js body[data-background="true"] .loop,html.js body[data-background="true"] .loop::before,html.js body[data-background="true"] .loop::after{animation-play-state:paused !important}
+@media (max-width:900px){
+  .pv-intro,.pv-type,.pv-formats{grid-template-columns:minmax(0,1fr)}
+  .pv-objects{grid-template-columns:minmax(0,1fr)}
+  .pv-objects > figure,.pv-objects > figure.wide{grid-column:1 / -1}
+}
+@media (max-width:600px){.pv-top nav{display:none}body{font-size:16px}}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none !important;transition:none !important;scroll-behavior:auto !important}
+  html.js [data-scene]:not([data-entered]) .rise{opacity:1;transform:none}
+}
+
+/* ---------- Terminal: superfícies, objetos e movimento do estilo ---------- */
+.pv-terminal{background:var(--bg)}
+.pv-terminal .pv-section + .pv-section{border-top:1px solid var(--line)}
+.pv-terminal .pv-h2{font-size:clamp(26px,3.4vw,44px)}
+.pv-terminal .pv-objects figcaption b{font-size:16px}
+.tm-hero{padding-top:clamp(28px,4vw,56px)}
+.tm-head{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:24px 48px;align-items:end;margin-bottom:clamp(24px,3vw,40px)}
+.tm-hero h1{font-size:clamp(30px,4vw,56px);line-height:1.08}
+.tm-hero h1::before{content:"$ ";color:var(--accent)}
+.tm-head p{color:var(--muted);font-size:15px;line-height:1.7}
+.tm-btn{display:inline-flex;align-items:center;gap:10px;min-height:46px;padding:0 18px;margin-top:16px;background:var(--accent);color:var(--accent-ink);text-decoration:none;font:700 14px var(--font-mono);border-radius:var(--radius)}
+.tm-btn kbd{font:500 12px var(--font-mono);padding:2px 6px;border-radius:3px;background:rgba(0,26,43,.18)}
+.tm-ide{border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow);font:400 14px/1.65 var(--font-mono);background:var(--bg)}
+.tm-title{display:flex;justify-content:center;padding:7px;background:var(--bg-2);color:var(--muted);font-size:12px;border-bottom:1px solid var(--line)}
+.tm-body{display:grid;grid-template-columns:48px 220px minmax(0,1fr);min-height:420px}
+.tm-act{background:var(--bg-2);display:grid;align-content:start;justify-items:center;gap:18px;padding-top:14px;border-right:1px solid var(--line)}
+.tm-act i{width:22px;height:22px;border:2px solid var(--muted);border-radius:4px;opacity:.7}
+.tm-act i.on{border-color:var(--text);opacity:1;box-shadow:-13px 0 0 -11px var(--text)}
+.tm-tree{background:var(--surface);padding:10px 0;font-size:13px;border-right:1px solid var(--line)}
+.tm-tree p{padding:2px 14px;color:var(--muted);font-size:11px;letter-spacing:.08em}
+.tm-tree li{list-style:none;padding:2px 14px 2px calc(14px + var(--l,0) * 14px);white-space:nowrap}
+.tm-tree ul{margin:6px 0;padding:0}
+.tm-tree li.on{background:var(--terminal-selection);color:#fff}
+.tm-tree li.dir::before{content:"▾ ";color:var(--muted)}
+.tm-tree .py{color:var(--terminal-type)}
+.tm-main{display:grid;grid-template-rows:auto 1fr auto;min-width:0}
+.tm-tabs{display:flex;background:var(--surface);border-bottom:1px solid var(--line);font-size:13px;overflow:hidden}
+.tm-tabs span{padding:8px 16px;color:var(--muted);border-right:1px solid var(--line);white-space:nowrap}
+.tm-tabs span.on{background:var(--bg);color:var(--text);box-shadow:inset 0 2px 0 var(--accent)}
+.tm-code{position:relative;display:grid;grid-template-columns:44px minmax(0,1fr);padding:12px 0;overflow:hidden}
+.tm-ln{color:#6e6e6e;text-align:right;padding-right:14px;user-select:none}
+.tm-code pre{margin:0;font:inherit;white-space:pre;overflow:hidden}
+.kw{color:var(--terminal-keyword)}.st{color:var(--terminal-string)}.fn{color:var(--terminal-function)}.cm{color:var(--terminal-comment)}.ty{color:var(--terminal-type)}.nu{color:var(--terminal-number)}
+.err{text-decoration:underline wavy var(--danger);text-decoration-thickness:1.5px;text-underline-offset:3px;position:relative}
+.tm-hover{position:absolute;left:150px;top:182px;width:min(360px,70%);background:var(--surface-2);border:1px solid #454545;padding:10px 12px;font:400 12.5px/1.5 var(--font-mono);color:var(--text);box-shadow:0 6px 18px rgba(0,0,0,.5);border-radius:3px;animation:tm-hover 7s steps(1) infinite;z-index:2}
+.tm-hover b{color:var(--danger);font-weight:500}
+@keyframes tm-hover{0%,30%{opacity:0}31%,85%{opacity:1}86%,100%{opacity:0}}
+.tm-cursor{display:inline-block;width:2px;height:1.2em;background:var(--text);vertical-align:-3px;animation:tm-blink 1s steps(1) infinite}
+@keyframes tm-blink{50%{opacity:0}}
+.tm-term{background:var(--bg-2);border-top:1px solid var(--line);padding:6px 14px 10px;font-size:13px;min-height:112px}
+.tm-term header{display:flex;gap:18px;font-size:11px;letter-spacing:.06em;color:var(--muted);margin-bottom:6px}
+.tm-term header span.on{color:var(--text);box-shadow:0 1px 0 var(--text)}
+.tm-line{display:block;opacity:1;animation:tm-line 7s steps(1) infinite;animation-delay:calc(var(--n) * .35s)}
+@keyframes tm-line{0%,8%{opacity:0}9%,96%{opacity:1}97%,100%{opacity:0}}
+.tm-status{display:flex;justify-content:space-between;gap:12px;background:var(--terminal-statusbar);color:#fff;font-size:12px;padding:3px 12px;white-space:nowrap;overflow:hidden}
+.tm-status span{display:flex;gap:16px}
+/* paleta de comandos */
+.tm-stage{background:var(--bg-2);border:1px solid var(--line)}
+.tm-palette{width:min(100%,400px);background:var(--surface);border:1px solid #454545;box-shadow:0 8px 24px rgba(0,0,0,.55);border-radius:6px;font:400 13.5px var(--font-mono);overflow:hidden}
+.tm-palette .in{margin:8px;padding:7px 10px;background:var(--bg);border:1px solid var(--accent);border-radius:3px}
+.tm-palette ul{list-style:none;margin:0 0 6px;padding:0;position:relative}
+.tm-palette li{position:relative;z-index:1;display:flex;justify-content:space-between;padding:6px 14px}
+.tm-palette li small{color:var(--muted)}
+.tm-palette mark{background:none;color:var(--accent);font-weight:700}
+.tm-sel{position:absolute;left:0;right:0;top:0;height:32px;background:var(--terminal-selection);animation:tm-sel 6s steps(1) infinite}
+@keyframes tm-sel{0%,33%{transform:translateY(0)}34%,66%{transform:translateY(32px)}67%,100%{transform:translateY(64px)}}
+/* diff */
+.tm-diff{width:min(100%,440px);font:400 13.5px/1.7 var(--font-mono);background:var(--bg);border:1px solid var(--line);border-radius:4px;overflow:hidden}
+.tm-diff div{padding:0 12px;white-space:pre}
+.tm-diff .del{background:rgba(244,135,113,.14);color:#ffb3a6}
+.tm-diff .add{background:rgba(137,209,133,.14);color:#c4f0c0}
+.tm-diff header{padding:6px 12px;background:var(--surface);color:var(--muted);font-size:12px}
+/* toast */
+.tm-toasts{position:relative;width:100%;height:100%;min-height:280px}
+.tm-toast{position:absolute;right:0;bottom:12px;width:min(100%,340px);background:var(--surface-2);border:1px solid #454545;box-shadow:0 6px 18px rgba(0,0,0,.5);padding:12px 14px;font:400 13px/1.5 var(--font-mono);display:grid;grid-template-columns:18px 1fr;gap:10px;animation:tm-toast 6s cubic-bezier(.2,.8,.2,1) infinite}
+.tm-toast i{width:14px;height:14px;border-radius:50%;background:var(--ok);margin-top:3px}
+@keyframes tm-toast{0%{transform:translateX(110%);opacity:0}12%,80%{transform:translateX(0);opacity:1}92%,100%{transform:translateX(110%);opacity:0}}
+.tm-mini-ed{position:absolute;inset:0 0 70px;background:var(--bg);border:1px solid var(--line);padding:12px 14px;font:400 13px/1.7 var(--font-mono);color:var(--muted);overflow:hidden;white-space:pre}
+/* página */
+.tm-page{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(20px,4vw,48px);align-items:center;border:1px solid var(--line);border-radius:var(--radius-lg);padding:clamp(20px,3vw,40px);background:var(--surface)}
+.tm-page h3{font-size:clamp(22px,2.6vw,32px);line-height:1.2}
+.tm-page p{color:var(--muted);font-size:15px;line-height:1.7;margin-top:12px}
+.tm-page ol{margin:14px 0 0;padding-left:22px;font-size:14.5px;display:grid;gap:6px}
+.tm-page pre{margin:0;padding:16px;background:var(--bg);border:1px solid var(--line);border-radius:6px;font:400 14px/1.7 var(--font-mono);white-space:pre-wrap;overflow-wrap:anywhere}
+/* deck */
+.tm-deck{position:absolute;inset:0;background:var(--bg);display:grid;grid-template-rows:auto 1fr auto;border:1px solid var(--line);font-family:var(--font-mono)}
+.tm-deck .tm-tabs{font-size:1.2cqw}.tm-deck .tm-tabs span{padding:.8cqw 1.6cqw}
+.tm-deck .slide{display:grid;grid-template-columns:.9fr 1.1fr;gap:3cqw;padding:3.5cqw 4cqw;align-items:center}
+.tm-deck h3{font-size:3.6cqw;line-height:1.15}
+.tm-deck p{font-size:1.45cqw;color:var(--muted);margin-top:1.4cqw;line-height:1.6}
+.tm-deck pre{margin:0;padding:2cqw;background:var(--surface);border:1px solid var(--line);font:400 1.5cqw/1.7 var(--font-mono);white-space:pre}
+.tm-deck .tm-status{font-size:1.1cqw;padding:.4cqw 1.4cqw}
+/* carrossel */
+.tm-car{position:absolute;inset:0;background:var(--bg);display:grid;grid-template-rows:auto 1fr auto;border:1px solid var(--line);font-family:var(--font-mono)}
+.tm-car .tm-title{font-size:2.8cqw;padding:1.6cqw}
+.tm-car .body{padding:7cqw 6cqw;display:grid;align-content:space-between;gap:5cqw}
+.tm-car h3{font-size:7.4cqw;line-height:1.15;color:var(--terminal-comment)}
+.tm-car pre{margin:0;font:400 4.2cqw/1.7 var(--font-mono);white-space:pre-wrap}
+.tm-car .tm-status{font-size:3cqw;padding:1.2cqw 3cqw}
+@media (max-width:900px){
+  .tm-head,.tm-page{grid-template-columns:minmax(0,1fr)}
+  .tm-body{grid-template-columns:minmax(0,1fr)}
+  .tm-act,.tm-tree{display:none}
+  .tm-hover{left:40px;top:182px}
+}
+@media (max-width:600px){.tm-ide{font-size:12px}.tm-code{grid-template-columns:30px minmax(0,1fr)}.tm-ln{padding-right:8px}.tm-status span + span{display:none}}
+</style>
+</head>
+<body class="pv pv-terminal">
+<div class="pv-wrap pv-top"><span><b>Terminal</b> · terminal · dark</span>
+<nav aria-label="Seções da prévia"><a href="#paleta">Paleta</a><a href="#tipografia">Tipografia</a><a href="#objetos">Objetos</a><a href="#formatos">Formatos</a></nav></div>
+<main>
+<section class="pv-section tm-hero" data-scene>
+  <div class="pv-wrap">
+    <div class="tm-head">
+      <h1 class="rise">escreva o primeiro teste antes da correção</h1>
+      <div class="rise" style="--i:1"><p>O teste falha, mostra o erro e só depois você corrige. A aula inteira acontece dentro do editor, do jeito que você trabalha no dia a dia.</p><a class="tm-btn" href="#objetos">rodar os exemplos <kbd>Ctrl+Enter</kbd></a></div>
+    </div>
+    <div class="tm-ide rise" style="--i:2" data-object="janela do editor">
+      <div class="tm-title">projeto-api · test_rotas.py</div>
+      <div class="tm-body">
+        <div class="tm-act" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
+        <nav class="tm-tree" aria-label="Arquivos do projeto"><p>EXPLORADOR</p><ul><li class="dir">projeto-api</li><li class="dir" style="--l:1">src</li><li style="--l:2"><span class="py">rotas.py</span></li><li style="--l:2"><span class="py">modelos.py</span></li><li class="dir" style="--l:1">tests</li><li class="on" style="--l:2">test_rotas.py</li><li style="--l:1">pyproject.toml</li></ul></nav>
+        <div class="tm-main">
+          <div class="tm-tabs"><span>rotas.py</span><span class="on">test_rotas.py</span></div>
+          <div class="tm-code">
+            <div class="tm-ln" aria-hidden="true">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10</div>
+<pre><span class="kw">from</span> fastapi.testclient <span class="kw">import</span> <span class="ty">TestClient</span>
+<span class="kw">from</span> src.rotas <span class="kw">import</span> app
+
+cliente = <span class="ty">TestClient</span>(app)
+
+<span class="kw">def</span> <span class="fn">test_lista_livros</span>():
+    resposta = cliente.<span class="fn">get</span>(<span class="st">"/livros"</span>)
+    <span class="kw">assert</span> <span class="err">respota</span>.status_code == <span class="nu">200</span>
+    <span class="kw">assert</span> <span class="fn">len</span>(resposta.<span class="fn">json</span>()) &gt; <span class="nu">0</span><span class="tm-cursor loop" aria-hidden="true"></span>
+<span class="cm"># o teste falha primeiro, de propósito</span></pre>
+            <div class="tm-hover loop" role="note"><b>erro</b> · "respota" não está definido. Você quis dizer "resposta"?</div>
+          </div>
+          <div class="tm-term">
+            <header><span>PROBLEMAS 1</span><span class="on">TERMINAL</span></header>
+            <span class="tm-line loop" style="--n:0">$ pytest -q</span>
+            <span class="tm-line loop" style="--n:1"><span style="color:var(--danger)">F</span><span style="color:var(--ok)">.</span>                                   [100%]</span>
+            <span class="tm-line loop" style="--n:2"><span style="color:var(--danger)">1 failed</span>, <span style="color:var(--ok)">1 passed</span> in 0.18s</span>
+          </div>
+        </div>
+      </div>
+      <div class="tm-status"><span><span>main*</span><span>1 erro</span></span><span><span>Ln 9, Col 52</span><span>UTF-8</span><span>Python 3.12</span></span></div>
+    </div>
+  </div>
+</section>
+
+<section class="pv-section" id="paleta" data-scene>
+  <div class="pv-wrap">
+    <div class="pv-intro"><h2 class="pv-h2 rise">Cinza neutro e cores de sintaxe</h2><p class="rise" style="--i:1">O fundo é cinza neutro, sem azul, para não competir com a sintaxe. Fora do código, só o azul de foco e o vermelho e o verde dos testes têm significado. A barra de status azul é a única faixa de cor sólida.</p></div>
+    <div class="pv-palette rise" style="--i:2">
+<div class="pv-chip"><i style="background:var(--bg)"></i><div><code>--bg · #1e1e1e</code><span>fundo do editor</span></div></div>
+<div class="pv-chip"><i style="background:var(--bg-2)"></i><div><code>--bg-2 · #181818</code><span>barra de atividades e terminal</span></div></div>
+<div class="pv-chip"><i style="background:var(--surface)"></i><div><code>--surface · #252526</code><span>explorador, abas inativas e painéis</span></div></div>
+<div class="pv-chip"><i style="background:var(--surface-2)"></i><div><code>--surface-2 · #2d2d30</code><span>aba ativa, seleção de lista e hover</span></div></div>
+<div class="pv-chip"><i style="background:var(--text)"></i><div><code>--text · #e4e4e4</code><span>código e texto principal</span></div></div>
+<div class="pv-chip"><i style="background:var(--muted)"></i><div><code>--muted · #a8a8a8</code><span>números de linha, comentários de interface e caminhos</span></div></div>
+<div class="pv-chip"><i style="background:var(--line)"></i><div><code>--line · #3c3c3c</code><span>divisões entre painéis</span></div></div>
+<div class="pv-chip"><i style="background:var(--accent)"></i><div><code>--accent · #4fc1ff</code><span>azul de foco, cursor e link</span></div></div>
+<div class="pv-chip"><i style="background:var(--accent-2)"></i><div><code>--accent-2 · #dcdcaa</code><span>amarelo de função e de destaque no código</span></div></div>
+<div class="pv-chip"><i style="background:var(--accent-ink)"></i><div><code>--accent-ink · #001a2b</code><span>tinta escura sobre o azul</span></div></div>
+<div class="pv-chip"><i style="background:var(--paper)"></i><div><code>--paper · #d4d4d4</code><span>texto claro em janelas invertidas</span></div></div>
+<div class="pv-chip"><i style="background:var(--paper-ink)"></i><div><code>--paper-ink · #1e1e1e</code><span>fundo escuro sobre o claro</span></div></div>
+<div class="pv-chip"><i style="background:var(--danger)"></i><div><code>--danger · #f48771</code><span>sublinhado de erro e teste que falhou</span></div></div>
+<div class="pv-chip"><i style="background:var(--ok)"></i><div><code>--ok · #89d185</code><span>teste que passou e linhas adicionadas</span></div></div>
+<div class="pv-chip"><i style="background:var(--warn)"></i><div><code>--warn · #cca700</code><span>aviso do linter</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="pv-section" id="tipografia" data-scene>
+  <div class="pv-wrap pv-type">
+<div>
+      <p class="pv-type-display rise">monoespaçada do início ao fim</p>
+      <p class="pv-type-body rise" style="--i:1">JetBrains Mono em todos os níveis, com o peso fazendo a hierarquia: 700 em títulos, 400 no texto. Isso só funciona porque os blocos são curtos. Para leitura longa, aumente a entrelinha para 1,7 e limite a linha a 70 caracteres.</p>
+      <p class="pv-type-mono rise" style="--i:2"><span class="kw">def</span> <span class="fn">test_lista_livros</span>():</p>
+    </div>
+    <div class="pv-type-scale rise" style="--i:2">
+      <div><code>h1 · 56 / 700</code><span style="font:700 clamp(24px,2.8vw,36px)/1.1 var(--font-display)">$ título</span></div>
+      <div><code>h3 · 22 / 700</code><span style="font:700 22px/1.2 var(--font-display)">seção</span></div>
+      <div><code>código · 14 / 1,65</code><span style="font-size:14px"><span class="kw">assert</span> ok</span></div>
+      <div><code>corpo · 15 / 1,7</code><span style="font-size:15px">texto de apoio</span></div>
+      <div><code>interface · 12</code><span style="font-size:12px;color:var(--muted)">Ln 9, Col 52</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="pv-section" id="objetos" data-scene>
+  <div class="pv-wrap">
+    <div class="pv-intro"><h2 class="pv-h2 rise">Tudo acontece dentro do editor</h2><p class="rise" style="--i:1">Nada de cartões por cima da tela. Cada ideia aparece num espaço nativo da ferramenta: aba, explorador, paleta de comandos, sublinhado de erro, terminal e barra de status.</p></div>
+    <div class="pv-objects">
+<figure class="wide">
+        <div class="pv-stage tm-stage" data-object="paleta de comandos">
+          <div class="tm-palette"><div class="in">&gt; test</div><ul><li class="tm-sel loop" aria-hidden="true"></li><li><span><mark>Test</mark>es: rodar todos</span><small>Ctrl+; A</small></li><li><span><mark>Test</mark>es: rodar o arquivo atual</span><small>Ctrl+; F</small></li><li><span><mark>Test</mark>es: depurar o último</span><small>Ctrl+; L</small></li></ul></div>
+        </div>
+        <figcaption><b>Paleta de comandos</b>Mostra o caminho exato do comando, com as letras digitadas em destaque. A seleção desce em degraus.</figcaption>
+      </figure>
+      <figure class="wide">
+        <div class="pv-stage tm-stage" data-object="diff">
+          <div class="tm-diff"><header>rotas.py · 2 alterações</header><div>    resposta = cliente.get("/livros")</div><div class="del">-   assert respota.status_code == 200</div><div class="add">+   assert resposta.status_code == 200</div><div>    assert len(resposta.json()) &gt; 0</div></div>
+        </div>
+        <figcaption><b>Diff</b>Linhas removidas e adicionadas com fundo tingido, sem ícones. Mostra a correção sem reescrever o arquivo inteiro.</figcaption>
+      </figure>
+      <figure>
+        <div class="pv-stage tm-stage" data-object="sublinhado de erro">
+          <p style="font:400 16px var(--font-mono)"><span class="kw">assert</span> <span class="err">respota</span>.status_code</p>
+        </div>
+        <figcaption><b>Sublinhado de erro</b>Onda vermelha com text-decoration wavy. O balão de explicação aparece por cima, como no editor.</figcaption>
+      </figure>
+      <figure>
+        <div class="pv-stage tm-stage" data-object="terminal">
+          <div style="width:100%;font:400 14px/1.7 var(--font-mono)"><span class="tm-line loop" style="--n:0">$ pytest -q</span><span class="tm-line loop" style="--n:1"><span style="color:var(--ok)">..</span>                       [100%]</span><span class="tm-line loop" style="--n:2"><span style="color:var(--ok)">2 passed</span> in 0.11s</span><span class="tm-line loop" style="--n:3">$ <span class="tm-cursor loop"></span></span></div>
+        </div>
+        <figcaption><b>Terminal</b>Saída real, linha por linha, conferida letra por letra. O cursor pisca no fim.</figcaption>
+      </figure>
+      <figure>
+        <div class="pv-stage tm-stage" data-object="notificação">
+          <div class="tm-toasts"><div class="tm-mini-ed" aria-hidden="true">def test_lista_livros():
+    resposta = cliente.get("/livros")
+    assert resposta.status_code == 200</div><div class="tm-toast loop" role="status"><i aria-hidden="true"></i><span>2 testes passaram. Pode fazer o commit.</span></div></div>
+        </div>
+        <figcaption><b>Notificação</b>Entra pelo canto inferior direito com transform e sai sozinha. Uma por vez.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<section class="pv-section" id="formatos" data-scene>
+  <div class="pv-wrap">
+    <div class="pv-intro"><h2 class="pv-h2 rise">O mesmo estilo em página, deck e carrossel</h2><p class="rise" style="--i:1">Um trecho de página, um slide 16:9 e um slide de carrossel 4:5, todos com as mesmas variáveis do contrato.</p></div>
+    <div class="pv-formats">
+      <div data-format="page">
+<p class="pv-format-label">Trecho de página</p>
+        <div class="tm-page">
+          <div>
+            <h3>Vermelho, verde e só depois a limpeza</h3>
+            <p>O ciclo tem três passos curtos. Você escreve o teste que falha, faz o mínimo para ele passar e só então melhora o código com segurança.</p>
+            <ol><li>Escreva o teste e veja falhar.</li><li>Corrija com a menor mudança possível.</li><li>Refatore com os testes verdes.</li></ol>
+            <a class="tm-btn" href="#paleta">abrir o exercício</a>
+          </div>
+<pre><span class="cm"># tests/test_rotas.py</span>
+<span class="kw">def</span> <span class="fn">test_livro_inexistente</span>():
+    r = cliente.<span class="fn">get</span>(<span class="st">"/livros/999"</span>)
+    <span class="kw">assert</span> r.status_code == <span class="nu">404</span></pre>
+        </div>
+      </div>
+      <div><p class="pv-format-label">Slide de aula · 16:9</p><div data-format="deck">
+<div class="tm-deck">
+          <div class="tm-tabs"><span>aula-07.md</span><span class="on">test_rotas.py</span></div>
+          <div class="slide"><div><h3>o teste descreve o que você espera</h3><p>O nome da função já é a frase: listar livros devolve 200 e pelo menos um item.</p></div>
+<pre><span class="kw">def</span> <span class="fn">test_lista_livros</span>():
+    r = cliente.<span class="fn">get</span>(<span class="st">"/livros"</span>)
+    <span class="kw">assert</span> r.status_code == <span class="nu">200</span>
+    <span class="kw">assert</span> r.<span class="fn">json</span>()</pre></div>
+          <div class="tm-status"><span>main</span><span>slide 7 / 20</span></div>
+        </div>
+      </div></div>
+      <div><p class="pv-format-label">Slide de carrossel · 4:5</p><div data-format="carousel">
+<div class="tm-car">
+          <div class="tm-title">test_rotas.py</div>
+          <div class="body"><h3># o teste falha primeiro, de propósito</h3>
+<pre><span class="kw">assert</span> <span class="err">respota</span>.status_code
+<span style="color:var(--danger)">NameError</span>: respota</pre></div>
+          <div class="tm-status"><span>@suamarca</span><span>2 / 6</span></div>
+        </div>
+      </div></div>
+    </div>
+  </div>
+</section>
+</main>
+<footer class="pv-wrap pv-foot">Prévia do estilo terminal · pycode-design · tokens em tokens.css, regras em DESIGN.md. Conteúdo fictício de exemplo.</footer>
+<script>
+/* Movimento: liga cada cena só quando visível, pausa com a aba oculta e respeita movimento reduzido. */
+(() => {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const scenes = document.querySelectorAll('[data-scene]');
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      e.target.dataset.motion = e.isIntersecting && !reduce.matches ? 'on' : 'off';
+      if (e.isIntersecting) e.target.dataset.entered = 'true';
+    }
+  }, { threshold: 0.12 });
+  scenes.forEach((s) => io.observe(s));
+  document.addEventListener('visibilitychange', () => {
+    document.body.dataset.background = document.hidden ? 'true' : 'false';
+  });
+})();
+
+
+</script>
+</body>
+</html>

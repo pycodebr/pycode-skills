@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=1080">
+  <title>Carrossel</title>
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/scene.css">
+</head>
+<body>
+  <!--
+    Modelo de carrossel 4:5. O texto vem de slides.json; aqui ficam só a estrutura e os objetos.
+    Os slides nascem dos <template data-layout> abaixo (cover, content, cta). Para um conceito
+    próprio, troque o .hero de cada layout pelo objeto desenhado em código (SVG, canvas, HTML)
+    e apague o atributo data-placeholder: o QA reprova enquanto ele existir.
+  -->
+  <main class="carousel"></main>
+
+  <template data-layout="cover">
+    <section class="slide layout-cover">
+      <div class="backdrop" aria-hidden="true"></div>
+      <div class="hero" data-placeholder aria-hidden="true"><svg viewBox="0 0 760 520"><rect x="6" y="6" width="748" height="508" rx="28"/><path d="M6 514 L754 6 M6 6 L754 514"/></svg></div>
+      <div class="stack">
+        <h1 class="display title" data-field="title"></h1>
+        <p class="body-text lead" data-field="body"></p>
+      </div>
+    </section>
+  </template>
+
+  <template data-layout="content">
+    <section class="slide layout-content">
+      <div class="backdrop" aria-hidden="true"></div>
+      <div class="index" aria-hidden="true" data-decor></div>
+      <div class="stack">
+        <h2 class="display title" data-field="title"></h2>
+        <p class="body-text" data-field="body"></p>
+      </div>
+      <div class="hero" data-placeholder aria-hidden="true"><svg viewBox="0 0 760 420"><rect x="6" y="6" width="748" height="408" rx="28"/><path d="M6 414 L754 6 M6 6 L754 414"/></svg></div>
+      <pre class="code panel" data-code="code" hidden></pre>
+    </section>
+  </template>
+
+  <template data-layout="cta">
+    <section class="slide layout-cta">
+      <div class="backdrop" aria-hidden="true"></div>
+      <div class="hero" data-placeholder aria-hidden="true"><svg viewBox="0 0 760 420"><rect x="6" y="6" width="748" height="408" rx="28"/><path d="M6 414 L754 6 M6 6 L754 414"/></svg></div>
+      <div class="stack">
+        <h2 class="display title" data-field="title"></h2>
+        <p class="body-text" data-field="body"></p>
+      </div>
+      <p class="cta" data-field="cta"></p>
+    </section>
+  </template>
+
+  <script src="js/slides-data.js"></script>
+  <script src="js/carousel.js"></script>
+  <script src="js/scene.js"></script>
+</body>
+</html>

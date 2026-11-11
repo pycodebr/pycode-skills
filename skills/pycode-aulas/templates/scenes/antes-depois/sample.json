@@ -1,0 +1,90 @@
+{
+  "id": "contrato",
+  "archetype": "antes-depois",
+  "title": "Sem contrato, com contrato",
+  "chapter": "o problema",
+  "thread": "pedido 42 · com contrato",
+  "transition": "corte",
+  "bg": "grade",
+  "apoio": "Sem uma API, cada sistema mexe direto no banco de dados e qualquer mudança quebra alguém. Com a API, todos passam pela mesma porta, que tem regras.",
+  "hook": "Agora vamos abrir um pedido e ver as peças dele.",
+  "notes": "Clique no lado esquerdo e mostre o emaranhado. Depois no direito, e nas três regras da porta.",
+  "reading": [
+    {
+      "label": "Antes",
+      "title": "Cada sistema entra direto no banco",
+      "text": "Renomear uma coluna exige mudar o app, o site, o parceiro e o relatório ao mesmo tempo."
+    },
+    {
+      "label": "Depois",
+      "title": "Todos passam pela mesma porta",
+      "text": "A API esconde o banco. O formato da resposta continua igual mesmo quando o banco muda."
+    },
+    {
+      "label": "Regra",
+      "title": "Confere a chave",
+      "text": "Só quem tem acesso recebe dados."
+    },
+    {
+      "label": "Regra",
+      "title": "Limita o volume",
+      "text": "Um cliente não derruba o serviço fazendo milhares de pedidos por minuto."
+    },
+    {
+      "label": "Regra",
+      "title": "Responde sempre igual",
+      "text": "O mesmo JSON para todos, documentado num contrato."
+    }
+  ],
+  "data": {
+    "before": {
+      "chip": "antes",
+      "label": "Cada um entra direto",
+      "tip": "Renomear uma coluna quebra quatro sistemas de uma vez."
+    },
+    "after": {
+      "chip": "depois",
+      "label": "Uma porta com regras",
+      "tip": "Todos pedem pela API, e o banco fica escondido atrás dela.",
+      "gate": "API"
+    },
+    "db": "Banco",
+    "clients": [
+      {
+        "label": "App",
+        "icon": "app"
+      },
+      {
+        "label": "Site",
+        "icon": "site"
+      },
+      {
+        "label": "Parceiro",
+        "icon": "card"
+      },
+      {
+        "label": "Relatório",
+        "icon": "chart"
+      }
+    ],
+    "rules": [
+      {
+        "label": "confere a chave",
+        "tip": "Só quem tem acesso recebe dados."
+      },
+      {
+        "label": "limita o volume",
+        "tip": "Por exemplo, cem pedidos por minuto para cada cliente."
+      },
+      {
+        "label": "responde igual",
+        "tip": "O mesmo formato de JSON para todos os sistemas."
+      }
+    ]
+  },
+  "study": {
+    "text": [
+      "Esse contrato costuma ser descrito num documento OpenAPI, que lista os endereços, os parâmetros aceitos e o formato de cada resposta. Ferramentas leem esse arquivo para gerar a documentação, clientes prontos e testes automáticos."
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+.s-__ID__ .en-svg { position: absolute; inset: 0; width: 1696px; height: 716px; overflow: visible; pointer-events: none; }
+.s-__ID__ .en-path { fill: none; stroke: var(--line); stroke-width: 8; stroke-linecap: round; }
+.s-__ID__ .en-lit { stroke: var(--accent); stroke-width: 8; }
+.s-__ID__ .complete .en-lit { stroke: var(--accent-2); }
+.s-__ID__ .en-stop { fill: var(--bg); stroke: var(--line); stroke-width: 5; transition: fill .25s, stroke .25s; }
+.s-__ID__ .en-stop.done { fill: var(--accent); stroke: var(--accent); }
+.s-__ID__ .en-num { position: absolute; transform: translateX(-50%); font-size: 18px; color: var(--muted); transition: color .25s; }
+.s-__ID__ .en-num.done { color: var(--text); }
+.s-__ID__ .en-pk rect { fill: var(--accent-2); }
+.s-__ID__ .en-app .disc { width: 140px; height: 140px; border-radius: 40px; font-size: 64px; }
+.s-__ID__ .complete .en-app .disc { background: var(--ok); border-color: var(--ok); color: var(--bg); box-shadow: var(--glow), var(--shadow); }
+.s-__ID__ .en-app .name { position: absolute; left: calc(100% + 18px); top: 50%; transform: translateY(-50%); font-size: 22px; }
+.s-__ID__ .en-done { position: absolute; left: 300px; width: 1140px; top: 290px; display: flex; justify-content: center; align-items: center; gap: 14px; font-family: var(--font-display); font-weight: var(--weight-display); letter-spacing: var(--tracking-display); font-size: 66px; line-height: 1; color: var(--ok); opacity: 0; transform: translateX(-16px); transition: opacity .4s, transform .5s var(--ease-out); }
+.s-__ID__ .en-done .ic { font-size: 54px; stroke-width: 2.4; }
+.s-__ID__ .complete .en-done { opacity: 1; transform: none; }
+.s-__ID__ .en-step { position: absolute; width: 80px; height: 80px; margin: -40px 0 0 -40px; border-radius: 50%; z-index: 2; }
+.s-__ID__ .en-step i { position: absolute; left: 0; top: 0; width: 80px; height: 80px; border-radius: 50%; display: grid; place-items: center; font-style: normal; font-size: 30px; font-weight: 700; background: var(--bg); border: 6px solid var(--line); color: var(--muted); transition: background-color .3s, border-color .3s, color .3s, transform .4s var(--ease-out); }
+.s-__ID__ .en-step b { position: absolute; top: 98px; left: 40px; transform: translateX(-50%); white-space: nowrap; font-family: var(--font-display); font-weight: var(--weight-display); letter-spacing: var(--tracking-display); font-size: 40px; line-height: 1; color: var(--muted); transition: color .3s; }
+.s-__ID__ .en-step.done i { border-color: var(--accent-2); color: var(--text); }
+.s-__ID__ .en-step.done b { color: var(--text); }
+.s-__ID__ .en-step.on i { background: var(--accent-2); color: var(--accent-ink); transform: scale(1.15); }

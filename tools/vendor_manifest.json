@@ -1,0 +1,367 @@
+{
+  "schema": 1,
+  "fonts": [
+    {
+      "id": "geist",
+      "family": "Geist",
+      "license": "OFL-1.1",
+      "source": "@fontsource-variable/geist@5.3.0",
+      "files": [
+        {
+          "file": "geist-latin-wght-normal.woff2",
+          "url": "https://cdn.jsdelivr.net/npm/@fontsource-variable/geist@5.3.0/files/geist-latin-wght-normal.woff2",
+          "weight": "100 900",
+          "style": "normal",
+          "bytes": 29400,
+          "sha256": "19f9c92546aa300c312235e3125af1b81394d8db9a4bc4a425cd5b641d2d54e1"
+        }
+      ]
+    },
+    {
+      "id": "geist-mono",
+      "family": "Geist Mono",
+      "license": "OFL-1.1",
+      "source": "@fontsource-variable/geist-mono@5.3.0",
+      "files": [
+        {
+          "file": "geist-mono-latin-wght-normal.woff2",
+          "url": "https://cdn.jsdelivr.net/npm/@fontsource-variable/geist-mono@5.3.0/files/geist-mono-latin-wght-normal.woff2",
+          "weight": "100 900",
+          "style": "normal",
+          "bytes": 23128,
+          "sha256": "684ad5b531f81d43c1e8c7038262d5db7cdc1f68006e04d6c7769efa8d33c8cc"
+        }
+      ]
+    },
+    {
+      "id": "inter",
+      "family": "Inter",
+      "license": "OFL-1.1",
+      "source": "@fontsource-variable/inter@5.3.0",
+      "files": [
+        {
+          "file": "inter-latin-wght-normal.woff2",
+          "url": "https://cdn.jsdelivr.net/npm/@fontsource-variable/inter@5.3.0/files/inter-latin-wght-normal.woff2",
+          "weight": "100 900",
+          "style": "normal",
+          "bytes": 48256,
+          "sha256": "3100e775e8616cd2611beecfa23a4263d7037586789b43f035236a2e6fbd4c62"
+        }
+      ]
+    },
+    {
+      "id": "jetbrains-mono",
+      "family": "JetBrains Mono",
+      "license": "OFL-1.1",
+      "source": "@fontsource-variable/jetbrains-mono@5.3.0",
+      "files": [
+        {
+          "file": "jetbrains-mono-latin-wght-normal.woff2",
+          "url": "https://cdn.jsdelivr.net/npm/@fontsource-variable/jetbrains-mono@5.3.0/files/jetbrains-mono-latin-wght-normal.woff2",
+          "weight": "100 800",
+          "style": "normal",
+          "bytes": 40404,
+          "sha256": "18be452724bfdc236c074ca94a249a7f41a86752c7d04ab258ce9ed5651f6a7e"
+        }
+      ]
+    },
+    {
+      "id": "space-grotesk",
+      "family": "Space Grotesk",
+      "license": "OFL-1.1",
+      "source": "@fontsource-variable/space-grotesk@5.3.0",
+      "files": [
+        {
+          "file": "space-grotesk-latin-wght-normal.woff2",
+          "url": "https://cdn.jsdelivr.net/npm/@fontsource-variable/space-grotesk@5.3.0/files/space-grotesk-latin-wght-normal.woff2",
+          "weight": "300 700",
+          "style": "normal",
+          "bytes": 22288,
+          "sha256": "0640890476fc1198ab4de571fb658de443c4d85b66466ec09534a8737ab1ce9d"
+        }
+      ]
+    },
+    {
+      "id": "bricolage-grotesque",
+      "family": "Bricolage Grotesque",
+      "license": "OFL-1.1",
+      "source": "@fontsource-variable/bricolage-grotesque@5.3.0",
+      "files": [
+        {
+          "file": "bricolage-grotesque-latin-wght-normal.woff2",
+          "url": "https://cdn.jsdelivr.net/npm/@fontsource-variable/bricolage-grotesque@5.3.0/files/bricolage-grotesque-latin-wght-normal.woff2",
+          "weight": "200 800",
+          "style": "normal",
+          "bytes": 41344,
+          "sha256": "a97804dc9fbe5fc972a08018c5eda4dab7ef2346f64c57e61419d05e6de4ea1c"
+        }
+      ]
+    },
+    {
+      "id": "fraunces",
+      "family": "Fraunces",
+      "license": "OFL-1.1",
+      "source": "@fontsource-variable/fraunces@5.3.0",
+      "files": [
+        {
+          "file": "fraunces-latin-wght-normal.woff2",
+          "url": "https://cdn.jsdelivr.net/npm/@fontsource-variable/fraunces@5.3.0/files/fraunces-latin-wght-normal.woff2",
+          "weight": "100 900",
+          "style": "normal",
+          "bytes": 36620,
+          "sha256": "7f9d191d999336d3b9790afa72e1358e50a13b06d4f289341e92a311967a80f9"
+        },
+        {
+          "file": "fraunces-latin-wght-italic.woff2",
+          "url": "https://cdn.jsdelivr.net/npm/@fontsource-variable/fraunces@5.3.0/files/fraunces-latin-wght-italic.woff2",
+          "weight": "100 900",
+          "style": "italic",
+          "bytes": 45656,
+          "sha256": "bceec2ef4d549efbc8df0194a8d5280b6a64c3e399244dffccd9ea1bd9ad6db7"
+        }
+      ]
+    },
+    {
+      "id": "playfair-display",
+      "family": "Playfair Display",
+      "license": "OFL-1.1",
+      "source": "@fontsource-variable/playfair-display@5.3.0",
+      "files": [
+        {
+          "file": "playfair-display-latin-wght-normal.woff2",
+          "url": "https://cdn.jsdelivr.net/npm/@fontsource-variable/playfair-display@5.3.0/files/playfair-display-latin-wght-normal.woff2",
+          "weight": "400 900",
+          "style": "normal",
+          "bytes": 38404,
+          "sha256": "e0c764a8e9e1cce92163c55bac4b2ad6cd4cf8c696ce2289ab5c41565e65b7e2"
+        },
+        {
+          "file": "playfair-display-latin-wght-italic.woff2",
+          "url": "https://cdn.jsdelivr.net/npm/@fontsource-variable/playfair-display@5.3.0/files/playfair-display-latin-wght-italic.woff2",
+          "weight": "400 900",
+          "style": "italic",
+          "bytes": 38804,
+          "sha256": "54af24bd0f911f0fd7399d5445ea2023ff501d6a69f2d728f1213072f977ab14"
+        }
+      ]
+    },
+    {
+      "id": "caveat",
+      "family": "Caveat",
+      "license": "OFL-1.1",
+      "source": "@fontsource-variable/caveat@5.3.0",
+      "files": [
+        {
+          "file": "caveat-latin-wght-normal.woff2",
+          "url": "https://cdn.jsdelivr.net/npm/@fontsource-variable/caveat@5.3.0/files/caveat-latin-wght-normal.woff2",
+          "weight": "400 700",
+          "style": "normal",
+          "bytes": 74932,
+          "sha256": "891951df5e8b5b0f0bc760d31375405e795c666b5add70437de12d4a6482b33f"
+        }
+      ]
+    },
+    {
+      "id": "instrument-serif",
+      "family": "Instrument Serif",
+      "license": "OFL-1.1",
+      "source": "@fontsource/instrument-serif@5.3.0",
+      "files": [
+        {
+          "file": "instrument-serif-latin-400-normal.woff2",
+          "url": "https://cdn.jsdelivr.net/npm/@fontsource/instrument-serif@5.3.0/files/instrument-serif-latin-400-normal.woff2",
+          "weight": "400",
+          "style": "normal",
+          "bytes": 21032,
+          "sha256": "5eb09b5ac0e28b67c2f041c8ba6d244604ca0c0980d65912ab2d47fed84ddc31"
+        },
+        {
+          "file": "instrument-serif-latin-400-italic.woff2",
+          "url": "https://cdn.jsdelivr.net/npm/@fontsource/instrument-serif@5.3.0/files/instrument-serif-latin-400-italic.woff2",
+          "weight": "400",
+          "style": "italic",
+          "bytes": 22128,
+          "sha256": "5a51946dfffa82972bc98745359c46761515641fda557c25116459a9f83da4a7"
+        }
+      ]
+    },
+    {
+      "id": "anton",
+      "family": "Anton",
+      "license": "OFL-1.1",
+      "source": "@fontsource/anton@5.3.0",
+      "files": [
+        {
+          "file": "anton-latin-400-normal.woff2",
+          "url": "https://cdn.jsdelivr.net/npm/@fontsource/anton@5.3.0/files/anton-latin-400-normal.woff2",
+          "weight": "400",
+          "style": "normal",
+          "bytes": 18612,
+          "sha256": "d0fa07ff63dd60cbc0e2f58e29c802dca2a5ae0276c999f59c6111ab7bbaec3b"
+        }
+      ]
+    },
+    {
+      "id": "bebas-neue",
+      "family": "Bebas Neue",
+      "license": "OFL-1.1",
+      "source": "@fontsource/bebas-neue@5.3.0",
+      "files": [
+        {
+          "file": "bebas-neue-latin-400-normal.woff2",
+          "url": "https://cdn.jsdelivr.net/npm/@fontsource/bebas-neue@5.3.0/files/bebas-neue-latin-400-normal.woff2",
+          "weight": "400",
+          "style": "normal",
+          "bytes": 13768,
+          "sha256": "a7c90c89240c134f7fdd33d40c000ec90b79d675ea53e8cc5a6d423c073de412"
+        }
+      ]
+    },
+    {
+      "id": "syncopate",
+      "family": "Syncopate",
+      "license": "OFL-1.1",
+      "source": "@fontsource/syncopate@5.3.0",
+      "files": [
+        {
+          "file": "syncopate-latin-400-normal.woff2",
+          "url": "https://cdn.jsdelivr.net/npm/@fontsource/syncopate@5.3.0/files/syncopate-latin-400-normal.woff2",
+          "weight": "400",
+          "style": "normal",
+          "bytes": 32344,
+          "sha256": "b57f964dfec15bc7e94db5c8930e02d2f4031c284a8e852b23b81a29450dbd14"
+        },
+        {
+          "file": "syncopate-latin-700-normal.woff2",
+          "url": "https://cdn.jsdelivr.net/npm/@fontsource/syncopate@5.3.0/files/syncopate-latin-700-normal.woff2",
+          "weight": "700",
+          "style": "normal",
+          "bytes": 17432,
+          "sha256": "8a462650535a7d255dd037dc3ca7eefde4b2b988bb110736290dbd7b74a83fea"
+        }
+      ]
+    },
+    {
+      "id": "press-start-2p",
+      "family": "Press Start 2P",
+      "license": "OFL-1.1",
+      "source": "@fontsource/press-start-2p@5.3.0",
+      "files": [
+        {
+          "file": "press-start-2p-latin-400-normal.woff2",
+          "url": "https://cdn.jsdelivr.net/npm/@fontsource/press-start-2p@5.3.0/files/press-start-2p-latin-400-normal.woff2",
+          "weight": "400",
+          "style": "normal",
+          "bytes": 12512,
+          "sha256": "afec86997fdaf54af1f59358fa2c1e2a0f1d04146edad18e5cd141d0384a7548"
+        }
+      ]
+    },
+    {
+      "id": "vt323",
+      "family": "VT323",
+      "license": "OFL-1.1",
+      "source": "@fontsource/vt323@5.3.0",
+      "files": [
+        {
+          "file": "vt323-latin-400-normal.woff2",
+          "url": "https://cdn.jsdelivr.net/npm/@fontsource/vt323@5.3.0/files/vt323-latin-400-normal.woff2",
+          "weight": "400",
+          "style": "normal",
+          "bytes": 17936,
+          "sha256": "8ddbebcc1048154132e1d78eb9b1f7850bca1b7d857035ccf1cb4318ebc615b6"
+        }
+      ]
+    },
+    {
+      "id": "jersey-10",
+      "family": "Jersey 10",
+      "license": "OFL-1.1",
+      "source": "@fontsource/jersey-10@5.3.0",
+      "files": [
+        {
+          "file": "jersey-10-latin-400-normal.woff2",
+          "url": "https://cdn.jsdelivr.net/npm/@fontsource/jersey-10@5.3.0/files/jersey-10-latin-400-normal.woff2",
+          "weight": "400",
+          "style": "normal",
+          "bytes": 13276,
+          "sha256": "a606eb9b440abe7386c0e8aa2c081fb40d4a241758e2b0e49fdd963741ac4590"
+        }
+      ]
+    }
+  ],
+  "js": [
+    {
+      "id": "gsap",
+      "file": "gsap.min.js",
+      "url": "https://cdn.jsdelivr.net/npm/gsap@3.15.1/dist/gsap.min.js",
+      "license": "GSAP Standard License (https://gsap.com/standard-license)",
+      "source": "gsap@3.15.1",
+      "bytes": 73357,
+      "sha256": "3d1bea374ab1b703cc5c4105358eec63c4465efdc573931dc116e34a0a190c1b"
+    },
+    {
+      "id": "scrolltrigger",
+      "file": "ScrollTrigger.min.js",
+      "url": "https://cdn.jsdelivr.net/npm/gsap@3.15.1/dist/ScrollTrigger.min.js",
+      "license": "GSAP Standard License (https://gsap.com/standard-license)",
+      "source": "gsap@3.15.1",
+      "bytes": 44683,
+      "sha256": "b5bb360661f478f0ff6ffa11500d8ce5e2b6aaf6f7288237cdca3aac9548035a"
+    },
+    {
+      "id": "splittext",
+      "file": "SplitText.min.js",
+      "url": "https://cdn.jsdelivr.net/npm/gsap@3.15.1/dist/SplitText.min.js",
+      "license": "GSAP Standard License (https://gsap.com/standard-license)",
+      "source": "gsap@3.15.1",
+      "bytes": 7955,
+      "sha256": "7b299a6b26b36fd5ce1c0712f31d6d25f98f9a9860778c2d3a78ce8f880f2edf"
+    },
+    {
+      "id": "drawsvgplugin",
+      "file": "DrawSVGPlugin.min.js",
+      "url": "https://cdn.jsdelivr.net/npm/gsap@3.15.1/dist/DrawSVGPlugin.min.js",
+      "license": "GSAP Standard License (https://gsap.com/standard-license)",
+      "source": "gsap@3.15.1",
+      "bytes": 4351,
+      "sha256": "e950c5fb54281dcc8b17212b6e5d2b1dc225c1f7e214192a804ca83a8a8ef2e6"
+    },
+    {
+      "id": "motionpathplugin",
+      "file": "MotionPathPlugin.min.js",
+      "url": "https://cdn.jsdelivr.net/npm/gsap@3.15.1/dist/MotionPathPlugin.min.js",
+      "license": "GSAP Standard License (https://gsap.com/standard-license)",
+      "source": "gsap@3.15.1",
+      "bytes": 22002,
+      "sha256": "695284c76e8a558f37ffd45a98ea790ccc6769d636e53a86406e457b248108d4"
+    },
+    {
+      "id": "flip",
+      "file": "Flip.min.js",
+      "url": "https://cdn.jsdelivr.net/npm/gsap@3.15.1/dist/Flip.min.js",
+      "license": "GSAP Standard License (https://gsap.com/standard-license)",
+      "source": "gsap@3.15.1",
+      "bytes": 25596,
+      "sha256": "6e9434933eb2b67373947cdb30e70fdba59b68bb8fa480df4251917c71574199"
+    },
+    {
+      "id": "customease",
+      "file": "CustomEase.min.js",
+      "url": "https://cdn.jsdelivr.net/npm/gsap@3.15.1/dist/CustomEase.min.js",
+      "license": "GSAP Standard License (https://gsap.com/standard-license)",
+      "source": "gsap@3.15.1",
+      "bytes": 7143,
+      "sha256": "2cf6fd7afab6c4b24b32d233430026c74748dc9af7f0f56b1959cd8a03598028"
+    },
+    {
+      "id": "morphsvgplugin",
+      "file": "MorphSVGPlugin.min.js",
+      "url": "https://cdn.jsdelivr.net/npm/gsap@3.15.1/dist/MorphSVGPlugin.min.js",
+      "license": "GSAP Standard License (https://gsap.com/standard-license)",
+      "source": "gsap@3.15.1",
+      "bytes": 21195,
+      "sha256": "94274c58a52c17643cedcd08144e3d8dc5b05dde975c39abf7069f9ee5884fe3"
+    }
+  ]
+}

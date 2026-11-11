@@ -1,0 +1,22 @@
+{
+  "slug": "orbital",
+  "name": "Orbital",
+  "summary": "Marinho quase preto, dourado e luz ciano, com objetos claros de papel: emblema em órbita, calendário, ingresso com canhoto e acervo em camadas. Tratamento premium e calmo para páginas, aulas e convites.",
+  "mode": "dark",
+  "fonts": [
+    "geist",
+    "geist-mono"
+  ],
+  "best_for": [
+    "page",
+    "deck",
+    "carousel"
+  ],
+  "mood": [
+    "premium",
+    "noturno",
+    "técnico",
+    "sereno"
+  ],
+  "version": "1.0.0"
+}

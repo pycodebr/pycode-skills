@@ -1,0 +1,24 @@
+{
+  "slug": "sala-de-controle",
+  "name": "Sala de controle",
+  "summary": "Painel de instrumentos à noite: grafite fosco, mostradores com ponteiro, barras de LED, chaves seletoras, osciloscópio e luz de alerta âmbar. Para métricas, monitoramento, checklists e conteúdo sobre operação e segurança.",
+  "mode": "dark",
+  "fonts": [
+    "bebas-neue",
+    "geist",
+    "jetbrains-mono",
+    "jersey-10"
+  ],
+  "best_for": [
+    "deck",
+    "page",
+    "carousel"
+  ],
+  "mood": [
+    "operacional",
+    "sério",
+    "técnico",
+    "preciso"
+  ],
+  "version": "1.0.0"
+}
