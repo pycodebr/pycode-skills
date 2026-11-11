@@ -314,9 +314,40 @@ def cmd_icon(argv):
 
 
 # ---------------------------------------------------------------- mermaid / lighthouse / css
+def _needs_no_sandbox():
+    """O sandbox do Chromium depende de user namespaces no Linux. Root, contêineres e o AppArmor do
+    Ubuntu 23.10+ bloqueiam esse recurso, e o navegador nem abre. Testa uma vez por instalação e guarda."""
+    if not sys.platform.startswith("linux"):
+        return False
+    if hasattr(os, "geteuid") and os.geteuid() == 0:
+        return True
+    from .browser import chromium_path
+    chrome = chromium_path()
+    if not chrome:
+        return False
+    cache = paths.HOME / "chrome-sandbox.json"
+    try:
+        data = json.loads(cache.read_text(encoding="utf-8"))
+        if data.get("chrome") == chrome:
+            return bool(data.get("no_sandbox"))
+    except (OSError, ValueError):
+        pass
+    try:
+        probe = subprocess.run([chrome, "--headless=new", "--disable-gpu", "--dump-dom", "about:blank"],
+                               capture_output=True, timeout=40)
+        no_sandbox = probe.returncode != 0 or b"<html" not in probe.stdout
+    except (OSError, subprocess.TimeoutExpired):
+        no_sandbox = True
+    try:
+        cache.write_text(json.dumps({"chrome": chrome, "no_sandbox": no_sandbox}), encoding="utf-8")
+    except OSError:
+        pass
+    return no_sandbox
+
+
 def _chrome_flags():
     flags = ["--headless=new", "--disable-gpu"]
-    if hasattr(os, "geteuid") and os.geteuid() == 0:
+    if _needs_no_sandbox():
         flags.append("--no-sandbox")
     return flags
 

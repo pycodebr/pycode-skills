@@ -32,6 +32,13 @@ step "pycode-paginas: landing nova em estilo claro, build e QA"
 "$PYCODE" page build "$WORK/pagina"
 "$PYCODE" page qa "$WORK/pagina"
 "$PYCODE" page check-links "$WORK/pagina"
+# uma rodada de Lighthouse prova que o Chromium abre fora do Playwright (sandbox, caminho do navegador)
+"$PYCODE" page perf "$WORK/pagina" --runs 1 --only desktop --min-score 0
+
+step "diagrama Mermaid"
+printf 'flowchart LR\n  A[Pedido] --> B{Revisão}\n  B -->|ok| C[Entrega]\n' > "$WORK/fluxo.mmd"
+"$PYCODE" mermaid "$WORK/fluxo.mmd" --out "$WORK/fluxo.svg"
+test -s "$WORK/fluxo.svg"
 
 step "pycode-carrosseis: exemplo, render e QA"
 "$PYCODE" carousel new "$WORK/carrossel" --example metro
